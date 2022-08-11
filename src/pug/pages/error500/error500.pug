@@ -1,0 +1,14 @@
+extends ../../layout/main
+block variables
+	- var title = 'Яндекс Практикум. Ошибка 500.';
+
+block scripts 
+	link(rel="stylesheet", href="error500.scss")
+	script(src="error500.js")
+
+block content
+	.error-main
+		.error-main__header
+			.error-main__title 500
+			.error-main__info Мы уже фиксим
+		a.error-main__link(href='../../index.pug') Назад к чатам

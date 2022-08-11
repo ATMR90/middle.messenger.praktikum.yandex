@@ -1,10 +1,23 @@
-doctype html
-html(lang="en")
-	head
-		meta(charset="UTF-8")
-		meta(name="viewport" content="width=device-width, initial-scale=1.0")
-		meta(http-equiv="X-UA-Compatible" content="ie=edge")
-		title Яндекс Практикум. Чат.
-		link(rel="stylesheet", href="../css/style.css")
-		script(src="../index.js")
-	body
+extends layout/main
+block variables
+	- var title = 'Яндекс Практикум. Главная.';
+
+block scripts 
+	link(rel="stylesheet", href="../css/style.css")
+	script(src="../index.js")
+
+block content
+	.home
+		ul.nav 
+			li 
+				a(href="./pages/signIn/signIn.pug").nav-Link Вход
+			li 
+				a(href="./pages/signUp/signUp.pug").nav-Link Регистрация
+			li 
+				a(href="./pages/chat/chat.pug").nav-Link Чат
+			li 
+				a(href="./pages/profile/profile.pug").nav-Link Профиль
+			li 
+				a(href="./pages/error404/error404.pug").nav-Link Ошибка 404
+			li 
+				a(href="./pages/error500/error500.pug").nav-Link Ошибка 500
