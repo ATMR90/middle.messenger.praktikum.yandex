@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "---",
   "scripts": {
-    "clean:output": "rm -rf dist/*",
+		"clean:cache": "rm -rf .parcel-cache/*",
+    "clean:output": "npm run clean:cache && rm -rf dist/*",
     "dev": "npm run clean:output && parcel ./static/index.html --port 3000",
     "build": "npm run clean:output && parcel build ./static/index.html",
     "pug": "npm run clean:output && parcel ./src/pug/index.pug --port 3000",
