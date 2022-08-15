@@ -1,22 +1,16 @@
-extends ../../layout/main
-block variables
+extends ../../layout/card
+block subvariables
+	- var subTitle = 'Вход';
 	- var title = 'Яндекс Практикум. Вход.';
 
-block scripts 
+block subscripts 
 	link(rel="stylesheet", href="signIn.scss")
 	script(src="signIn.js")
 
-block content
-	.ya-form 
-		.ya-form__container.ya-form__container_shadow
-			.ya-form__title Вход
-			.ya-form__fields
-				.ya-form__field.ya-field
-					label.ya-field__label Логин
-					input.ya-field__input(type="text")
-				.ya-form__field.ya-field
-					label.ya-field__label Пароль
-					input.ya-field__input(type="password")
-			.ya-form__footer 
-				.ya-form__btn.ya-form__btn_main Войти
-				.ya-form__btn Регистрация
+block fields
+	+field('login','text','Логин')(class='ya-form__field')
+	+field('password','password','Пароль')(class='ya-form__field')
+block footer
+	+btn('Войти', true)(class='ya-form__btn')
+	+btn('', false)(class='ya-form__btn')
+		a(href="../signUp/signUp") Регистрация

@@ -7,3 +7,28 @@ block scripts
 	script(src="profile.js")
 
 block content
+	.ya-profile
+		.ya-profile__back.profile-back
+			.profile-back__text
+				a(href="./../../index.pug") 
+					img(src="../../../assets/img/vector_01.svg", alt="")
+		.ya-profile__info
+			.ya-profile__header.header-profile 
+				.header-profile__avatar
+					img(src="./../../../assets/img/Union.svg", alt="")
+				.header-profile__title.
+					Иван
+			.ya-profile__user-info.user-info
+				+infoField('Почта', 'ivanivanov')(class='user-info__field')
+				+infoField('Логин', 'pochta@yandex.ru')(class='user-info__field')
+				+infoField('Имя', 'Иван')(class='user-info__field')
+				+infoField('Фамилия', 'Иванов')(class='user-info__field')
+				+infoField('Имя в чате', 'Иван')(class='user-info__field')
+				+infoField('Телефон', '+7 (909) 967 30 30')(class='user-info__field')
+			.ya-profile__settings.user-info
+				+infoField('', '')(class='user-info__field')
+					+btn('Войти', false)(class='user-info__btn')
+				+infoField('', '')(class='user-info__field')
+					+btn('Изменить пароль', false)(class='user-info__btn')
+				+infoField('', '')(class='user-info__field')
+					+btn('Выйти', false)(class='user-info__btn user-info__btn_red')

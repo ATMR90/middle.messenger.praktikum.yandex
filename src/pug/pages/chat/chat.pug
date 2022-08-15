@@ -1,9 +1,29 @@
 extends ../../layout/main
 block variables
 	- var title = 'Яндекс Практикум. Чат.';
+	- var testLongText = 'Друзья, у меня для вас особенный выпуск новостей!...'
 
 block scripts 
 	link(rel="stylesheet", href="chat.scss")
 	script(src="chat.js")
 
 block content
+	.ya-chat 
+		.ya-chat__left-panel.left-panel
+			.left-panel__profile 
+				a(href="./../profile/profile.pug") Профиль
+					<img src="./../../../assets/img/polygon_01.svg" alt="">
+			.left-panel__search
+				input.left-panel__input(placeholder="Поиск")
+			.left-panel__chat-list
+				+chatPanel('#','Андрей', 'Изображение', '10:49', '2')(class='left-panel__chat')
+				+chatPanel('#','Киноклуб', 'стикер', '12:00', '')(class='left-panel__chat')
+				+chatPanel('#','Илья', testLongText, '15:12', '')(class='left-panel__chat')
+				+chatPanel('#','Вадим', 'Круто!', 'Пт', '')(class='left-panel__chat left-panel__chat_active')
+				+chatPanel('#','тет-а-теты', 'И Human Interface Guidelines и Material Design рекомендуют...', 'Ср', '')(class='left-panel__chat')
+				+chatPanel('#','1, 2, 3', 'Миллионы россиян ежедневно проводят десятки часов свое...', 'Пн', '')(class='left-panel__chat')
+				+chatPanel('#','Design Destroyer', 'В 2008 году художник Jon Rafman  начал собирать...', 'Пн', '')(class='left-panel__chat')
+				+chatPanel('#','Day.', 'Так увлёкся работой по курсу, что совсем забыл его анонсир...', '1 Мая 2020', '')(class='left-panel__chat')
+				+chatPanel('#','Стас Рогозин', 'Можно или сегодня или завтра вечером.', '12 Апр 2020', '')(class='left-panel__chat')
+		.ya-chat__right-panel.right-panel 
+			.right-panel Выберите чат чтобы отправить сообщение

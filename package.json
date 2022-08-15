@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "---",
   "scripts": {
-		"clean:cache": "rm -rf .parcel-cache/*",
+    "clean:cache": "rm -rf .parcel-cache/*",
     "clean:output": "npm run clean:cache && rm -rf dist/*",
     "dev": "npm run clean:output && parcel ./static/index.html --port 3000",
     "build": "npm run clean:output && parcel build ./static/index.html",
@@ -11,7 +11,8 @@
     "pug:build": "npm run clean:output && parcel build ./src/pug/index.pug",
     "netlify": "npm run pug:build",
     "serve": "npm run pug:build && node ./server/server.js",
-    "start": "npm run serve"
+    "start": "npm run serve",
+    "test:nocache": "parcel build ./src/pug/index.pug --no-cache"
   },
   "repository": {
     "type": "git",

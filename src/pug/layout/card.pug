@@ -1,0 +1,17 @@
+extends main
+block variables
+	- var title = 'Яндекс Практикум';
+	block subvariables
+
+block scripts
+	//- link(rel="stylesheet", href="~/src/pug/layout/card.scss")
+	block subscripts 
+
+block content
+	.ya-form 
+		.ya-form__container.ya-form__container_shadow
+			.ya-form__title=subTitle
+			.ya-form__fields
+				block fields
+			.ya-form__footer 
+				block footer
