@@ -4,8 +4,8 @@ block variables
 	- var testLongText = 'Друзья, у меня для вас особенный выпуск новостей!...'
 
 block scripts 
-	link(rel="stylesheet", href="chat.scss")
-	script(src="chat.js")
+	link(rel="stylesheet", href="chatActive.scss")
+	script(src="chatActive.js")
 
 block content
 	.ya-chat 
@@ -22,8 +22,21 @@ block content
 				+chatPanel('#','Вадим', 'Круто!', 'Пт', '')(class='left-panel__chat left-panel__chat_active')
 				+chatPanel('#','тет-а-теты', 'И Human Interface Guidelines и Material Design рекомендуют...', 'Ср', '')(class='left-panel__chat')
 				+chatPanel('#','1, 2, 3', 'Миллионы россиян ежедневно проводят десятки часов свое...', 'Пн', '')(class='left-panel__chat')
-				+chatPanel('#','Design Destroyer', 'В 2008 году художник Jon Rafman начал собирать...', 'Пн', '')(class='left-panel__chat')
+				+chatPanel('#','Design Destroyer', 'В 2008 году художник Jon Rafman  начал собирать...', 'Пн', '')(class='left-panel__chat')
 				+chatPanel('#','Day.', 'Так увлёкся работой по курсу, что совсем забыл его анонсир...', '1 Мая 2020', '')(class='left-panel__chat')
 				+chatPanel('#','Стас Рогозин', 'Можно или сегодня или завтра вечером.', '12 Апр 2020', '')(class='left-panel__chat')
 		.ya-chat__right-panel.right-panel 
-			.right-panel Выберите чат чтобы отправить сообщение
+			.right-panel__header.header-right-panel
+				.header-right-panel__title 
+					.header-right-panel__avatar
+					.header-right-panel__name Вадим
+				.header-right-panel__settings
+					<img src="./../../../assets/img/settings_dots.svg" alt="">
+			.right-panel__messages 19 июня
+			.right-panel__footer.footer-right-panel
+				.footer-right-panel__clip
+					<img src="./../../../assets/img/clip.svg" alt="">
+				.footer-right-panel__message
+					input.footer-right-panel__input(placeholder="Сообщение")
+				.footer-right-panel__enter
+					img(src="../../../assets/img/arrow_forward_enter.svg", alt="")

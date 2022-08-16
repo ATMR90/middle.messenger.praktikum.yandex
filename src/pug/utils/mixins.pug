@@ -21,9 +21,11 @@ mixin btn(text, main)
 mixin infoField(name, value)
 	if block
 		.info-field&attributes(attributes)
-			.info-field__name
+			if name 
+				.info-field__name= name
 				block
-			.info-field__value
+			else 
+				block
 	else 
 		.info-field&attributes(attributes)
 			.info-field__name= name
