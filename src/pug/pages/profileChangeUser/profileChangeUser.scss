@@ -71,7 +71,6 @@
 		}
 		@media (min-width: 768px) {
 			max-width: rem(510);
-			
 		}
 	}
 	// .user-info__btn
@@ -94,16 +93,13 @@
 	}
 	// .info-field__value
 	&__value {
-		// width: auto;
-		// display: flex;
-		// flex: 0 1 auto;
+		font-weight: 500;
+		font-size: 13px;
+		line-height: 13px;
 		color: #999;
-		& input {
-			width: 130px;
-			font-weight: 500;
-			font-size: 13px;
-			line-height: 13px;
-			color: #999;
+		// .info-field__value_right
+		&_right {
+			text-align: right;
 		}
 	}
 }

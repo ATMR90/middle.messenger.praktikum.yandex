@@ -8,14 +8,13 @@ block scripts
 
 block content
 	.ya-profile
-		.ya-profile__back.profile-back
+		a(href="./../chat/chat.pug").ya-profile__back.profile-back 
 			.profile-back__text 
-				a(href="./../chat/chat.pug") 
-					img(src="../../../assets/img/arrow_back.svg", alt="")
+				img(src="../../../assets/img/arrow_back.svg", alt="")
 		.ya-profile__info
 			.ya-profile__header.header-profile 
-				.header-profile__avatar
-					img(src="./../../../assets/img/default_square_image.svg", alt="")
+				a(href="./../changeAvatar/changeAvatar.pug").header-profile__avatar
+					img(src="./../../../assets/img/default_square_image.jpg", alt="")
 				.header-profile__title.
 					Иван
 			.ya-profile__user-info.user-info

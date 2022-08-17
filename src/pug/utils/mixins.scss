@@ -20,6 +20,10 @@
 		border-bottom: 1px solid $themeColor;
 		order: 2;
 	}
+	// .ya-field input
+	& input[type="file"] {
+		display: none;
+	}
 	// .ya-field input:focus + label
 	& input:focus + label {
 		color: $themeColor;
@@ -33,6 +37,18 @@
 		order: 3;
 		padding-top: 7px;
 		// display: none;
+	}
+	// .ya-field_file .ya-field__label
+	&_file {
+		& .ya-field__label {
+			font-weight: 500;
+			font-size: 12px;
+			line-height: 16px;
+			color: $themeColor;
+			text-align: center;
+			text-decoration-line: underline;
+			cursor: pointer;
+		}
 	}
 }
 
@@ -62,5 +78,4 @@
 		padding: 12px 0;
 		border-radius: 8px;
 	}
-	
 }

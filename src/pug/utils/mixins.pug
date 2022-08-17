@@ -1,11 +1,11 @@
 mixin field(idInput,type,label)
 	.ya-field&attributes(attributes)
 		if block
-			input.ya-field__input(id=idInput type=type)
+			input.ya-field__input(id=idInput name=idInput type=type)
 			label.ya-field__label(for=idInput)=label
 			block 
 		else
-			input.ya-field__input(id=idInput type=type)
+			input.ya-field__input(id=idInput name=idInput type=type)
 			label.ya-field__label(for=idInput)=label
 
 mixin btn(text, main)

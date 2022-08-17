@@ -19,12 +19,18 @@ block content
 				.header-profile__title.
 					
 			.ya-profile__user-info.user-info
-				+infoField('Почта', 'ivanivanov')(class='user-info__field')
-				+infoField('Логин', 'pochta@yandex.ru')(class='user-info__field')
-				+infoField('Имя', 'Иван')(class='user-info__field')
-				+infoField('Фамилия', 'Иванов')(class='user-info__field')
-				+infoField('Имя в чате', 'Иван')(class='user-info__field')
-				+infoField('Телефон', '+7 (909) 967 30 30')(class='user-info__field')
+				+infoField('Почта', '')(class='user-info__field')
+					input.info-field__value.info-field__value_right(value='ivanivanov' name='email' id='email')
+				+infoField('Логин', '')(class='user-info__field')
+					input.info-field__value.info-field__value_right(value='pochta@yandex.ru' name='login' id='login')
+				+infoField('Имя', '')(class='user-info__field')
+					input.info-field__value.info-field__value_right(value='Иван' name='first_name' id='first_name')
+				+infoField('Фамилия', '')(class='user-info__field')
+					input.info-field__value.info-field__value_right(value='Иванов' name='second_name' id='second_name')
+				+infoField('Имя в чате', '')(class='user-info__field')
+					input.info-field__value.info-field__value_right(value='Иван' name='display_name' id='display_name')
+				+infoField('Телефон', '+7 (909) 967 30 30')(class='user-info__field' )
+					input.info-field__value.info-field__value_right(value='+7 (909) 967 30 30' name='phone' id='phone')
 			.ya-profile__settings.user-info
 				a(href="./../../pages/profile/profile.pug") 
 					+btn('Сохранить', true)(class='user-info__field user-info__field_btn')

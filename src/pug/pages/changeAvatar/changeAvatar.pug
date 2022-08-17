@@ -1,0 +1,14 @@
+extends ../../layout/card
+block subvariables
+	- var subTitle = 'Загрузите файл';
+	- var title = 'Яндекс Практикум. Профиль. Изменение аватара';
+
+block subscripts 
+	link(rel="stylesheet", href="changeAvatar.scss")
+	script(src="changeAvatar.js")
+
+block fields
+		+field('avatar','file','Выбрать файл на компьютере')(class='ya-form__field ya-field_file')
+block footer
+	a(href="./../profile/profile.pug") 
+		+btn('Поменять', true)(class='ya-form__btn')
