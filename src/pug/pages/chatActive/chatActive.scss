@@ -249,3 +249,107 @@
 		flex-shrink: 0;
 	}
 }
+
+.messages-chat {
+	display: flex;
+	&__container {
+		display: flex;
+		flex-direction: column;
+		justify-content: end;
+		padding-bottom: 10px;
+	}
+	// .messages-chat__data
+	&__data {
+		text-align: center;
+		padding-top: 10px;
+		margin-bottom: rem(30);
+	}
+	// .messages-chat__his-message
+	&__his-message {
+		align-self: flex-start;
+		max-width: 50%;
+		margin-bottom: rem(10);
+		font-weight: 500;
+		font-size: 12px;
+		line-height: 15px;
+		color: $mainColor;
+	}
+	// .messages-chat__your-message
+	&__your-message {
+		align-self: flex-end;
+		// text-align: right;
+		max-width: 50%;
+		font-weight: 500;
+		font-size: 12px;
+		line-height: 15px;
+		color: $mainColor;
+	}
+}
+
+.his-message {
+	background: #f8f8f8;
+	border-radius: 0 7px 7px 7px;
+	// padding: 10px;
+	position: relative;
+	min-width: 80px;
+	// .his-message__container
+	&__container {
+		position: relative;
+		& img {
+			// margin: -10px;
+			object-fit: cover;
+			height: 100%;
+			width: 100%;
+			
+		}
+	}
+	// .his-message__obj
+	&__obj {
+		&::before {
+			content: "";
+			position: absolute;
+			background: rgba(82, 82, 82, 0.5);
+			border-radius: 30px;
+			width: rem(37);
+			height: rem(13);
+			bottom: 10px;
+			right: 10px;
+			z-index: 1;
+		}
+	}
+	&__obj:empty {
+		display: none;
+	}
+	// .his-message__text
+	&__text {
+		padding: 10px 10px 25px 10px;
+	}
+	&__text:empty {
+		display: none;
+	}
+	// .his-message__info
+	&__info {
+		position: absolute;
+		bottom: 10px;
+		right: 10px;
+		font-weight: 500;
+		font-size: 9px;
+		line-height: 9px;
+		// color: #999999;
+		text-align: right;
+		padding: 2px 7px;
+		z-index: 2;
+		display: flex;
+	}
+	// .his-message__status
+	&__status {
+	}
+	// .his-message_your
+	&_your {
+		background: #e4edfd;
+		border-radius: 7px 7px 0 7px;
+		& .his-message__info {
+			color: $themeColor;
+		}
+	}
+}
