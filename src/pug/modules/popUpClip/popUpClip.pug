@@ -1,0 +1,13 @@
+extends ../../layout/modal
+include ../../layout/popUpLayout
+block subvariables
+	- var subTitle = 'Всплывающее окно 1';
+	- var title = 'Яндекс Практикум. Всплывающее окно 1.';
+
+block subscripts 
+	link(rel="stylesheet", href="popUpClip.scss")
+	script(src="popUpClip.js")
+
+block fields
+	+popUpClip()
+block footer

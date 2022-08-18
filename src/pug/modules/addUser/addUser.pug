@@ -1,0 +1,13 @@
+extends ../../layout/modal
+block subvariables
+	- var subTitle = 'Добавить пользователя';
+	- var title = 'Яндекс Практикум. Всплывающее окно 3. Добавить пользователя';
+
+block subscripts 
+	link(rel="stylesheet", href="addUser.scss")
+	script(src="addUser.js")
+
+block fields
+	+field('login','text','Логин')(class='ya-form__field')
+block footer
+	+btn('Добавить', true)(class='ya-form__btn')

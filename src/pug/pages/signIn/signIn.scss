@@ -1,2 +1,9 @@
 @import '../../../scss/style';
-@import '../../layout/card.scss';
+@import '../../layout/modal.scss';
+
+.ya-form {
+	// .ya-form__container
+	&__container {
+		min-height: 450px;
+	}
+}
