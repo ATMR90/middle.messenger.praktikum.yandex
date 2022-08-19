@@ -18,7 +18,6 @@
 	// .ya-profile__info
 	&__info {
 		flex: 1 1 auto;
-		// display: flex;
 	}
 	// .ya-profile__user-info
 	&__user-info {
@@ -27,6 +26,7 @@
 	&__settings {
 	}
 }
+
 .header-profile {
 	display: flex;
 	flex-direction: column;
@@ -46,29 +46,32 @@
 		font-weight: 500;
 		font-size: 13px;
 		line-height: 14px;
-		&:hover {
-			&::after {
-				content: "";
-				background: rgba(0, 0, 0, 0.5);
-				width: 100%;
-				height: 100%;
-				border-radius: 50%;
-				z-index: 2;
+		//.header-profile__avatar_hover
+		&_hover {
+			&:hover {
+				&::after {
+					content: "";
+					background: rgba(0, 0, 0, 0.5);
+					width: 100%;
+					height: 100%;
+					border-radius: 50%;
+					z-index: 2;
+				}
+				&::before {
+					color: #fff;
+					content: "Поменять аватар";
+					text-align: center;
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+					z-index: 3;
+				}
 			}
-			&::before {
-				color: #fff;
-				content: "Поменять аватар";
-				text-align: center;
+			& img {
 				position: absolute;
-				top: 50%;
-				left: 50%;
-				transform: translate(-50%, -50%);
-				z-index: 3;
+				z-index: 1;
 			}
-		}
-		& img {
-			position: absolute;
-			z-index: 1;
 		}
 	}
 	// .header-profile__title
@@ -78,6 +81,7 @@
 		line-height: 16px;
 	}
 }
+
 .user-info {
 	display: flex;
 	flex-direction: column;
@@ -110,6 +114,7 @@
 		}
 	}
 }
+
 .info-field {
 	display: flex;
 	justify-content: space-between;
@@ -121,6 +126,9 @@
 	}
 	// .info-field__value
 	&__value {
+		font-weight: 500;
+		font-size: 13px;
+		line-height: 13px;
 		color: #999;
 		// .info-field__value_right
 		&_right {
@@ -134,7 +142,6 @@
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	// .settings-profile__
 }
 
 .profile-back {

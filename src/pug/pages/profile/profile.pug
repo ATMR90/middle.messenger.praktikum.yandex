@@ -4,7 +4,6 @@ block variables
 
 block scripts 
 	link(rel="stylesheet", href="profile.scss")
-	script(src="profile.js")
 
 block content
 	.ya-profile
@@ -13,13 +12,13 @@ block content
 				img(src="../../../assets/img/arrow_back_.svg", alt="")
 		.ya-profile__info
 			.ya-profile__header.header-profile 
-				a(href="./../changeAvatar/changeAvatar.pug").header-profile__avatar
-					img(src="./../../../assets/img/default_square_image.jpg", alt="")
+				a(href="./../changeAvatar/changeAvatar.pug").header-profile__avatar.header-profile__avatar_hover
+					img(src="./../../../assets/img/default_square_image.svg", alt="")
 				.header-profile__title.
 					Иван
 			.ya-profile__user-info.user-info
-				+infoField('Почта', 'ivanivanov')(class='user-info__field')
-				+infoField('Логин', 'pochta@yandex.ru')(class='user-info__field')
+				+infoField('Почта', 'pochta@yandex.ru')(class='user-info__field')
+				+infoField('Логин', 'ivanivanov')(class='user-info__field')
 				+infoField('Имя', 'Иван')(class='user-info__field')
 				+infoField('Фамилия', 'Иванов')(class='user-info__field')
 				+infoField('Имя в чате', 'Иван')(class='user-info__field')
