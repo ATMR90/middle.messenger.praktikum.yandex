@@ -1,0 +1,15 @@
+extends ../../layout/modal
+block subvariables
+	- var subTitle = 'Вход';
+	- var title = 'Яндекс Практикум. Вход.';
+
+block subscripts 
+	link(rel="stylesheet", href="signIn.scss")
+	
+block fields
+	+field('login','text','Логин')(class='ya-form__field')
+	+field('password','password','Пароль')(class='ya-form__field')
+block footer
+	+btn('Войти', true)(class='ya-form__btn')
+	+btn('', false)(class='ya-form__btn')
+		a(href="../signUp/signUp") Регистрация

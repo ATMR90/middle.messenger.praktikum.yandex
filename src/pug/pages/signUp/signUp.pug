@@ -1,0 +1,21 @@
+extends ../../layout/modal
+block subvariables
+	- var subTitle = 'Регистрация';
+	- var title = 'Яндекс Практикум. Регистрация.';
+
+block scripts 
+	link(rel="stylesheet", href="signUp.scss")
+
+block fields
+	+field('email','text','Почта')(class='ya-form__field')
+	+field('login','text','Логин')(class='ya-form__field')
+	+field('first_name','text','Имя')(class='ya-form__field')
+	+field('second_name','text','Фамилия')(class='ya-form__field')
+	+field('phone','text','Телефон')(class='ya-form__field')
+	+field('password','password','Пароль')(class='ya-form__field')
+	+field('passwordYet','password','Пароль (еще раз)')(class='ya-form__field')
+		.ya-field__error Пароли не совпадают
+block footer
+	+btn('Зарегистрироваться', true)(class='ya-form__btn')
+	+btn('', false)(class='ya-form__btn')
+		a(href="../signIn/signIn") Войти

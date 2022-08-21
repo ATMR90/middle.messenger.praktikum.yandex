@@ -1,0 +1,35 @@
+extends ../../layout/main
+block variables
+	- var title = 'Яндекс Практикум. Профиль.';
+
+block scripts 
+	link(rel="stylesheet", href="profile.scss")
+
+block content
+	.ya-profile
+		a(href="./../chat/chat.pug").ya-profile__back.profile-back 
+			.profile-back__text 
+				img(src="../../../assets/img/arrow_back_.svg", alt="")
+		.ya-profile__info
+			.ya-profile__header.header-profile 
+				a(href="./../changeAvatar/changeAvatar.pug").header-profile__avatar.header-profile__avatar_hover
+					img(src="./../../../assets/img/default_square_image.svg", alt="")
+				.header-profile__title.
+					Иван
+			.ya-profile__user-info.user-info
+				+infoField('Почта', 'pochta@yandex.ru')(class='user-info__field')
+				+infoField('Логин', 'ivanivanov')(class='user-info__field')
+				+infoField('Имя', 'Иван')(class='user-info__field')
+				+infoField('Фамилия', 'Иванов')(class='user-info__field')
+				+infoField('Имя в чате', 'Иван')(class='user-info__field')
+				+infoField('Телефон', '+7 (909) 967 30 30')(class='user-info__field')
+			.ya-profile__settings.user-info
+				+infoField('', '')(class='user-info__field')
+					a(href="./../profileChangeUser/profileChangeUser.pug") 
+						+btn('Изменить данные', false)(class='user-info__btn')
+				+infoField('', '')(class='user-info__field')
+					a(href="./../profileChangePassword/profileChangePassword.pug")
+						+btn('Изменить пароль', false)(class='user-info__btn')
+				+infoField('', '')(class='user-info__field')
+					a(href="./../../index.pug")
+						+btn('Выйти', false)(class='user-info__btn user-info__btn_red')

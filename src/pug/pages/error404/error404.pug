@@ -1,0 +1,13 @@
+extends ../../layout/main
+block variables
+	- var title = 'Яндекс Практикум. Ошибка 404.';
+
+block scripts 
+	link(rel="stylesheet", href="error404.scss")
+
+block content
+	.error-main
+		.error-main__header
+			.error-main__title 404
+			.error-main__info Не туда попали
+		a.error-main__link(href='../../index.pug') Назад к чатам

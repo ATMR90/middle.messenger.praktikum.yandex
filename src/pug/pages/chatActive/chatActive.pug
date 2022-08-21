@@ -1,0 +1,68 @@
+extends ../../layout/main
+block variables
+	- var title = 'Яндекс Практикум. Чат.';
+	- var testLongText = 'Друзья, у меня для вас особенный выпуск новостей!...'
+
+block scripts 
+	link(rel="stylesheet", href="chatActive.scss")
+
+block content
+	.ya-chat 
+		.ya-chat__left-panel.left-panel
+			.left-panel__profile 
+				a(href="./../profile/profile.pug") Профиль
+					<img src="./../../../assets/img/arrow_forward.svg" alt="">
+			.left-panel__search
+				input.left-panel__input(placeholder="Поиск")
+			.left-panel__chat-list
+				+chatPanel('#','Андрей', 'Изображение', '10:49', '2')(class='left-panel__chat')
+				+chatPanel('#','Киноклуб', 'стикер', '12:00', '')(class='left-panel__chat')
+				+chatPanel('#','Илья', testLongText, '15:12', '')(class='left-panel__chat')
+				+chatPanel('#','Вадим', 'Круто!', 'Пт', '')(class='left-panel__chat left-panel__chat_active')
+				+chatPanel('#','тет-а-теты', 'И Human Interface Guidelines и Material Design рекомендуют...', 'Ср', '')(class='left-panel__chat')
+				+chatPanel('#','1, 2, 3', 'Миллионы россиян ежедневно проводят десятки часов свое...', 'Пн', '')(class='left-panel__chat')
+				+chatPanel('#','Design Destroyer', 'В 2008 году художник Jon Rafman  начал собирать...', 'Пн', '')(class='left-panel__chat')
+				+chatPanel('#','Day.', 'Так увлёкся работой по курсу, что совсем забыл его анонсир...', '1 Мая 2020', '')(class='left-panel__chat')
+				+chatPanel('#','Стас Рогозин', 'Можно или сегодня или завтра вечером.', '12 Апр 2020', '')(class='left-panel__chat')
+		.ya-chat__right-panel.right-panel 
+			.right-panel__header.header-right-panel
+				.header-right-panel__title 
+					.header-right-panel__avatar
+					.header-right-panel__name Вадим
+				.header-right-panel__settings
+					<img src="./../../../assets/img/settings_dots.svg" alt="">
+			.right-panel__messages.messages-chat
+				.messages-chat__container
+					.messages-chat__data 19 июня
+					.messages-chat__his-message.his-message
+						.his-message__container 
+							.his-message__text 
+								<p>Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой.</p>
+								<p>Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро.</p>
+							.his-message__obj
+						.his-message__info 
+							.his-message__status
+							.his-message__data 11:56
+					.messages-chat__his-message.his-message 
+						.his-message__container 
+							.his-message__text
+							.his-message__obj
+								<img src="./../../../assets/img/chats/chat_01/img_01.jpg" alt="">
+						.his-message__info 
+							.his-message__status
+							.his-message__data 11:56
+					.messages-chat__your-message.his-message.his-message_your
+						.his-message__container
+							.his-message__text Круто!
+							.his-message__obj
+						.his-message__info 
+							.his-message__status
+								<img src="./../../../assets/img/status_delivered.svg" alt="">
+							.his-message__data 12:00
+			.right-panel__footer.footer-right-panel
+				.footer-right-panel__clip
+					<img src="./../../../assets/img/clip.svg" alt="">
+				.footer-right-panel__message
+					input.footer-right-panel__input(placeholder="Сообщение" id='message' name='message')
+				.footer-right-panel__enter
+					img(src="../../../assets/img/arrow_forward_enter_.svg", alt="")

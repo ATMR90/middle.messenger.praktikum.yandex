@@ -1,0 +1,7 @@
+{
+	"extends": "@parcel/config-default",
+	"transformers": {
+		"*.pug": ["@parcel/transformer-pug"],
+		"*.scss": ["@parcel/transformer-sass"]
+	}
+}

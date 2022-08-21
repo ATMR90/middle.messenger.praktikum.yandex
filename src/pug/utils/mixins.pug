@@ -1,0 +1,43 @@
+mixin field(idInput,type,label)
+	.ya-field&attributes(attributes)
+		if block
+			input.ya-field__input(id=idInput name=idInput type=type)
+			label.ya-field__label(for=idInput)=label
+			block 
+		else
+			input.ya-field__input(id=idInput name=idInput type=type)
+			label.ya-field__label(for=idInput)=label
+
+mixin btn(text, main)
+	if block 
+		.ya-btn&attributes(attributes)
+			block
+	else 
+		if main 
+			.ya-btn.ya-btn_main&attributes(attributes)=text 
+		else 
+			.ya-btn&attributes(attributes)=text 
+
+mixin infoField(name, value)
+	if block
+		.info-field&attributes(attributes)
+			if name 
+				.info-field__name= name
+				block
+			else 
+				block
+	else 
+		.info-field&attributes(attributes)
+			.info-field__name= name
+			.info-field__value= value
+
+mixin chatPanel(img, title, text, time, newMessage)
+	.chat-panel&attributes(attributes)
+		.chat-panel__avatar
+			img(src= img, alt="")
+		.chat-panel__message
+			.chat-panel__title= title
+			.chat-panel__text= text
+		.chat-panel__info 
+			.chat-panel__time= time
+			.chat-panel__new-message= newMessage
