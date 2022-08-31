@@ -10,6 +10,8 @@ interface InputProps {
 		click: () => void
 	},
 	classes?: string
+	classInput?: string
+	valueInput?: string
 }
 
 export class Input extends Block {
@@ -18,6 +20,6 @@ export class Input extends Block {
 	}
 
 	render() {
-		return this.compile(template, {label: this.props.label, styles, idInput: this.props.idInput, type: this.props.type})
+		return this.compile(template, {label: this.props.label, styles, idInput: this.props.idInput, type: this.props.type, classInput: this.props.classInput, valueInput: this.props.valueInput})
 	}
 }

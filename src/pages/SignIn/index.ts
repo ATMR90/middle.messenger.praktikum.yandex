@@ -29,13 +29,15 @@ export class SignIn extends Block {
 				label: 'Логин',
 				idInput: 'login',
 				type: 'text',
-				classes: 'ya-field ya-form__field'
+				classes: 'ya-field ya-form__field',
+				classInput: 'ya-field__input'
 			}),
 			new Input({
 				label: 'Пароль',
 				idInput: 'password',
 				type: 'password',
-				classes: 'ya-field ya-form__field'
+				classes: 'ya-field ya-form__field',
+				classInput: 'ya-field__input'
 			})
 		]
 		this.children.fields = fields

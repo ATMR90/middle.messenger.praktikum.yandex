@@ -29,43 +29,50 @@ export class SignUp extends Block {
 				label: 'Почта',
 				idInput: 'email',
 				type: 'text',
-				classes: 'ya-field ya-form__field'
+				classes: 'ya-field ya-form__field',
+				classInput: 'ya-field__input'
 			}),
 			new Input({
 				label: 'Логин',
 				idInput: 'login',
 				type: 'text',
-				classes: 'ya-field ya-form__field'
+				classes: 'ya-field ya-form__field',
+				classInput: 'ya-field__input'
 			}),
 			new Input({
 				label: 'Имя',
 				idInput: 'first_name',
 				type: 'text',
-				classes: 'ya-field ya-form__field'
+				classes: 'ya-field ya-form__field',
+				classInput: 'ya-field__input'
 			}),
 			new Input({
 				label: 'Фамилия',
 				idInput: 'second_name',
 				type: 'text',
-				classes: 'ya-field ya-form__field'
+				classes: 'ya-field ya-form__field',
+				classInput: 'ya-field__input'
 			}),
 			new Input({
 				label: 'Телефон',
 				idInput: 'phone',
 				type: 'text',
-				classes: 'ya-field ya-form__field'
+				classes: 'ya-field ya-form__field',
+				classInput: 'ya-field__input'
 			}),
 			new Input({
 				label: 'Пароль',
 				idInput: 'password',
 				type: 'password',
-				classes: 'ya-field ya-form__field'
+				classes: 'ya-field ya-form__field',
+				classInput: 'ya-field__input'
 			}),
 			new Input({
 				label: 'Пароль (еще раз)',
 				idInput: 'passwordYet',
 				type: 'password',
-				classes: 'ya-field ya-form__field'
+				classes: 'ya-field ya-form__field',
+				classInput: 'ya-field__input'
 			}),
 		]
 		this.children.fields = fields

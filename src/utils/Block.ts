@@ -48,11 +48,17 @@ class Block {
 
 	_getChildrenAndProps(childrenAndProps: any) {
 		const props: Record<string, any> = {}
-		const children: Record<string, Block> = {}
+		const children: Record<string, Block> | Record<string, Block[]> = {}
 
 
 		Object.entries(childrenAndProps).forEach(([key, value]) => {
-			if (value instanceof Block) {
+			if (value instanceof Array) {
+				value.forEach(val => {
+					if (val instanceof Block) {
+						children[key] = value;
+					}
+				})
+			} else if (value instanceof Block) {
 				children[key] = value;
 			} else {
 				props[key] = value;
@@ -88,6 +94,7 @@ class Block {
 
 	_componentDidMount() {
 		this.componentDidMount();
+		this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
 	}
 
 	componentDidMount() { }
@@ -101,7 +108,7 @@ class Block {
 		if (response) {
 			this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
 		}
-
+		
 	}
 
 	protected componentDidUpdate(oldProps: any, newProps: any) {
@@ -112,8 +119,12 @@ class Block {
 		if (!nextProps) {
 			return;
 		}
-
-		Object.assign(this.props, nextProps);
+		let obj = this._getChildrenAndProps(nextProps)
+		this.props = obj.props
+		this.children = obj.children
+		Object.assign(this.props, obj.props);
+		Object.assign(this.children, obj.children);
+		this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
 	};
 
 	get element() {
