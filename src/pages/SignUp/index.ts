@@ -88,10 +88,11 @@ export class SignUp extends Block {
 			}),
 			new Button({
 				label: 'Войти',
-				events: {
-					click: pageSignIn
-				},
-				classes: 'ya-btn ya-form__btn'
+				// events: {
+				// 	click: pageSignIn
+				// },
+				classes: 'ya-btn ya-form__btn',
+				url: '/auth'
 			}),
 		]
 		this.children.footer = buttons

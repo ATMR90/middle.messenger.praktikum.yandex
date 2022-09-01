@@ -52,10 +52,11 @@ export class SignIn extends Block {
 			}),
 			new Button({
 				label: 'Регистрация',
-				events: {
-					click: pageSignUp
-				},
-				classes: 'ya-btn ya-form__btn'
+				// events: {
+				// 	click: pageSignUp
+				// },
+				classes: 'ya-btn ya-form__btn',
+				url: '/registration'
 			}),
 		]
 		this.children.footer = buttons

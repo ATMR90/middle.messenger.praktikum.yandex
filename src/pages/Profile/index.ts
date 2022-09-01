@@ -91,6 +91,7 @@ export class Profile extends Block {
 					label: 'Изменить данные',
 					events: {
 						click: () => {
+							event.preventDefault()
 							this.setProps({
 								title: 'Виктор', fields: [
 									new InfoField({
@@ -201,7 +202,8 @@ export class Profile extends Block {
 									events: {
 										click: () => console.log('clicked!')
 									},
-									classes: 'ya-btn ya-btn_main user-info__field_btn'
+									classes: 'ya-btn ya-btn_main user-info__field_btn',
+									url: '/profile'
 								})
 							})
 						}
@@ -217,6 +219,7 @@ export class Profile extends Block {
 					label: 'Изменить пароль',
 					events: {
 						click: () => {
+							event.preventDefault()
 							this.setProps({
 								title: 'Петр',
 								fields: [
@@ -277,7 +280,8 @@ export class Profile extends Block {
 									events: {
 										click: () => console.log('clicked!')
 									},
-									classes: 'ya-btn ya-btn_main user-info__field_btn'
+									classes: 'ya-btn ya-btn_main user-info__field_btn',
+									url: '/profile'
 								})
 							})
 						}
@@ -294,7 +298,8 @@ export class Profile extends Block {
 					events: {
 						click: () => console.log('clicked!')
 					},
-					classes: 'ya-btn user-info__btn user-info__btn_red'
+					classes: 'ya-btn user-info__btn user-info__btn_red',
+					url: '/'
 				}),
 				value: '',
 				classes: 'user-info__field'
