@@ -4,6 +4,8 @@ import { Button } from '../../components/Button'
 import * as styles from './profile.scss'
 import { Input } from "../../components/Input";
 import { InfoField } from "../../components/InfoField";
+import { ButtonWithImage } from "../../components/ButtonWithImage";
+import { ChangeAvatar } from "../../components/ChangeAvatar";
 
 interface ProfileProps {
 	title: string,
@@ -23,8 +25,22 @@ export class Profile extends Block {
 
 
 	init() {
+		const avatar = new ButtonWithImage({
+			label: '',
+			events: {
+				click: () => {
+					const root = document.querySelector('#app')!;
 
+					const changeAvatar = new ChangeAvatar({ label: 'Загрузите файл', classes: 'ya-form' });
 
+					root.innerHTML = ''
+					root.append(changeAvatar.getContent()!)
+				}
+			},
+			classes: 'header-profile__avatar header-profile__avatar_hover',
+			src: './../../assets/img/default_square_image.svg'
+		})
+		this.children.avatar = avatar
 
 		const fields = [
 			new InfoField({
@@ -75,117 +91,119 @@ export class Profile extends Block {
 					label: 'Изменить данные',
 					events: {
 						click: () => {
-							this.setProps({title: 'Виктор', fields: [
-								new InfoField({
-									label: 'Поле',
-									name: 'Почта',
-									//value: 'pochta@yandex.ru',
-									classes: 'user-info__field',
-									fieldValue: new Input ({
-										label: '',
-										idInput: 'email',
-										type: 'text',
-										valueInput: 'pochta@yandex.ru',
-										events: {
-											click: () => {}
-										},
-										//classes: 'user-info__field',
-										classInput: 'info-field__value info-field__value_right'
+							this.setProps({
+								title: 'Виктор', fields: [
+									new InfoField({
+										label: 'Поле',
+										name: 'Почта',
+										//value: 'pochta@yandex.ru',
+										classes: 'user-info__field',
+										fieldValue: new Input({
+											label: '',
+											idInput: 'email',
+											type: 'text',
+											valueInput: 'pochta@yandex.ru',
+											events: {
+												click: () => { }
+											},
+											//classes: 'user-info__field',
+											classInput: 'info-field__value info-field__value_right'
 										})
-								}),
-								new InfoField({
-									label: 'Поле',
-									name: 'Логин',
-									//value: 'ivanivanov',
-									classes: 'user-info__field',
-									fieldValue: new Input ({
-										label: '',
-										idInput: 'login',
-										type: 'text',
-										valueInput: 'ivanivanov',
-										events: {
-											click: () => {}
-										},
-										//classes: 'user-info__field',
-										classInput: 'info-field__value info-field__value_right'
+									}),
+									new InfoField({
+										label: 'Поле',
+										name: 'Логин',
+										//value: 'ivanivanov',
+										classes: 'user-info__field',
+										fieldValue: new Input({
+											label: '',
+											idInput: 'login',
+											type: 'text',
+											valueInput: 'ivanivanov',
+											events: {
+												click: () => { }
+											},
+											//classes: 'user-info__field',
+											classInput: 'info-field__value info-field__value_right'
 										})
-								}),
-								new InfoField({
-									label: 'Поле',
-									name: 'Имя',
-									//value: 'Иван',
-									classes: 'user-info__field',
-									fieldValue: new Input ({
-										label: '',
-										idInput: 'first_name',
-										type: 'text',
-										valueInput: 'Иван',
-										events: {
-											click: () => {}
-										},
-										//classes: 'user-info__field',
-										classInput: 'info-field__value info-field__value_right'
+									}),
+									new InfoField({
+										label: 'Поле',
+										name: 'Имя',
+										//value: 'Иван',
+										classes: 'user-info__field',
+										fieldValue: new Input({
+											label: '',
+											idInput: 'first_name',
+											type: 'text',
+											valueInput: 'Иван',
+											events: {
+												click: () => { }
+											},
+											//classes: 'user-info__field',
+											classInput: 'info-field__value info-field__value_right'
 										})
-								}),
-								new InfoField({
-									label: 'Поле',
-									name: 'Фамилия',
-									//value: 'Иванов',
-									classes: 'user-info__field',
-									fieldValue: new Input ({
-										label: '',
-										idInput: 'second_name',
-										type: 'text',
-										valueInput: 'Иванов',
-										events: {
-											click: () => {}
-										},
-										//classes: 'user-info__field',
-										classInput: 'info-field__value info-field__value_right'
+									}),
+									new InfoField({
+										label: 'Поле',
+										name: 'Фамилия',
+										//value: 'Иванов',
+										classes: 'user-info__field',
+										fieldValue: new Input({
+											label: '',
+											idInput: 'second_name',
+											type: 'text',
+											valueInput: 'Иванов',
+											events: {
+												click: () => { }
+											},
+											//classes: 'user-info__field',
+											classInput: 'info-field__value info-field__value_right'
 										})
-								}),
-								new InfoField({
-									label: 'Поле',
-									name: 'Имя в чате',
-									//value: 'Иван',
-									classes: 'user-info__field',
-									fieldValue: new Input ({
-										label: '',
-										idInput: 'display_name',
-										type: 'text',
-										valueInput: 'Иван',
-										events: {
-											click: () => {}
-										},
-										//classes: 'user-info__field',
-										classInput: 'info-field__value info-field__value_right'
+									}),
+									new InfoField({
+										label: 'Поле',
+										name: 'Имя в чате',
+										//value: 'Иван',
+										classes: 'user-info__field',
+										fieldValue: new Input({
+											label: '',
+											idInput: 'display_name',
+											type: 'text',
+											valueInput: 'Иван',
+											events: {
+												click: () => { }
+											},
+											//classes: 'user-info__field',
+											classInput: 'info-field__value info-field__value_right'
 										})
-								}),
-								new InfoField({
-									label: 'Поле',
-									name: 'Телефон',
-									//value: '+7 (909) 967 30 30',
-									classes: 'user-info__field',
-									fieldValue: new Input ({
-										label: '',
-										idInput: 'phone',
-										type: 'text',
-										valueInput: '+7 (909) 967 30 30',
-										events: {
-											click: () => {}
-										},
-										//classes: 'user-info__field',
-										classInput: 'info-field__value info-field__value_right'
+									}),
+									new InfoField({
+										label: 'Поле',
+										name: 'Телефон',
+										//value: '+7 (909) 967 30 30',
+										classes: 'user-info__field',
+										fieldValue: new Input({
+											label: '',
+											idInput: 'phone',
+											type: 'text',
+											valueInput: '+7 (909) 967 30 30',
+											events: {
+												click: () => { }
+											},
+											//classes: 'user-info__field',
+											classInput: 'info-field__value info-field__value_right'
 										})
-								}),
-					
-							], footer: new Button({
-								label: 'Сохранить',
-								events: {
-									click: () => console.log('clicked!')
-								},
-								classes: 'ya-btn ya-btn_main user-info__field_btn'
-							}) })
+									}),
+
+								], footer: new Button({
+									label: 'Сохранить',
+									events: {
+										click: () => console.log('clicked!')
+									},
+									classes: 'ya-btn ya-btn_main user-info__field_btn'
+								})
+							})
 						}
 					},
 					classes: 'ya-btn user-info__btn'
@@ -207,13 +225,13 @@ export class Profile extends Block {
 										name: 'Старый пароль',
 										//value: 'pochta@yandex.ru',
 										classes: 'user-info__field',
-										fieldValue: new Input ({
+										fieldValue: new Input({
 											label: '',
 											idInput: 'oldPassword',
 											type: 'password',
 											valueInput: 'password',
 											events: {
-												click: () => {}
+												click: () => { }
 											},
 											//classes: 'user-info__field',
 											classInput: 'info-field__value info-field__value_right'
@@ -224,13 +242,13 @@ export class Profile extends Block {
 										name: 'Новый пароль',
 										//value: 'ivanivanov',
 										classes: 'user-info__field',
-										fieldValue: new Input ({
+										fieldValue: new Input({
 											label: '',
 											idInput: 'newPassword',
 											type: 'password',
 											valueInput: 'newPassword',
 											events: {
-												click: () => {}
+												click: () => { }
 											},
 											//classes: 'user-info__field',
 											classInput: 'info-field__value info-field__value_right'
@@ -241,19 +259,19 @@ export class Profile extends Block {
 										name: 'Повторите новый пароль',
 										//value: 'Иван',
 										classes: 'user-info__field',
-										fieldValue: new Input ({
+										fieldValue: new Input({
 											label: '',
 											idInput: 'passwordYet',
 											type: 'password',
 											valueInput: 'newPassword',
 											events: {
-												click: () => {}
+												click: () => { }
 											},
 											//classes: 'user-info__field',
 											classInput: 'info-field__value info-field__value_right'
 										})
 									}),
-						
+
 								], footer: new Button({
 									label: 'Сохранить',
 									events: {

@@ -1,0 +1,22 @@
+@import '../../scss/style.scss';
+.info-field {
+	display: flex;
+	justify-content: space-between;
+	font-weight: 500;
+	font-size: 13px;
+	line-height: 13px;
+	// .info-field__name
+	&__name {
+	}
+	// .info-field__value
+	&__value {
+		font-weight: 500;
+		font-size: 13px;
+		line-height: 13px;
+		color: #999;
+		// .info-field__value_right
+		&_right {
+			text-align: right;
+		}
+	}
+}
