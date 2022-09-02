@@ -104,13 +104,21 @@
 			max-width: rem(510);
 		}
 	}
-	// .user-info__btn
-	&__btn {
-		font-size: 13px;
-		line-height: 13px;
-		&_red {
-			color: #ff0000;
-		}
+	//user-info__btn
+	// &__btn {
+	// 	font-size: 13px;
+	// 	line-height: 13px;
+	// 	&_red {
+	// 		color: #ff0000;  // если без уточнения .ya-btn !important
+	// 	}
+	// }
+}
+
+.ya-btn.user-info__btn {
+	font-size: 13px;
+	line-height: 13px;
+	&_red {
+		color: #ff0000;
 	}
 }
 

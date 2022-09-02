@@ -30,22 +30,22 @@ window.addEventListener('DOMContentLoaded', () => {
 	const path = document.location.pathname
 	switch(path) {
 		case '/':
-			console.log(path)
+			// console.log(path)
 			break
 		case '/auth':
-			console.log(path, root)
+			// console.log(path, root)
 			_pageSignIn()
 			break
 		case '/registration':
-			console.log(path, root)
+			// console.log(path, root)
 			_pageSignUp()
 			break
 		case '/profile':
-			console.log(path, root)
+			// console.log(path, root)
 			_pageProfile()
 			break
 		case '/chat':
-			console.log(path, root)
+			// console.log(path, root)
 			_pageChat()
 			break
 	}
