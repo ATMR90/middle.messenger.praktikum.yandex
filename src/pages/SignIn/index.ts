@@ -49,24 +49,41 @@ export class SignIn extends Block {
 					click: () => {
 						const loginLog = document.querySelector('#login')!.value
 						const passwordLog = document.querySelector('#password')!.value
-						console.log(loginLog, passwordLog)
+						//console.log(loginLog, passwordLog)
 
 						// правильная проверка логина
-						const RegExp = /^[a-z0-9_-]{3,20}$/;
+						const RegExp = /^[a-zA-Z0-9_-]{3,20}$/;
 						const RexNum = /^\d{1,}$/;
-						console.log('login', RegExp.test(loginLog) && !RexNum.test(loginLog))
+						//console.log('login', RegExp.test(loginLog) && !RexNum.test(loginLog))
 
 						const RegName = /^[a-z-]/;
-						console.log('first_name', RegName.test(loginLog) && !RexNum.test(loginLog))
+						// правильная проверка имени и фамилии
+						const RegName2 = /^[А-ЯA-Z][а-яА-ЯёЁa-zA-Z-]+$/;
+						//console.log('first_name', RegName2.test(loginLog))
 
-						const RegPass = /^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8,40}$/;
-						console.log('password', RegPass.test(loginLog))
+						// const RegPass = /^(?=.*[A-Z].*[A-Z])(?=.*[!@#$&*])(?=.*[0-9].*[0-9])(?=.*[a-z].*[a-z].*[a-z]).{8,40}$/;
+						// правильная проверка пароля
+						const RegPass = /^(?=.*[A-Z])(?=.*[0-9]).{8,40}$/;
+						//console.log('password', RegPass.test(loginLog))
+
+						
+						//проверка email
+						const RegEmail = /^[a-zA-Z0-9._%$#+-]+@[a-zA-Z]+?\.[a-zA-Z]+$/i;
+						console.log('email', RegEmail.test(loginLog))
+						
+						// правильная проверка телефона
+						const RegPhone = /^[0-9+][0-9]{9,14}$/;
+						//console.log('phone', RegPhone.test(loginLog))
+						
+						// правильная проверка сообщения
+						// const RegMessage = /^$/;
+						const RegMessage = /^\s*$/;
+						// console.log('message', RegMessage.test(loginLog))
+
+
 
 						const RegTest = /[\\w.]*/;
-						console.log('test', RegTest.test(loginLog))
-
-						const RegEmail = /^[A-Z0-9._%+-]+@[A-Z0-9-]+.[A-Z]+.+.[A-Z]{2,4}$/i;
-						console.log('email', RegEmail.test(loginLog))
+						//console.log('test', RegTest.test(loginLog))
 					}
 				},
 				classes: 'ya-btn ya-btn_main ya-form__btn'
