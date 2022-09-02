@@ -20,6 +20,10 @@
 		padding: 7px 1px;
 		border-bottom: 1px solid $themeColor;
 		order: 2;
+		// .ya-field__input_error
+		&_error {
+			color: red;
+		}
 	}
 	// .ya-field input
 	& input[type="file"] {

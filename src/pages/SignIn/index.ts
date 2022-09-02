@@ -30,7 +30,34 @@ export class SignIn extends Block {
 				idInput: 'login',
 				type: 'text',
 				classes: 'ya-field ya-form__field',
-				classInput: 'ya-field__input'
+				classInput: 'ya-field__input',
+				errorMsg: '',
+				RegInput: "^(?=.*[a-z])[a-zA-Z0-9_-]{3,20}$",
+				events: {
+					focusin: () => {
+						// console.log(this, event?.target, event?.currentTarget)
+						const loginL = document.querySelector('#'+this.children.fields[0].props.idInput)
+						// console.log(loginL)
+						loginL?.classList.remove('ya-field__input_error')
+						// this.children.fields[0].props.errorMsg = ''
+					},
+					focusout: () => {
+						const loginLog = document.querySelector('#'+this.children.fields[0].props.idInput)!.value
+						const regIn = new RegExp(this.children.fields[0].props.RegInput, 'i')
+						if (!(regIn.test(loginLog))) {
+							this.children.fields[0].props.errorMsg = 'Неверный логин'
+							this.children.fields[0].props.valueInput = loginLog
+							const loginL = document.querySelector('#'+this.children.fields[0].props.idInput)
+							loginL?.classList.add('ya-field__input_error')
+						} else {
+							this.children.fields[0].props.errorMsg = ''
+							this.children.fields[0].props.valueInput = loginLog
+							const loginL = document.querySelector('#'+this.children.fields[0].props.idInput)
+							loginL?.classList.remove('ya-field__input_error')
+						}
+					}
+				}
+
 			}),
 			new Input({
 				label: 'Пароль',
@@ -47,14 +74,15 @@ export class SignIn extends Block {
 				label: 'Войти',
 				events: {
 					click: () => {
+
 						const loginLog = document.querySelector('#login')!.value
 						const passwordLog = document.querySelector('#password')!.value
 						//console.log(loginLog, passwordLog)
 
 						// правильная проверка логина
-						const RegExp = /^[a-zA-Z0-9_-]{3,20}$/;
-						const RexNum = /^\d{1,}$/;
-						//console.log('login', RegExp.test(loginLog) && !RexNum.test(loginLog))
+						const RegExpr = /^(?=.*[a-z])[a-zA-Z0-9_-]{3,20}$/i;
+						// const RexNum = /^\d{1,}$/;
+						// console.log('login', RegExp.test(loginLog) && RexNum.test(loginLog)) // trut - если ошибка (т.е. состоит из одних цифр, символов больше 20 или меньше 3)
 
 						const RegName = /^[a-z-]/;
 						// правильная проверка имени и фамилии
@@ -66,17 +94,17 @@ export class SignIn extends Block {
 						const RegPass = /^(?=.*[A-Z])(?=.*[0-9]).{8,40}$/;
 						//console.log('password', RegPass.test(loginLog))
 
-						
+
 						//проверка email
 						// const RegEmail = /^[a-zA-Z0-9._%$#+-]+@[a-zA-Z0-9]+(?=.[0-9]+)?\.[a-zA-Z]+$/i;
 						// const RegEmail = /^[a-zA-Z0-9._%$#+-]+@[a-z0-9]*[a-z]+[^0-9]*?\.[a-zA-Z]+$/i;  //работает
 						const RegEmail = /^[a-z0-9._%$#+-]+@[a-z0-9]*[a-z]+\.[a-z]+$/i;
 						//console.log('email', RegEmail.test(loginLog))
-						
+
 						// правильная проверка телефона
 						const RegPhone = /^[0-9+][0-9]{9,14}$/;
 						//console.log('phone', RegPhone.test(loginLog))
-						
+
 						// правильная проверка сообщения
 						// const RegMessage = /^$/;
 						const RegMessage = /^\s*$/;
@@ -86,6 +114,24 @@ export class SignIn extends Block {
 
 						const RegTest = /[\\w.]*/;
 						//console.log('test', RegTest.test(loginLog))
+
+						// console.log(this.children.fields[0].props.RegInput)
+						const regIn = new RegExp(this.children.fields[0].props.RegInput, 'i')
+						if (!(regIn.test(loginLog))) {
+						// if (!(RegExp.test(loginLog) && !RexNum.test(loginLog))) {
+							// console.log(this.children.fields[0])
+							this.children.fields[0].props.errorMsg = 'Неверный логин'
+							this.children.fields[0].props.valueInput = loginLog
+							// this.children.fields[0].props.classInput = ''
+							const loginL = document.querySelector('#login')
+							loginL?.classList.add('ya-field__input_error')
+						} else {
+							this.children.fields[0].props.errorMsg = ''
+							this.children.fields[0].props.valueInput = loginLog
+							// this.children.fields[0].props.classInput = ''
+							const loginL = document.querySelector('#login')
+							loginL?.classList.remove('ya-field__input_error')
+						}
 					}
 				},
 				classes: 'ya-btn ya-btn_main ya-form__btn'

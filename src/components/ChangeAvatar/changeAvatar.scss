@@ -1,4 +1,5 @@
 @import '../../scss/style.scss';
+@import '../Input/input.scss';
 // @import '../../layout/modal.scss';
 
 .ya-form {
@@ -53,60 +54,6 @@
 	&__btn {
 		&:not(:last-child) {
 			margin-bottom: rem(14);
-		}
-	}
-}
-
-
-.ya-field {
-	display: flex;
-	flex-direction: column;
-	// .ya-field__label
-	&__label {
-		font-weight: 500;
-		font-size: 9px;
-		line-height: 9px;
-		color: #999999;
-		user-select: none;
-		order: 1;
-	}
-	// .ya-field__input
-	&__input {
-		font-weight: 500;
-		font-size: 13px;
-		line-height: 13px;
-		color: $mainColor;
-		padding: 7px 1px;
-		border-bottom: 1px solid $themeColor;
-		order: 2;
-	}
-	// .ya-field input
-	& input[type="file"] {
-		display: none;
-	}
-	// .ya-field input:focus + label
-	& input:focus + label {
-		color: $themeColor;
-	}
-	// .ya-field__error
-	&__error {
-		font-weight: 400;
-		font-size: 8px;
-		line-height: 8px;
-		color: $red;
-		order: 3;
-		padding-top: 7px;
-	}
-	// .ya-field_file .ya-field__label
-	&_file {
-		& .ya-field__label {
-			font-weight: 500;
-			font-size: 12px;
-			line-height: 16px;
-			color: $themeColor;
-			text-align: center;
-			text-decoration-line: underline;
-			cursor: pointer;
 		}
 	}
 }

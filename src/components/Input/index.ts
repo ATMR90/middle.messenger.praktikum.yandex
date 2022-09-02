@@ -7,11 +7,16 @@ interface InputProps {
 	idInput?: string,
 	type?: string,
 	events?: {
-		click: () => void
+		click?: () => void,
+		focusin?: () => void,
+		focusout?: () => void
 	},
-	classes?: string
-	classInput?: string
-	valueInput?: string
+	classes?: string,
+	classInput?: string,
+	valueInput?: string,
+	errorMsg?: string,
+	RegExp?: any,
+	RegInput?: any
 }
 
 export class Input extends Block {
@@ -20,6 +25,14 @@ export class Input extends Block {
 	}
 
 	render() {
-		return this.compile(template, {label: this.props.label, styles, idInput: this.props.idInput, type: this.props.type, classInput: this.props.classInput, valueInput: this.props.valueInput})
+		return this.compile(template, {
+			label: this.props.label,
+			styles,
+			idInput: this.props.idInput,
+			type: this.props.type,
+			classInput: this.props.classInput,
+			valueInput: this.props.valueInput,
+			errorMsg: this.props.errorMsg
+		})
 	}
 }
