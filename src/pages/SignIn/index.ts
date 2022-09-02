@@ -68,8 +68,10 @@ export class SignIn extends Block {
 
 						
 						//проверка email
-						const RegEmail = /^[a-zA-Z0-9._%$#+-]+@[a-zA-Z]+?\.[a-zA-Z]+$/i;
-						console.log('email', RegEmail.test(loginLog))
+						// const RegEmail = /^[a-zA-Z0-9._%$#+-]+@[a-zA-Z0-9]+(?=.[0-9]+)?\.[a-zA-Z]+$/i;
+						// const RegEmail = /^[a-zA-Z0-9._%$#+-]+@[a-z0-9]*[a-z]+[^0-9]*?\.[a-zA-Z]+$/i;  //работает
+						const RegEmail = /^[a-z0-9._%$#+-]+@[a-z0-9]*[a-z]+\.[a-z]+$/i;
+						//console.log('email', RegEmail.test(loginLog))
 						
 						// правильная проверка телефона
 						const RegPhone = /^[0-9+][0-9]{9,14}$/;
