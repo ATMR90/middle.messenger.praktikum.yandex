@@ -1,16 +1,19 @@
-@import '../../scss/style.scss';
+@import "../../scss/style";
+
 .ya-field {
 	display: flex;
 	flex-direction: column;
+
 	// .ya-field__label
 	&__label {
 		font-weight: 500;
 		font-size: 9px;
 		line-height: 9px;
-		color: #999999;
+		color: #999;
 		user-select: none;
 		order: 1;
 	}
+
 	// .ya-field__input
 	&__input {
 		font-weight: 500;
@@ -20,19 +23,23 @@
 		padding: 7px 1px;
 		border-bottom: 1px solid $themeColor;
 		order: 2;
+
 		// .ya-field__input_error
 		&_error {
 			color: red;
 		}
 	}
+
 	// .ya-field input
 	& input[type="file"] {
 		display: none;
 	}
+
 	// .ya-field input:focus + label
 	& input:focus + label {
 		color: $themeColor;
 	}
+
 	// .ya-field__error
 	&__error {
 		font-weight: 400;
@@ -42,6 +49,7 @@
 		order: 3;
 		padding-top: 7px;
 	}
+
 	// .ya-field_file .ya-field__label
 	&_file {
 		& .ya-field__label {

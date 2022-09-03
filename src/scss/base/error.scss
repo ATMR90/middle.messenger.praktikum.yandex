@@ -5,10 +5,12 @@
 	justify-content: center;
 	align-items: center;
 	font-weight: 500;
+
 	// .error-main__header
 	&__header {
 		margin-bottom: rem(69);
 	}
+
 	// .error-main__title
 	&__title {
 		font-size: rem(40);
@@ -16,12 +18,14 @@
 		margin-bottom: rem(20);
 		text-align: center;
 	}
+
 	// .error-main__info
 	&__info {
 		font-size: rem(20);
 		line-height: rem(20);
 		text-align: center;
 	}
+
 	// .error-main__link
 	&__link {
 		font-size: rem(11);
