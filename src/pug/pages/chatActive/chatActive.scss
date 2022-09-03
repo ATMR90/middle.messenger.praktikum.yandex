@@ -75,7 +75,7 @@
 		flex: 1 1 auto;
 		padding: 0 10px;
 
-		& input {
+		input {
 			width: 100%;
 			background: #efefef;
 			border-radius: 30px;
@@ -148,7 +148,7 @@
 	&__container {
 		position: relative;
 
-		& img {
+		img {
 			object-fit: cover;
 			height: 100%;
 			width: 100%;
@@ -206,7 +206,7 @@
 		background: #e4edfd;
 		border-radius: 7px 7px 0;
 
-		& .his-message__info {
+		.his-message__info {
 			color: $themeColor;
 		}
 	}

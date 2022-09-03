@@ -31,12 +31,12 @@
 	}
 
 	// .ya-field input
-	& input[type="file"] {
+	input[type="file"] {
 		display: none;
 	}
 
 	// .ya-field input:focus + label
-	& input:focus + label {
+	input:focus + label {
 		color: $themeColor;
 	}
 
@@ -52,7 +52,7 @@
 
 	// .ya-field_file .ya-field__label
 	&_file {
-		& .ya-field__label {
+		.ya-field__label {
 			font-weight: 500;
 			font-size: 12px;
 			line-height: 16px;

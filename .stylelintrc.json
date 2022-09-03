@@ -10,7 +10,7 @@
 		"at-rule-no-unknown": null,
 		"scss/at-rule-no-unknown": true,
 		"color-hex-case": "lower",
-		"scss/dollar-variable-pattern": "/[a-z][a-zA-Z]+/",
+		"scss/dollar-variable-pattern": "^[a-z][a-zA-Z]+$",
 		"scss/selector-no-redundant-nesting-selector": true,
 		"indentation": "tab",
 		"selector-class-pattern": [
@@ -20,7 +20,7 @@
 				"resolveNestedSelectors": true
 			}
 		],
-		"scss/at-mixin-pattern": "/[a-zA-Z]+/",
+		"scss/at-mixin-pattern": "^[a-zA-Z]+$",
 		"max-line-length": 200
 	},
 	"ignoreFiles": [

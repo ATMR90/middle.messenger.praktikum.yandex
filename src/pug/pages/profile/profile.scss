@@ -73,7 +73,7 @@
 				}
 			}
 
-			& img {
+			img {
 				position: absolute;
 				z-index: 1;
 			}
@@ -173,7 +173,7 @@
 		background: $themeColor;
 		border-radius: 50%;
 
-		& a {
+		a {
 			height: 100%;
 			width: 100%;
 			display: flex;
