@@ -1,1 +1,1 @@
-declare module "*.pug"
+declare module '*.pug'
