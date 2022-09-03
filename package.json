@@ -5,7 +5,7 @@
   "scripts": {
     "clean:cache": "rm -rf .parcel-cache/*",
     "clean:output": "npm run clean:cache && rm -rf dist/*",
-		"copy": "copyfiles -u 1 ./src/assets/img/** ./dist",
+    "copy": "copyfiles -u 1 ./src/assets/img/** ./dist",
     "dev": "npm run clean:output && parcel ./static/index.html --port 3000",
     "build": "npm run clean:output && parcel build ./static/index.html",
     "pug": "npm run clean:output && parcel ./src/pug/index.pug --port 3000",
@@ -33,11 +33,15 @@
     "@parcel/transformer-sass": "^2.7.0",
     "copyfiles": "^2.4.1",
     "dotenv": "^16.0.1",
+    "eslint": "^8.23.0",
+    "eslint-config-airbnb": "^19.0.4",
     "express": "^4.18.1",
     "parcel": "^2.7.0",
     "parcel-transformer-pug-precompile": "^1.0.6",
     "pug": "^3.0.2",
     "sass": "^1.54.4",
+    "stylelint": "^14.11.0",
+		"stylelint-scss": "^4.3.0",
     "typescript": "^4.7.4",
     "uuid": "^8.3.2"
   }
