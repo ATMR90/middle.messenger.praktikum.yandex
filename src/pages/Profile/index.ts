@@ -108,6 +108,7 @@ export class Profile extends Block {
                       },
                       // classes: 'user-info__field',
                       classInput: 'info-field__value info-field__value_right',
+                      RegInput: '^[a-z0-9._%$#+-]+@[a-z0-9]*[a-z]+\.[a-z]+$',
                     }),
                   }),
                   new InfoField({
@@ -122,9 +123,17 @@ export class Profile extends Block {
                       valueInput: 'ivanivanov',
                       events: {
                         click: () => { },
+                        focusout: (evn: Event) => {
+                          //console.log(this)
+                          //console.log(evn)
+                          //console.log(evn!.target!.value)
+                          this.children.fields[1].children.fieldValue.onValidate(evn!.target!.value, evn!.target);
+                          console.log('фокус2', evn);
+                        },
                       },
                       // classes: 'user-info__field',
                       classInput: 'info-field__value info-field__value_right',
+                      RegInput: '^(?=.*[a-z])[a-zA-Z0-9_-]{3,20}$',
                     }),
                   }),
                   new InfoField({

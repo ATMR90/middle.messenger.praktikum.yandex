@@ -17,8 +17,9 @@
     "ts": "npm run clean:output && npm run copy && parcel ./src/index.html --port 3000",
     "ts:build": "npm run clean:output && npm run copy && parcel build ./src/index.html",
     "ts:start": "npm run clean:output && npm run copy && parcel build ./src/index.html && node ./server/server.js",
-    "lint": "stylelint \"**/*.scss\" --fix",
-    "eslint": "eslint . --ext .js,.ts"
+    "stylelint": "stylelint \"**/*.scss\"",
+    "eslint": "eslint . --ext .js,.ts",
+    "lint": "npm run stylelint && npm run eslint"
   },
   "repository": {
     "type": "git",
