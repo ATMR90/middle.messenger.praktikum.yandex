@@ -15,7 +15,7 @@ interface ButtonWithImageProps {
 
 export default class ButtonWithImage extends Block {
   constructor(props: ButtonWithImageProps) {
-    super('button', props);
+    super(props);
   }
 
   render() {

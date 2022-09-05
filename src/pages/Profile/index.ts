@@ -19,8 +19,8 @@ interface ProfileProps {
 
 export class Profile extends Block {
   constructor(props: ProfileProps) {
-    super('div', props);
-    this.element!.classList.add('ya-profile');
+    super( props);
+    // this.element!.classList.add('ya-profile');
   }
 
   init() {

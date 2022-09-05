@@ -18,23 +18,22 @@ class Block {
 
   protected _element: HTMLElement | null = null;
 
-  private _meta: { tagName: string; props: any };
+  private _meta: { props: any };
 
   protected children: Record<string, Block> | Record<string, Block[]>;
 
   /** JSDoc
-   * @param {string} tagName
+   * 
    * @param {Object} propsWithChildren
    *
    * @returns {void}
    */
-  constructor(tagName = 'div', propsWithChildren: any = {}) {
+  constructor(propsWithChildren: any = {}) {
     const eventBus = new EventBus();
 
     const { props, children } = this._getChildrenAndProps(propsWithChildren);
 
     this._meta = {
-      tagName,
       props,
     };
 
@@ -78,8 +77,8 @@ class Block {
   }
 
   _createResources() {
-    const { tagName } = this._meta;
-    this._element = this._createDocumentElement(tagName);
+    // const { tagName } = this._meta;
+    // this._element = this._createDocumentElement(tagName);
   }
 
   _init() {
@@ -123,6 +122,7 @@ class Block {
     const obj = this._getChildrenAndProps(nextProps);
     this.props = obj.props;
     this.children = obj.children;
+		console.log(obj)
     Object.assign(this.props, obj.props);
     Object.assign(this.children, obj.children);
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
@@ -133,12 +133,23 @@ class Block {
   }
 
   _render() {
-    const block = this.render();
+    const fragment = this.render();
+		console.log(fragment)
 
+		const newElement = fragment.firstElementChild as HTMLElement
+
+
+		this._element?.replaceWith(newElement)
+
+		console.log(this._element)
+		
+		this._element = newElement
+		
+		console.log(this._element)
     this._removeEvents();
 
-    this._element!.innerHTML = '';
-    this._element!.append(block);
+    // this._element!.innerHTML = '';
+    // this._element!.append(block);
 
     this._addEvents();
     this._addClass();
@@ -235,7 +246,7 @@ class Block {
     const { events = {} } = this.props as { events: Record<string, () => void> };
 
     Object.keys(events).forEach((eventName) => {
-      this._element!.addEventListener(eventName, events[eventName]);
+      this._element?.addEventListener(eventName, events[eventName]);
     });
   }
 

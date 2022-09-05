@@ -15,7 +15,7 @@ interface ChangeAvatarProps {
 
 export class ChangeAvatar extends Block {
   constructor(props: ChangeAvatarProps) {
-    super('div', props);
+    super(props);
   }
 
   init() {

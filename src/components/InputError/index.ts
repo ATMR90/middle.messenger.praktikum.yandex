@@ -21,7 +21,7 @@ interface InputErrorProps {
 
 export class InputError extends Block {
   constructor(props: InputErrorProps) {
-    super('div', props);
+    super(props);
   }
 
   render() {

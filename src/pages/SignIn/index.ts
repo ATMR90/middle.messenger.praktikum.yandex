@@ -17,8 +17,8 @@ interface SignInProps {
 
 export class SignIn extends Block {
   constructor(props: SignInProps) {
-    super('div', props);
-    this.element!.classList.add('ya-form');
+    super(props);
+    // this.element!.classList.add('ya-form');
   }
 
   init() {

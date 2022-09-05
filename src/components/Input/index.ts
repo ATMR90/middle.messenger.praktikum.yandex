@@ -24,7 +24,7 @@ interface InputProps {
 
 export class Input extends Block {
   constructor(props: InputProps) {
-    super('div', props);
+    super(props);
       this.props.events = {
         // focusin: () => {
         // 	const arr = this.props.classInput.indexOf(' ') ? this.props.classInput.split(' ') : [this.props.classInput]
@@ -48,7 +48,7 @@ export class Input extends Block {
       classes: this.props.classInput,
       funBlur: (env: FocusEvent) => {
         const val = (env.target as HTMLInputElement).value;
-        // console.log('blur', this)
+        console.log('blur', this, val)
         this.onValidate(val);
       },
     });
@@ -56,24 +56,26 @@ export class Input extends Block {
 
   protected onValidate(val: string) {
     const regIn = new RegExp(this.props.RegInput, 'i');
+		console.log(this.props.RegInput)
     if (!(regIn.test(val))) {
-      // console.log(this)
+      console.log('валид err', this , this.props.errorInput)
       this.children.errorMsg.setProps({ errorMsg: this.props.errorInput });
       const classInput = this.children.inputField.props.classes;
       // console.log('классы', classInput)
-      this.props.valueInput = val;
+      // this.props.valueInput = val;
       const arr = classInput.indexOf(' ') ? classInput.split(' ') : [classInput];
       if (!(arr.indexOf('ya-field__input_error') > 0)) {
-        this.children.inputField.setProps({ classes : classInput + ' ya-field__input_error' });
+        // this.children.inputField.setProps({ classes : classInput + ' ya-field__input_error' });
       }
-      this.children.inputField.setProps({ classes : classInput });
+      // this.children.inputField.setProps({ classes : classInput });
     } else {
       this.children.errorMsg.setProps({ errorMsg: '' });
-      this.props.valueInput = val;
+      // this.props.valueInput = val;
+
       const classInput = this.children.inputField.props.classes;
       const arr = classInput.indexOf(' ') ? classInput.split(' ') : [classInput];
       const mas = arr.filter(val => val != 'ya-field__input_error').join(' ');
-      this.children.inputField.setProps({ classes : mas });
+      // this.children.inputField.setProps({ classes : mas });
     }
   }
 
