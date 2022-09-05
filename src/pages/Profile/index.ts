@@ -109,6 +109,7 @@ export class Profile extends Block {
                       // classes: 'user-info__field',
                       classInput: 'info-field__value info-field__value_right',
                       RegInput: '^[a-z0-9._%$#+-]+@[a-z0-9]*[a-z]+\.[a-z]+$',
+                      errorInput: 'латиница, может включать цифры и спецсимволы вроде дефиса, обязательно должна быть @ и точка после нее, но перед точкой обязательно должны быть буквы',
                     }),
                   }),
                   new InfoField({
