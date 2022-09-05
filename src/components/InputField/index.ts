@@ -15,6 +15,7 @@ interface InputFieldProps {
   classInput?: string,
   valueInput?: string,
   errorInput?: string,
+	placeholderInput?: string,
   RegExp?: any,
   RegInput?: any,
   name?: string,
@@ -41,6 +42,7 @@ export class InputField extends Block {
       classes: this.props.classInput,
       valueInput: this.props.valueInput,
       errorMsg: this.props.errorMsg,
+			placeholderInput: this.props.placeholderInput,
       styles,
     });
   }

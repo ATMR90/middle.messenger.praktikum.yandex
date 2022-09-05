@@ -1,4 +1,5 @@
 import { ChatPanel } from '../../components/ChatPanel';
+import { Input } from '../../components/Input';
 import Block from '../../utils/Block';
 import template from './chat.pug';
 import * as styles from './chat.scss';
@@ -104,6 +105,23 @@ export class Chat extends Block {
       }),
     ];
     this.children.chatList = chatList;
+    
+		const message = new Input({
+			label: '',
+			idInput: 'message',
+			type: 'text',
+			valueInput: '',
+			placeholderInput: 'Сообщение',
+			events: {
+				click: () => { },
+			},
+			// classes: 'user-info__field',
+			classInput: 'footer-right-panel__input',
+			errorInput: 'не должно быть пустым',
+			RegInput: '[^\s]',
+		})
+		this.children.message = message;
+
   }
 
   render() {

@@ -119,13 +119,19 @@ class Block {
     if (!nextProps) {
       return;
     }
-    const obj = this._getChildrenAndProps(nextProps);
-    this.props = obj.props;
-    this.children = obj.children;
-		console.log(obj)
-    Object.assign(this.props, obj.props);
-    Object.assign(this.children, obj.children);
+		// console.log('df1',this.props, nextProps)
+    Object.assign(this.props, nextProps);
+		// console.log('df222',this.props, nextProps)
+    // const obj = this._getChildrenAndProps(nextProps);
+		// console.log('ыуезкщзы',this.props.events, obj.props, obj.children)
+		// console.log('ыуезкщзы22',this.props.events, this.props, this.children)
+    // this.props = obj.props;
+    // this.children = obj.children;
+    // Object.assign(this.props, obj.props);
+    // Object.assign(this.children, obj.children);
+		// console.log('ыуезкщзы333',this.props.events, this.props, this.children)
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
+		// console.log('ыуезкщзы444',this.props.events, this.props, this.children)
   };
 
   get element() {
@@ -134,19 +140,22 @@ class Block {
 
   _render() {
     const fragment = this.render();
-		console.log(fragment)
+		// console.log(fragment)
 
 		const newElement = fragment.firstElementChild as HTMLElement
 
+		if (this._element) {
+      this._removeEvents();
+      this._element.replaceWith(newElement);
+    }
 
-		this._element?.replaceWith(newElement)
 
-		console.log(this._element)
+		// console.log(this._element)
 		
 		this._element = newElement
 		
-		console.log(this._element)
-    this._removeEvents();
+		// console.log(this._element)
+    // this._removeEvents();
 
     // this._element!.innerHTML = '';
     // this._element!.append(block);

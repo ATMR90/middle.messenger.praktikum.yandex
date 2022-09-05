@@ -90,9 +90,11 @@ export class Profile extends Block {
           events: {
             click: () => {
               event.preventDefault();
-              this.setProps({
-                title: 'Виктор',
-                fields: [
+							// console.log(this.props, this.children.fields)
+              // this.setProps({
+              //   title: 'Виктор',})
+								// this.children.fields = fields
+                const fields = [
                   new InfoField({
                     label: 'Поле',
                     name: 'Почта',
@@ -129,12 +131,13 @@ export class Profile extends Block {
                           //console.log(evn)
                           //console.log(evn!.target!.value)
                           this.children.fields[1].children.fieldValue.onValidate(evn!.target!.value, evn!.target);
-                          console.log('фокус2', evn);
+                          // console.log('фокус2', evn);
                         },
                       },
                       // classes: 'user-info__field',
                       classInput: 'info-field__value info-field__value_right',
                       RegInput: '^(?=.*[a-z])[a-zA-Z0-9_-]{3,20}$',
+											errorInput: 'Логин должен содержать от 3 до 20 символов, латиница, может содержать цифры, но не состоять из них, без пробелов, без спецсимволов (допустимы дефис и нижнее подчеркивание',
                     }),
                   }),
                   new InfoField({
@@ -152,6 +155,8 @@ export class Profile extends Block {
                       },
                       // classes: 'user-info__field',
                       classInput: 'info-field__value info-field__value_right',
+											errorInput: 'латиница или кириллица, первая буква должна быть заглавной, без пробелов и без цифр, нет спецсимволов (допустим только дефис)',
+											RegInput: '^[А-ЯA-Z][а-яА-ЯёЁa-zA-Z-]+$',
                     }),
                   }),
                   new InfoField({
@@ -169,6 +174,8 @@ export class Profile extends Block {
                       },
                       // classes: 'user-info__field',
                       classInput: 'info-field__value info-field__value_right',
+											errorInput: 'латиница или кириллица, первая буква должна быть заглавной, без пробелов и без цифр, нет спецсимволов (допустим только дефис)',
+											RegInput: '^[А-ЯA-Z][а-яА-ЯёЁa-zA-Z-]+$',
                     }),
                   }),
                   new InfoField({
@@ -186,6 +193,8 @@ export class Profile extends Block {
                       },
                       // classes: 'user-info__field',
                       classInput: 'info-field__value info-field__value_right',
+											errorInput: 'латиница или кириллица, первая буква должна быть заглавной, без пробелов и без цифр, нет спецсимволов (допустим только дефис)',
+											RegInput: '^[А-ЯA-Z][а-яА-ЯёЁa-zA-Z-]+$',
                     }),
                   }),
                   new InfoField({
@@ -203,19 +212,26 @@ export class Profile extends Block {
                       },
                       // classes: 'user-info__field',
                       classInput: 'info-field__value info-field__value_right',
+											errorInput: 'от 10 до 15 символов, состоит из цифр, может начинаться с плюса',
+											RegInput: '^[0-9+][0-9]{9,14}$',
                     }),
                   }),
 
-                ],
-                footer: new Button({
-                  label: 'Сохранить',
+                ]
+								this.children.fields = fields;
+                const footer = new Button({
+									label: 'Сохранить',
                   events: {
-                    click: () => console.log('clicked!'),
+										click: () => console.log('clicked!'),
                   },
                   classes: 'ya-btn ya-btn_main user-info__field_btn',
                   url: '/profile',
-                }),
-              });
+                })
+								this.children.footer = footer;
+								// console.log(this.props, this.children.fields)
+								this.setProps({
+									title: '',})
+              // });
             },
           },
           classes: 'ya-btn user-info__btn',
@@ -230,9 +246,9 @@ export class Profile extends Block {
           events: {
             click: () => {
               event.preventDefault();
-              this.setProps({
-                title: 'Петр',
-                fields: [
+
+
+                const fields = [
                   new InfoField({
                     label: 'Поле',
                     name: 'Старый пароль',
@@ -248,6 +264,8 @@ export class Profile extends Block {
                       },
                       // classes: 'user-info__field',
                       classInput: 'info-field__value info-field__value_right',
+											errorInput: 'Пароль должен содержать от 8 до 40 символов, должна быть одна заглавная буква и цифра',
+											RegInput: '^(?=.*[A-Z])(?=.*[0-9]).{8,40}$',
                     }),
                   }),
                   new InfoField({
@@ -265,6 +283,8 @@ export class Profile extends Block {
                       },
                       // classes: 'user-info__field',
                       classInput: 'info-field__value info-field__value_right',
+											errorInput: 'Пароль должен содержать от 8 до 40 символов, должна быть одна заглавная буква и цифра',
+											RegInput: '^(?=.*[A-Z])(?=.*[0-9]).{8,40}$',
                     }),
                   }),
                   new InfoField({
@@ -282,19 +302,27 @@ export class Profile extends Block {
                       },
                       // classes: 'user-info__field',
                       classInput: 'info-field__value info-field__value_right',
+											errorInput: 'Пароль должен содержать от 8 до 40 символов, должна быть одна заглавная буква и цифра',
+											RegInput: '^(?=.*[A-Z])(?=.*[0-9]).{8,40}$',
                     }),
                   }),
 
-                ],
-                footer: new Button({
+                ]
+								this.children.fields = fields;
+                const footer = new Button({
                   label: 'Сохранить',
                   events: {
                     click: () => console.log('clicked!'),
                   },
                   classes: 'ya-btn ya-btn_main user-info__field_btn',
                   url: '/profile',
-                }),
-              });
+                })
+
+								this.children.footer = footer;
+								// console.log(this.props, this.children.fields)
+								this.setProps({
+									title: ''})
+              // });
             },
           },
           classes: 'ya-btn user-info__btn',
