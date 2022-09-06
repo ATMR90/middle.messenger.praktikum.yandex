@@ -95,11 +95,11 @@ export class SignIn extends Block {
         label: 'Войти',
         events: {
           click: () => {
-						event.preventDefault()
-						const valid = this.children.fields.reduce((acc,val) => {
-							const result = val.onValidate()
-							return acc && result
-						}, true)
+						event.preventDefault();
+						const valid = this.children.fields.reduce((acc, val) => {
+							const result = val.onValidate();
+							return acc && result;
+						}, true);
 						// console.log(valid)
             const loginLog = document.querySelector('#login')!.value;
             // const passwordLog = document.querySelector('#password')!.value;
@@ -164,7 +164,7 @@ export class SignIn extends Block {
           },
         },
         classes: 'ya-btn ya-btn_main ya-form__btn',
-				type: 'submit'
+				type: 'submit',
       }),
       new Button({
         label: 'Регистрация',

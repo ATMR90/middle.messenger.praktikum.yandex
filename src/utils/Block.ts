@@ -142,7 +142,7 @@ class Block {
     const fragment = this.render();
 		// console.log(fragment)
 
-		const newElement = fragment.firstElementChild as HTMLElement
+		const newElement = fragment.firstElementChild as HTMLElement;
 
 		if (this._element) {
       this._removeEvents();
@@ -152,7 +152,7 @@ class Block {
 
 		// console.log(this._element)
 		
-		this._element = newElement
+		this._element = newElement;
 		
 		// console.log(this._element)
     // this._removeEvents();

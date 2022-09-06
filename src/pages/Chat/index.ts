@@ -119,7 +119,7 @@ export class Chat extends Block {
 			classInput: 'footer-right-panel__input',
 			errorInput: 'не должно быть пустым',
 			RegInput: '[^\s]',
-		})
+		});
 		this.children.message = message;
 
   }

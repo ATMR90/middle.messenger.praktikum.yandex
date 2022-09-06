@@ -217,7 +217,7 @@ export class Profile extends Block {
                     }),
                   }),
 
-                ]
+                ];
 								this.children.fields = fields;
                 const footer = new Button({
 									label: 'Сохранить',
@@ -226,11 +226,11 @@ export class Profile extends Block {
                   },
                   classes: 'ya-btn ya-btn_main user-info__field_btn',
                   url: '/profile',
-                })
+                });
 								this.children.footer = footer;
 								// console.log(this.props, this.children.fields)
 								this.setProps({
-									title: '',})
+									title: '' });
               // });
             },
           },
@@ -307,7 +307,7 @@ export class Profile extends Block {
                     }),
                   }),
 
-                ]
+                ];
 								this.children.fields = fields;
                 const footer = new Button({
                   label: 'Сохранить',
@@ -316,12 +316,12 @@ export class Profile extends Block {
                   },
                   classes: 'ya-btn ya-btn_main user-info__field_btn',
                   url: '/profile',
-                })
+                });
 
 								this.children.footer = footer;
 								// console.log(this.props, this.children.fields)
 								this.setProps({
-									title: ''})
+									title: '' });
               // });
             },
           },
