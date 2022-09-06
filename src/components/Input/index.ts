@@ -58,6 +58,10 @@ export class Input extends Block {
   }
 
   protected onValidate(val: string) {
+		if (val == undefined) {
+			val = this.children.inputField.props.valueInput
+		}
+		// console.log(val)
     const regIn = new RegExp(this.props.RegInput, 'i');
 		// console.log('тест', regIn.test(val))
     if (!(regIn.test(val))) {
@@ -88,6 +92,7 @@ export class Input extends Block {
       this.children.inputField.setProps({ classes : mas, valueInput: val });
 			// console.log('классы3', this.children.inputField.props.events)
     }
+		return regIn.test(val)
   }
 
   render() {

@@ -8,7 +8,8 @@ interface ButtonProps {
     click: () => void
   },
   classes?: string,
-  url?: string
+  url?: string,
+	type?: string
 }
 
 export class Button extends Block {
@@ -17,6 +18,6 @@ export class Button extends Block {
   }
 
   render() {
-    return this.compile(template, { label: this.props.label, styles, url: this.props.url || '' });
+    return this.compile(template, { label: this.props.label, styles, url: this.props.url || '', type: this.props.type });
   }
 }

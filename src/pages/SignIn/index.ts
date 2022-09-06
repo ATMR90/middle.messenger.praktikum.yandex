@@ -95,6 +95,12 @@ export class SignIn extends Block {
         label: 'Войти',
         events: {
           click: () => {
+						event.preventDefault()
+						const valid = this.children.fields.reduce((acc,val) => {
+							const result = val.onValidate()
+							return acc && result
+						}, true)
+						// console.log(valid)
             const loginLog = document.querySelector('#login')!.value;
             // const passwordLog = document.querySelector('#password')!.value;
             // console.log(loginLog, passwordLog)
@@ -152,10 +158,13 @@ export class SignIn extends Block {
 
             const logLog = document.querySelector(`#${this.children.fields[0].props.idInput}`)!.value;
             const logPass = document.querySelector(`#${this.children.fields[1].props.idInput}`)!.value;
-            console.log({ login: logLog, password: logPass });
+            if (valid) {
+							console.log({ login: logLog, password: logPass });
+						}
           },
         },
         classes: 'ya-btn ya-btn_main ya-form__btn',
+				type: 'submit'
       }),
       new Button({
         label: 'Регистрация',
