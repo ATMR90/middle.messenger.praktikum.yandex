@@ -1,5 +1,5 @@
 import { pageChat } from './pages/Chat/chat';
-import { pageError404 } from './pages/Error404/Error404';
+import { pageError404 } from './pages/Error404/error404';
 import { pageError500 } from './pages/Error500/error500';
 import { pageProfile } from './pages/Profile/profile';
 import { pageSignIn } from './pages/SignIn/signIn';
