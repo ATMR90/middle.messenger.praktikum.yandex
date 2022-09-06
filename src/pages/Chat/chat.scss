@@ -132,6 +132,11 @@
 		font-size: 12px;
 		line-height: 15px;
 		color: #999;
+		/* stylelint-disable-next-line value-no-vendor-prefix */
+		display: -webkit-box;
+		-webkit-line-clamp: 2;
+		-webkit-box-orient: vertical;
+		overflow: hidden;
 	}
 
 	// .chat-panel__info

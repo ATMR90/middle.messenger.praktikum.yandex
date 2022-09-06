@@ -5,7 +5,7 @@
 				<img src="./../../assets/img/arrow_forward.svg" alt="">
 		.left-panel__search
 			input.left-panel__input(placeholder="Поиск")
-		.left-panel__chat-list
+		ul.left-panel__chat-list
 			|	!{chatList}
 	.ya-chat__right-panel.right-panel 
 		.right-panel__header.header-right-panel
@@ -16,7 +16,7 @@
 				<img src="./../../assets/img/settings_dots.svg" alt="">
 		.right-panel__messages.messages-chat
 			.messages-chat__container
-				.messages-chat__data 19 июня
+				time.messages-chat__data(datetime="2022-06-19") 19 июня
 				.messages-chat__his-message.his-message
 					.his-message__container 
 						.his-message__text 
