@@ -25,11 +25,6 @@ interface InputFieldProps {
 export class InputField extends Block {
   constructor(props: InputFieldProps) {
     super(props);
-    // this.element!.classList.add('ya-field__input');
-    // this.element!.id = this.props.idInput;
-    // this.element!.name = this.props.idInput;
-    // this.element!.type = this.props.type;
-    //this.element!.classes = this.props.classInput;
     this.props.events = {
       blur: this.props.funBlur,
     };

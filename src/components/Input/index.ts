@@ -26,16 +26,6 @@ interface InputProps {
 export class Input extends Block {
   constructor(props: InputProps) {
     super(props);
-      this.props.events = {
-        // focusin: () => {
-        // 	const arr = this.props.classInput.indexOf(' ') ? this.props.classInput.split(' ') : [this.props.classInput]
-        // 	this.props.classInput = arr.filter(val => val != 'ya-field__input_error').join(' ')
-        // },
-        // focusout: (env: FocusEvent) => {
-        //   const val = (env.target as HTMLInputElement).value;
-        //   this.onValidate(val);
-        // },
-      };
   }
 
   init() {
@@ -51,7 +41,6 @@ export class Input extends Block {
 			placeholderInput: this.props.placeholderInput,
       funBlur: (env: FocusEvent) => {
         const val = (env.target as HTMLInputElement).value;
-        // console.log('blur', this, val)
         this.onValidate(val);
       },
     });
@@ -61,36 +50,23 @@ export class Input extends Block {
 		if (val == undefined) {
 			val = this.children.inputField.props.valueInput;
 		}
-		// console.log(val)
     const regIn = new RegExp(this.props.RegInput, 'i');
-		// console.log('тест', regIn.test(val))
     if (!(regIn.test(val))) {
-      // console.log('валид err', this , this.props.errorInput)
       this.children.errorMsg.setProps({ errorMsg: this.props.errorInput });
       const classInput = this.children.inputField.props.classes;
-      // console.log('классы', classInput, this.children.inputField.props.events)
-      // this.props.valueInput = val;
       const arr = classInput.indexOf(' ') ? classInput.split(' ') : [classInput];
-			// console.log(arr)
       if (!(arr.indexOf('ya-field__input_error') > 0)) {
 				this.children.inputField.setProps({ classes : classInput + ' ya-field__input_error', valueInput: val });
-				// console.log(this.children.inputField.props.classes)
       } else {
 				this.children.inputField.setProps({ classes : classInput, valueInput: val });
 				
 			}
     } else {
-			// console.log('noerr', this.children.errorMsg)
-			// console.log('классы', this.children.inputField.props.events)
       this.children.errorMsg.setProps({ errorMsg: '' });
-      // this.props.valueInput = val;
-			// console.log('классы2', this.children.inputField.props.events)
-
       const classInput = this.children.inputField.props.classes;
       const arr = classInput.indexOf(' ') ? classInput.split(' ') : [classInput];
       const mas = arr.filter(val => val != 'ya-field__input_error').join(' ');
       this.children.inputField.setProps({ classes : mas, valueInput: val });
-			// console.log('классы3', this.children.inputField.props.events)
     }
 		return regIn.test(val);
   }
@@ -100,10 +76,6 @@ export class Input extends Block {
       label: this.props.label,
       styles,
       idInput: this.props.idInput,
-      // type: this.props.type,
-      // classInput: this.props.classInput,
-      // valueInput: this.props.valueInput,
-      // errorMsg: this.props.errorMsg,
     });
   }
 }

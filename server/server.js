@@ -7,7 +7,7 @@ const { NODE_ENV } = require('./utils/constants');
 const { DIST_DIR } = require('./utils/constants');
 
 const pathDistDir = path.join(__dirname, '../', DIST_DIR);
-console.log(pathDistDir)
+
 const app = express();
 
 app.use(express.static(pathDistDir));

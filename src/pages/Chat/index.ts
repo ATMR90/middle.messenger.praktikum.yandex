@@ -17,7 +17,6 @@ interface ChatProps {
 export class Chat extends Block {
   constructor(props: ChatProps) {
     super(props);
-    // this.element!.classList.add('ya-chat');
   }
 
   init() {
@@ -115,7 +114,6 @@ export class Chat extends Block {
 			events: {
 				click: () => { },
 			},
-			// classes: 'user-info__field',
 			classInput: 'footer-right-panel__input',
 			errorInput: 'не должно быть пустым',
 			RegInput: '[^\s]',
