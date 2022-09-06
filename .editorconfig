@@ -1,0 +1,20 @@
+# Корневой файл EditorConfig
+root = true
+
+[*]
+# Indentation style
+# Possible values - tab, space
+indent_style = tab
+
+# Indentation size in single-spaced characters
+# Possible values - an integer, tab
+indent_size = 2
+
+# Matches multiple files with brace expansion notation
+# Set default charset
+charset = utf-8
+
+# Indentation override for all TS
+[*.ts]
+indent_style = space
+indent_size = 2

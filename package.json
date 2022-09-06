@@ -12,7 +12,7 @@
     "pug:build": "npm run clean:output && parcel build ./src/pug/index.pug",
     "netlify": "npm run ts:build",
     "serve": "npm run pug:build && node ./server/server.js",
-    "start": "npm run serve",
+    "start": "npm run ts:start",
     "test:nocache": "parcel build ./src/pug/index.pug --no-cache",
     "ts": "npm run clean:output && npm run copy && parcel ./src/index.html --port 3000",
     "ts:build": "npm run clean:output && npm run copy && parcel build ./src/index.html",

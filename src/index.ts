@@ -1,4 +1,6 @@
 import { pageChat } from './pages/Chat/chat';
+import { pageError404 } from './pages/Error404/Error404';
+import { pageError500 } from './pages/Error500/error500';
 import { pageProfile } from './pages/Profile/profile';
 import { pageSignIn } from './pages/SignIn/signIn';
 import { pageSignUp } from './pages/SignUp/signUp';
@@ -14,6 +16,12 @@ function funPageProfile() {
 }
 function funPageChat() {
   pageChat();
+}
+function funpageError404() {
+  pageError404();
+}
+function funpageError500() {
+  pageError500();
 }
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -47,6 +55,14 @@ window.addEventListener('DOMContentLoaded', () => {
     case '/chat':
       // console.log(path, root)
       funPageChat();
+      break;
+    case '/404':
+      // console.log(path, root)
+      funpageError404();
+      break;
+    case '/500':
+      // console.log(path, root)
+      funpageError500();
       break;
   }
 });
