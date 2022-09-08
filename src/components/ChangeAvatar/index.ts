@@ -24,7 +24,7 @@ export class ChangeAvatar extends Block {
       idInput: 'avatar',
       type: 'file',
       classes: 'ya-form__field ya-field_file ya-field',
-      classInput: 'ya-field__input',
+      inputClasses: 'ya-field__input',
     });
     this.children.inputAvatar = inputAvatar;
     const button = new Button({

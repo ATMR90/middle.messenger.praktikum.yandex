@@ -12,7 +12,7 @@ interface InputFieldProps {
     focusout?: (env: Event) => void
   },
   classes?: string,
-  classInput?: string,
+  inputClasses?: string,
   valueInput?: string,
   errorInput?: string,
 	placeholderInput?: string,
@@ -34,7 +34,7 @@ export class InputField extends Block {
     return this.compile(template, {
       idInput: this.props.idInput,
       type: this.props.type,
-      classes: this.props.classInput,
+      classes: this.props.inputClasses,
       valueInput: this.props.valueInput,
       errorMsg: this.props.errorMsg,
 			placeholderInput: this.props.placeholderInput,

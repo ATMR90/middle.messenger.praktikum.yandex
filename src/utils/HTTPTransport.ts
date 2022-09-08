@@ -1,4 +1,4 @@
-enum METHODS {
+enum Methods {
   GET = 'GET',
   POST = 'POST',
   PUT = 'PUT',
@@ -8,37 +8,34 @@ enum METHODS {
 type TRequestData = Record<string, string | number>;
 
 export type TRequestOptions = {
-  method?: METHODS
+  method?: Methods
   headers?: Record<string, string>
   timeout?: number
   data?: unknown
 };
 
-// Самая простая версия. Реализовать штучку со всеми проверками им предстоит в конце спринта
-// Необязательный метод
 function queryStringify(data: TRequestData) {
   if (typeof data !== 'object') {
     throw new Error('Data must be object');
   }
 
-  // Здесь достаточно и [object Object] для объекта
   const keys = Object.keys(data);
   return keys.reduce((result, key, index) => `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`, '?');
 }
 
 export class HTTPTransport {
-  public get = (url: string, options = {}): Promise<XMLHttpRequest> => this.request(url, { ...options, method: METHODS.GET });
+  public get = (url: string, options = {}): Promise<XMLHttpRequest> => this.request(url, { ...options, method: Methods.GET });
 
-  public post = (url: string, options = {}): Promise<XMLHttpRequest> => this.request(url, { ...options, method: METHODS.POST });
+  public post = (url: string, options = {}): Promise<XMLHttpRequest> => this.request(url, { ...options, method: Methods.POST });
 
-  public put = (url: string, options = {}): Promise<XMLHttpRequest> => this.request(url, { ...options, method: METHODS.PUT });
+  public put = (url: string, options = {}): Promise<XMLHttpRequest> => this.request(url, { ...options, method: Methods.PUT });
 
-  public delete = (url: string, options = {}): Promise<XMLHttpRequest> => this.request(url, { ...options, method: METHODS.DELETE });
+  public delete = (url: string, options = {}): Promise<XMLHttpRequest> => this.request(url, { ...options, method: Methods.DELETE });
 
   request = (url: string, options: TRequestOptions = {}): any => {
     const {
       headers = {},
-      method = METHODS.GET,
+      method = Methods.GET,
       data,
       timeout = 5000,
     } = options;
@@ -50,7 +47,7 @@ export class HTTPTransport {
       }
 
       const xhr = new XMLHttpRequest();
-      const isGet = method === METHODS.GET;
+      const isGet = method === Methods.GET;
 
       xhr.open(
         method,

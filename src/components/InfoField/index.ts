@@ -19,7 +19,6 @@ interface InfoFieldProps {
 export class InfoField extends Block {
   constructor(props: InfoFieldProps) {
     super(props);
-    // this.element!.classList.add('info-field');
   }
 
   render() {

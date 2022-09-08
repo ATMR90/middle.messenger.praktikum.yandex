@@ -9,15 +9,18 @@ interface ButtonProps {
   },
   classes?: string,
   url?: string,
-	type?: string
+  type?: string
 }
 
 export class Button extends Block {
   constructor(props: ButtonProps) {
+		if (props.url === undefined) {
+			props.url = ''
+		}
     super(props);
   }
 
   render() {
-    return this.compile(template, { label: this.props.label, styles, url: this.props.url || '', type: this.props.type });
+    return this.compile(template, { ...this.props, styles});
   }
 }

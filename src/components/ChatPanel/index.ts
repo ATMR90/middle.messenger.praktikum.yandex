@@ -25,7 +25,6 @@ interface ChatPanelProps {
 export class ChatPanel extends Block {
   constructor(props: ChatPanelProps) {
     super(props);
-    // this.element!.classList.add('chat-panel');
   }
 
   render() {

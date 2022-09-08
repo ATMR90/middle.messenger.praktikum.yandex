@@ -1,7 +1,6 @@
 import { v4 as makeUUID } from 'uuid';
 import { EventBus } from './EventBus';
 
-// Нельзя создавать экземпляр данного класса
 class Block {
   static EVENTS = {
     INIT: 'init',
@@ -48,7 +47,7 @@ class Block {
     eventBus.emit(Block.EVENTS.INIT);
   }
 
-  _getChildrenAndProps(childrenAndProps: any) {
+  private _getChildrenAndProps(childrenAndProps: any) {
     const props: Record<string, any> = {};
     const children: Record<string, Block> | Record<string, Block[]> = {};
 
@@ -69,19 +68,17 @@ class Block {
     return { props, children };
   }
 
-  _registerEvents(eventBus: EventBus) {
+  private _registerEvents(eventBus: EventBus) {
     eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
     eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
     eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
   }
 
-  _createResources() {
-    // const { tagName } = this._meta;
-    // this._element = this._createDocumentElement(tagName);
+  private _createResources() {
   }
 
-  _init() {
+  private _init() {
     this._createResources();
 
     this.init();
@@ -93,7 +90,7 @@ class Block {
 
   }
 
-  _componentDidMount() {
+  private _componentDidMount() {
     this.componentDidMount();
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
   }
@@ -119,28 +116,18 @@ class Block {
     if (!nextProps) {
       return;
     }
-		// console.log('df1',this.props, nextProps)
+
     Object.assign(this.props, nextProps);
-		// console.log('df222',this.props, nextProps)
-    // const obj = this._getChildrenAndProps(nextProps);
-		// console.log('ыуезкщзы',this.props.events, obj.props, obj.children)
-		// console.log('ыуезкщзы22',this.props.events, this.props, this.children)
-    // this.props = obj.props;
-    // this.children = obj.children;
-    // Object.assign(this.props, obj.props);
-    // Object.assign(this.children, obj.children);
-		// console.log('ыуезкщзы333',this.props.events, this.props, this.children)
     this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
-		// console.log('ыуезкщзы444',this.props.events, this.props, this.children)
+
   };
 
   get element() {
     return this._element;
   }
 
-  _render() {
+  private _render() {
     const fragment = this.render();
-		// console.log(fragment)
 
 		const newElement = fragment.firstElementChild as HTMLElement;
 
@@ -149,16 +136,7 @@ class Block {
       this._element.replaceWith(newElement);
     }
 
-
-		// console.log(this._element)
-		
 		this._element = newElement;
-		
-		// console.log(this._element)
-    // this._removeEvents();
-
-    // this._element!.innerHTML = '';
-    // this._element!.append(block);
 
     this._addEvents();
     this._addClass();
@@ -218,7 +196,7 @@ class Block {
     return this.element;
   }
 
-  _makePropsProxy(props: any) {
+  private _makePropsProxy(props: any) {
     const self = this;
 
     return new Proxy(props, {
@@ -239,7 +217,7 @@ class Block {
     });
   }
 
-  _createDocumentElement(tagName: string) {
+  private _createDocumentElement(tagName: string) {
     return document.createElement(tagName);
   }
 
@@ -251,7 +229,7 @@ class Block {
     this.getContent()!.style.display = 'none';
   }
 
-  _addEvents() {
+  private _addEvents() {
     const { events = {} } = this.props as { events: Record<string, () => void> };
 
     Object.keys(events).forEach((eventName) => {
@@ -259,7 +237,7 @@ class Block {
     });
   }
 
-  _addClass() {
+  private _addClass() {
     const { classes = '' } = this.props as { classes: string };
     if (!classes) {
       return;
@@ -270,7 +248,7 @@ class Block {
     });
   }
 
-  _removeEvents() {
+  private _removeEvents() {
     const { events = {} } = this.props as { events: Record<string, () => void> };
 
     Object.keys(events).forEach((eventName) => {

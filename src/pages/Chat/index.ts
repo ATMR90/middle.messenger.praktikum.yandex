@@ -114,7 +114,7 @@ export class Chat extends Block {
 			events: {
 				click: () => { },
 			},
-			classInput: 'footer-right-panel__input',
+			inputClasses: 'footer-right-panel__input',
 			errorInput: 'не должно быть пустым',
 			RegInput: '[^\s]',
 		});
