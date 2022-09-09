@@ -4,17 +4,7 @@ import * as styles from './chatPanel.scss';
 
 interface ChatPanelProps {
   label: string,
-  idInput?: string,
-  type?: string,
-  events?: {
-    click: () => void
-  },
   classes?: string
-  name?: string | Block
-  value?: string
-  fieldName?: Block
-  fieldValue?: Block
-
   img?: string,
   title?: string,
   text?: string,

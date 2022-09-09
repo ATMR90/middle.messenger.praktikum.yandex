@@ -121,26 +121,26 @@ export class SignUp extends Block {
         label: 'Зарегистрироваться',
         events: {
           click: () => {
-						event.preventDefault();
-						const valid = this.children.fields.reduce((acc, val) => {
-							const result = val.onValidate();
-							return acc && result;
-						}, true);
+            event.preventDefault();
+            const valid = this.children.fields.reduce((acc, val) => {
+              const result = val.onValidate();
+              return acc && result;
+            }, true);
             const logEmail = document.querySelector(`#${this.children.fields[0].props.idInput}`)!.value;
             const logLog = document.querySelector(`#${this.children.fields[1].props.idInput}`)!.value;
             const logFirstName = document.querySelector(`#${this.children.fields[2].props.idInput}`)!.value;
             const logSecondName = document.querySelector(`#${this.children.fields[3].props.idInput}`)!.value;
             const logPhone = document.querySelector(`#${this.children.fields[4].props.idInput}`)!.value;
             const logPass = document.querySelector(`#${this.children.fields[5].props.idInput}`)!.value;
-						if (valid) {
-							console.log({
-								Почта: logEmail, Логин: logLog, Имя: logFirstName, Фамилия: logSecondName, Телефон: logPhone, Пароль: logPass,
-							});
-						}
+            if (valid) {
+              console.log({
+                Почта: logEmail, Логин: logLog, Имя: logFirstName, Фамилия: logSecondName, Телефон: logPhone, Пароль: logPass,
+              });
+            }
           },
         },
         classes: 'ya-btn ya-btn_main ya-form__btn',
-				type: 'submit',
+        type: 'submit',
       }),
       new Button({
         label: 'Войти',

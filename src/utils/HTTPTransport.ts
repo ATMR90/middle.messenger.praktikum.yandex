@@ -26,10 +26,10 @@ function queryStringify(data: TRequestData) {
 export class HTTPTransport {
   public get = (url: string, options: TRequestOptions = {}): Promise<XMLHttpRequest> => {
     if (!!options.data) {
-      url = `${url}${queryStringify(options.data as TRequestData)}`
+      url = `${url}${queryStringify(options.data as TRequestData)}`;
     }
     return this.request(url, { ...options, method: Methods.GET });
-  }
+  };
 
   public post = (url: string, options = {}): Promise<XMLHttpRequest> => this.request(url, { ...options, method: Methods.POST });
 

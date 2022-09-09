@@ -15,12 +15,15 @@ interface ButtonWithImageProps {
 
 export default class ButtonWithImage extends Block {
   constructor(props: ButtonWithImageProps) {
-    super(props);
+    const defaultValue = {
+      url: '',
+      src: '',
+      alt: '',
+    };
+    super({ ...defaultValue, ...props });
   }
 
   render() {
-    return this.compile(template, {
-      label: this.props.label, styles, url: this.props.url || '', src: this.props.src || '', alt: this.props.alt || '',
-    });
+    return this.compile(template, { ...this.props, styles });
   }
 }

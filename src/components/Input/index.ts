@@ -42,7 +42,7 @@ export class Input extends Block {
       placeholderInput: this.props.placeholderInput,
       funBlur: (env: FocusEvent) => {
         const val = (env.target as HTMLInputElement).value;
-        const valId = (env.target as HTMLInputElement).id
+        const valId = (env.target as HTMLInputElement).id;
         this.onValidate(val, valId);
       },
     });

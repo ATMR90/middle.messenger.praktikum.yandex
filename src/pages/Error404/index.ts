@@ -12,6 +12,6 @@ export class Error404 extends Block {
   }
 
   render() {
-    return this.compile(template, {...this.props, styles });
+    return this.compile(template, { ...this.props, styles });
   }
 }

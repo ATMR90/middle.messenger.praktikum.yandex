@@ -86,7 +86,7 @@ export class Profile extends Block {
         fieldName: new Button({
           label: 'Изменить данные',
           classes: 'ya-btn user-info__btn',
-					url: '/profile-change-user',
+          url: '/profile-change-user',
         }),
         value: '',
         classes: 'user-info__field',
@@ -96,7 +96,7 @@ export class Profile extends Block {
         fieldName: new Button({
           label: 'Изменить пароль',
           classes: 'ya-btn user-info__btn',
-					url: '/profile-change-password',
+          url: '/profile-change-password',
         }),
         value: '',
         classes: 'user-info__field',

@@ -41,53 +41,53 @@ export class ProfileChangePassword extends Block {
     this.children.avatar = avatar;
 
     const fields = [
-			new InfoField({
-				label: 'Поле',
-				name: 'Старый пароль',
-				classes: 'user-info__field',
-				fieldValue: new Input({
-					label: '',
-					idInput: 'oldPassword',
-					type: 'password',
-					valueInput: 'password',
-					inputClasses: 'info-field__value info-field__value_right',
-				}),
-			}),
-			new InfoField({
-				label: 'Поле',
-				name: 'Новый пароль',
-				classes: 'user-info__field',
-				fieldValue: new Input({
-					label: '',
-					idInput: 'newPassword',
-					type: 'password',
-					valueInput: 'newPassword',
-					inputClasses: 'info-field__value info-field__value_right',
-				}),
-			}),
-			new InfoField({
-				label: 'Поле',
-				name: 'Повторите новый пароль',
-				classes: 'user-info__field',
-				fieldValue: new Input({
-					label: '',
-					idInput: 'passwordYet',
-					type: 'password',
-					valueInput: 'newPassword',
-					inputClasses: 'info-field__value info-field__value_right',
-				}),
-			}),
+      new InfoField({
+        label: 'Поле',
+        name: 'Старый пароль',
+        classes: 'user-info__field',
+        fieldValue: new Input({
+          label: '',
+          idInput: 'oldPassword',
+          type: 'password',
+          valueInput: 'password',
+          inputClasses: 'info-field__value info-field__value_right',
+        }),
+      }),
+      new InfoField({
+        label: 'Поле',
+        name: 'Новый пароль',
+        classes: 'user-info__field',
+        fieldValue: new Input({
+          label: '',
+          idInput: 'newPassword',
+          type: 'password',
+          valueInput: 'newPassword',
+          inputClasses: 'info-field__value info-field__value_right',
+        }),
+      }),
+      new InfoField({
+        label: 'Поле',
+        name: 'Повторите новый пароль',
+        classes: 'user-info__field',
+        fieldValue: new Input({
+          label: '',
+          idInput: 'passwordYet',
+          type: 'password',
+          valueInput: 'newPassword',
+          inputClasses: 'info-field__value info-field__value_right',
+        }),
+      }),
     ];
     this.children.fields = fields;
 
     this.children.footer = new Button({
-			label: 'Сохранить',
-			events: {
-				click: () => console.log('clicked!'),
-			},
-			classes: 'ya-btn ya-btn_main user-info__field_btn',
-			url: '/profile',
-		});
+      label: 'Сохранить',
+      events: {
+        click: () => console.log('clicked!'),
+      },
+      classes: 'ya-btn ya-btn_main user-info__field_btn',
+      url: '/profile',
+    });
   }
 
   render() {

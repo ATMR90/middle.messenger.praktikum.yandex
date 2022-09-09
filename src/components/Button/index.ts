@@ -14,13 +14,13 @@ interface ButtonProps {
 
 export class Button extends Block {
   constructor(props: ButtonProps) {
-		if (props.url === undefined) {
-			props.url = ''
-		}
+    if (props.url === undefined) {
+      props.url = '';
+    }
     super(props);
   }
 
   render() {
-    return this.compile(template, { ...this.props, styles});
+    return this.compile(template, { ...this.props, styles });
   }
 }

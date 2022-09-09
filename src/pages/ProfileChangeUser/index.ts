@@ -41,89 +41,89 @@ export class ProfileChangeUser extends Block {
     this.children.avatar = avatar;
 
     const fields = [
-			new InfoField({
-				label: 'Поле',
-				name: 'Почта',
-				classes: 'user-info__field',
-				fieldValue: new Input({
-					label: '',
-					idInput: 'email',
-					type: 'text',
-					valueInput: 'pochta@yandex.ru',
-					inputClasses: 'info-field__value info-field__value_right',
-				}),
-			}),
-			new InfoField({
-				label: 'Поле',
-				name: 'Логин',
-				classes: 'user-info__field',
-				fieldValue: new Input({
-					label: '',
-					idInput: 'login',
-					type: 'text',
-					valueInput: 'ivanivanov',
-					inputClasses: 'info-field__value info-field__value_right',
-				}),
-			}),
-			new InfoField({
-				label: 'Поле',
-				name: 'Имя',
-				classes: 'user-info__field',
-				fieldValue: new Input({
-					label: '',
-					idInput: 'first_name',
-					type: 'text',
-					valueInput: 'Иван',
-					inputClasses: 'info-field__value info-field__value_right',
-				}),
-			}),
-			new InfoField({
-				label: 'Поле',
-				name: 'Фамилия',
-				classes: 'user-info__field',
-				fieldValue: new Input({
-					label: '',
-					idInput: 'second_name',
-					type: 'text',
-					valueInput: 'Иванов',
-					inputClasses: 'info-field__value info-field__value_right',
-				}),
-			}),
-			new InfoField({
-				label: 'Поле',
-				name: 'Имя в чате',
-				classes: 'user-info__field',
-				fieldValue: new Input({
-					label: '',
-					idInput: 'display_name',
-					type: 'text',
-					valueInput: 'Иван',
-					inputClasses: 'info-field__value info-field__value_right',
-				}),
-			}),
-			new InfoField({
-				label: 'Поле',
-				name: 'Телефон',
-				classes: 'user-info__field',
-				fieldValue: new Input({
-					label: '',
-					idInput: 'phone',
-					type: 'text',
-					valueInput: '+7 (909) 967 30 30',
-					inputClasses: 'info-field__value info-field__value_right',
-				}),
-			}),
+      new InfoField({
+        label: 'Поле',
+        name: 'Почта',
+        classes: 'user-info__field',
+        fieldValue: new Input({
+          label: '',
+          idInput: 'email',
+          type: 'text',
+          valueInput: 'pochta@yandex.ru',
+          inputClasses: 'info-field__value info-field__value_right',
+        }),
+      }),
+      new InfoField({
+        label: 'Поле',
+        name: 'Логин',
+        classes: 'user-info__field',
+        fieldValue: new Input({
+          label: '',
+          idInput: 'login',
+          type: 'text',
+          valueInput: 'ivanivanov',
+          inputClasses: 'info-field__value info-field__value_right',
+        }),
+      }),
+      new InfoField({
+        label: 'Поле',
+        name: 'Имя',
+        classes: 'user-info__field',
+        fieldValue: new Input({
+          label: '',
+          idInput: 'first_name',
+          type: 'text',
+          valueInput: 'Иван',
+          inputClasses: 'info-field__value info-field__value_right',
+        }),
+      }),
+      new InfoField({
+        label: 'Поле',
+        name: 'Фамилия',
+        classes: 'user-info__field',
+        fieldValue: new Input({
+          label: '',
+          idInput: 'second_name',
+          type: 'text',
+          valueInput: 'Иванов',
+          inputClasses: 'info-field__value info-field__value_right',
+        }),
+      }),
+      new InfoField({
+        label: 'Поле',
+        name: 'Имя в чате',
+        classes: 'user-info__field',
+        fieldValue: new Input({
+          label: '',
+          idInput: 'display_name',
+          type: 'text',
+          valueInput: 'Иван',
+          inputClasses: 'info-field__value info-field__value_right',
+        }),
+      }),
+      new InfoField({
+        label: 'Поле',
+        name: 'Телефон',
+        classes: 'user-info__field',
+        fieldValue: new Input({
+          label: '',
+          idInput: 'phone',
+          type: 'text',
+          valueInput: '+7 (909) 967 30 30',
+          inputClasses: 'info-field__value info-field__value_right',
+        }),
+      }),
     ];
     this.children.fields = fields;
 
     this.children.footer = new Button({
-			label: 'Сохранить',
-			events: {
-				click: () => console.log('clicked!'),
-			},
-			classes: 'ya-btn ya-btn_main user-info__field_btn',
-			url: '/profile',
-		});
+      label: 'Сохранить',
+      events: {
+        click: () => console.log('clicked!'),
+      },
+      classes: 'ya-btn ya-btn_main user-info__field_btn',
+      url: '/profile',
+    });
   }
 
   render() {

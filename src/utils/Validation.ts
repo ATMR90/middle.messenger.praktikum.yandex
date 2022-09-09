@@ -7,7 +7,7 @@ enum ErrorInput {
   PASSWORD = 'Пароль должен содержать от 8 до 40 символов, должна быть одна заглавная буква и цифра',
   DISPLAY_NAME = 'латиница или кириллица, первая буква должна быть заглавной, без пробелов и без цифр, нет спецсимволов (допустим только дефис)',
   MESSAGE = 'не должно быть пустым',
-  DEFAULT = 'не должно быть пустым'
+  DEFAULT = 'не должно быть пустым',
 }
 
 enum RegInput {
@@ -25,27 +25,27 @@ enum RegInput {
 export function ValidationSettings(key: string): Array<string> {
   switch (key) {
     case 'email':
-      return [ErrorInput.EMAIL, RegInput.EMAIL]
+      return [ErrorInput.EMAIL, RegInput.EMAIL];
     case 'login':
-      return [ErrorInput.LOGIN, RegInput.LOGIN]
+      return [ErrorInput.LOGIN, RegInput.LOGIN];
     case 'first_name':
-      return [ErrorInput.FIRTS_NAME, RegInput.FIRTS_NAME]
+      return [ErrorInput.FIRTS_NAME, RegInput.FIRTS_NAME];
     case 'second_name':
-      return [ErrorInput.SECOND_NAME, RegInput.SECOND_NAME]
+      return [ErrorInput.SECOND_NAME, RegInput.SECOND_NAME];
     case 'phone':
-      return [ErrorInput.PHONE, RegInput.PHONE]
+      return [ErrorInput.PHONE, RegInput.PHONE];
     case 'password':
-      return [ErrorInput.PASSWORD, RegInput.PASSWORD]
+      return [ErrorInput.PASSWORD, RegInput.PASSWORD];
     case 'passwordYet':
-      return [ErrorInput.PASSWORD, RegInput.PASSWORD]
+      return [ErrorInput.PASSWORD, RegInput.PASSWORD];
     case 'oldPassword':
-      return [ErrorInput.PASSWORD, RegInput.PASSWORD]
+      return [ErrorInput.PASSWORD, RegInput.PASSWORD];
     case 'newPassword':
-      return [ErrorInput.PASSWORD, RegInput.PASSWORD]
+      return [ErrorInput.PASSWORD, RegInput.PASSWORD];
     case 'display_name':
-      return [ErrorInput.DISPLAY_NAME, RegInput.DISPLAY_NAME]
+      return [ErrorInput.DISPLAY_NAME, RegInput.DISPLAY_NAME];
     case 'message':
-      return [ErrorInput.MESSAGE, RegInput.MESSAGE]
+      return [ErrorInput.MESSAGE, RegInput.MESSAGE];
     }
-  return [ErrorInput.DEFAULT, RegInput.DEFAULT]
+  return [ErrorInput.DEFAULT, RegInput.DEFAULT];
 }
