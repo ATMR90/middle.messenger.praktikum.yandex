@@ -129,14 +129,14 @@ class Block {
   private _render() {
     const fragment = this.render();
 
-		const newElement = fragment.firstElementChild as HTMLElement;
+    const newElement = fragment.firstElementChild as HTMLElement;
 
-		if (this._element) {
+    if (this._element) {
       this._removeEvents();
       this._element.replaceWith(newElement);
     }
 
-		this._element = newElement;
+    this._element = newElement;
 
     this._addEvents();
     this._addClass();
@@ -197,21 +197,19 @@ class Block {
   }
 
   private _makePropsProxy(props: any) {
-    const self = this;
-
     return new Proxy(props, {
-      get(target, prop) {
+      get: (target, prop) => {
         const value = target[prop];
         return typeof value === 'function' ? value.bind(target) : value;
       },
-      set(target, prop, value) {
+      set: (target, prop, value) => {
         const oldTarget = { ...target };
         target[prop] = value;
 
-        self.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
+        this.eventBus().emit(Block.EVENTS.FLOW_CDU, oldTarget, target);
         return true;
       },
-      deleteProperty() {
+      deleteProperty: () => {
         throw new Error('Нет доступа');
       },
     });

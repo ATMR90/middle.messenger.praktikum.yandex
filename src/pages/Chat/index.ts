@@ -23,7 +23,7 @@ export class Chat extends Block {
     const chatList = [
       new ChatPanel({
         label: '',
-        img: '#',
+        img: './../../assets/img/default_square_image.svg',
         title: 'Андрей',
         text: 'Изображение',
         time: '10:49',
@@ -32,7 +32,7 @@ export class Chat extends Block {
       }),
       new ChatPanel({
         label: '',
-        img: '#',
+        img: './../../assets/img/default_square_image.svg',
         title: 'Киноклуб',
         text: 'стикер',
         time: '12:00',
@@ -41,7 +41,7 @@ export class Chat extends Block {
       }),
       new ChatPanel({
         label: '',
-        img: '#',
+        img: './../../assets/img/default_square_image.svg',
         title: 'Илья',
         text: 'Друзья, у меня для вас особенный выпуск новостей!...',
         time: '15:12',
@@ -50,7 +50,7 @@ export class Chat extends Block {
       }),
       new ChatPanel({
         label: '',
-        img: '#',
+        img: './../../assets/img/default_square_image.svg',
         title: 'Вадим',
         text: 'Круто!',
         time: 'Пт',
@@ -59,7 +59,7 @@ export class Chat extends Block {
       }),
       new ChatPanel({
         label: '',
-        img: '#',
+        img: './../../assets/img/default_square_image.svg',
         title: 'тет-а-теты',
         text: 'И Human Interface Guidelines и Material Design рекомендуют...',
         time: 'Ср',
@@ -68,7 +68,7 @@ export class Chat extends Block {
       }),
       new ChatPanel({
         label: '',
-        img: '#',
+        img: './../../assets/img/default_square_image.svg',
         title: '1, 2, 3',
         text: 'Миллионы россиян ежедневно проводят десятки часов свое...',
         time: 'Пн',
@@ -77,7 +77,7 @@ export class Chat extends Block {
       }),
       new ChatPanel({
         label: '',
-        img: '#',
+        img: './../../assets/img/default_square_image.svg',
         title: 'Design Destroyer',
         text: 'В 2008 году художник Jon Rafman  начал собирать...',
         time: 'Пн',
@@ -86,7 +86,7 @@ export class Chat extends Block {
       }),
       new ChatPanel({
         label: '',
-        img: '#',
+        img: './../../assets/img/default_square_image.svg',
         title: 'Day.',
         text: 'Так увлёкся работой по курсу, что совсем забыл его анонсир...',
         time: '1 Мая 2020',
@@ -95,7 +95,7 @@ export class Chat extends Block {
       }),
       new ChatPanel({
         label: '',
-        img: '#',
+        img: './../../assets/img/default_square_image.svg',
         title: 'Стас Рогозин',
         text: 'Можно или сегодня или завтра вечером.',
         time: '12 Апр 2020',
@@ -105,20 +105,18 @@ export class Chat extends Block {
     ];
     this.children.chatList = chatList;
     
-		const message = new Input({
-			label: '',
-			idInput: 'message',
-			type: 'text',
-			valueInput: '',
-			placeholderInput: 'Сообщение',
-			events: {
-				click: () => { },
-			},
-			inputClasses: 'footer-right-panel__input',
-			errorInput: 'не должно быть пустым',
-			RegInput: '[^\s]',
-		});
-		this.children.message = message;
+    const message = new Input({
+      label: '',
+      idInput: 'message',
+      type: 'text',
+      valueInput: '',
+      placeholderInput: 'Сообщение',
+      events: {
+        click: () => { },
+      },
+      inputClasses: 'footer-right-panel__input',
+    });
+    this.children.message = message;
 
   }
 

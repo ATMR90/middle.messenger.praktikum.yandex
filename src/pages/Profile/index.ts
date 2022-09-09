@@ -100,8 +100,6 @@ export class Profile extends Block {
                       type: 'text',
                       valueInput: 'pochta@yandex.ru',
                       inputClasses: 'info-field__value info-field__value_right',
-                      RegInput: '^[a-z0-9._%$#+-]+@[a-z0-9]*[a-z]+\.[a-z]+$',
-                      errorInput: 'латиница, может включать цифры и спецсимволы вроде дефиса, обязательно должна быть @ и точка после нее, но перед точкой обязательно должны быть буквы',
                     }),
                   }),
                   new InfoField({
@@ -114,8 +112,6 @@ export class Profile extends Block {
                       type: 'text',
                       valueInput: 'ivanivanov',
                       inputClasses: 'info-field__value info-field__value_right',
-                      RegInput: '^(?=.*[a-z])[a-zA-Z0-9_-]{3,20}$',
-											errorInput: 'Логин должен содержать от 3 до 20 символов, латиница, может содержать цифры, но не состоять из них, без пробелов, без спецсимволов (допустимы дефис и нижнее подчеркивание',
                     }),
                   }),
                   new InfoField({
@@ -128,8 +124,6 @@ export class Profile extends Block {
                       type: 'text',
                       valueInput: 'Иван',
                       inputClasses: 'info-field__value info-field__value_right',
-											errorInput: 'латиница или кириллица, первая буква должна быть заглавной, без пробелов и без цифр, нет спецсимволов (допустим только дефис)',
-											RegInput: '^[А-ЯA-Z][а-яА-ЯёЁa-zA-Z-]+$',
                     }),
                   }),
                   new InfoField({
@@ -142,8 +136,6 @@ export class Profile extends Block {
                       type: 'text',
                       valueInput: 'Иванов',
                       inputClasses: 'info-field__value info-field__value_right',
-											errorInput: 'латиница или кириллица, первая буква должна быть заглавной, без пробелов и без цифр, нет спецсимволов (допустим только дефис)',
-											RegInput: '^[А-ЯA-Z][а-яА-ЯёЁa-zA-Z-]+$',
                     }),
                   }),
                   new InfoField({
@@ -156,8 +148,6 @@ export class Profile extends Block {
                       type: 'text',
                       valueInput: 'Иван',
                       inputClasses: 'info-field__value info-field__value_right',
-											errorInput: 'латиница или кириллица, первая буква должна быть заглавной, без пробелов и без цифр, нет спецсимволов (допустим только дефис)',
-											RegInput: '^[А-ЯA-Z][а-яА-ЯёЁa-zA-Z-]+$',
                     }),
                   }),
                   new InfoField({
@@ -170,24 +160,22 @@ export class Profile extends Block {
                       type: 'text',
                       valueInput: '+7 (909) 967 30 30',
                       inputClasses: 'info-field__value info-field__value_right',
-											errorInput: 'от 10 до 15 символов, состоит из цифр, может начинаться с плюса',
-											RegInput: '^[0-9+][0-9]{9,14}$',
                     }),
                   }),
 
                 ];
-								this.children.fields = fields;
+                this.children.fields = fields;
                 const footer = new Button({
-									label: 'Сохранить',
+                  label: 'Сохранить',
                   events: {
-										click: () => console.log('clicked!'),
+                    click: () => console.log('clicked!'),
                   },
                   classes: 'ya-btn ya-btn_main user-info__field_btn',
                   url: '/profile',
                 });
-								this.children.footer = footer;
-								this.setProps({
-									title: '' });
+                this.children.footer = footer;
+                this.setProps({
+                  title: '' });
             },
           },
           classes: 'ya-btn user-info__btn',
@@ -215,8 +203,6 @@ export class Profile extends Block {
                       type: 'password',
                       valueInput: 'password',
                       inputClasses: 'info-field__value info-field__value_right',
-											errorInput: 'Пароль должен содержать от 8 до 40 символов, должна быть одна заглавная буква и цифра',
-											RegInput: '^(?=.*[A-Z])(?=.*[0-9]).{8,40}$',
                     }),
                   }),
                   new InfoField({
@@ -229,8 +215,6 @@ export class Profile extends Block {
                       type: 'password',
                       valueInput: 'newPassword',
                       inputClasses: 'info-field__value info-field__value_right',
-											errorInput: 'Пароль должен содержать от 8 до 40 символов, должна быть одна заглавная буква и цифра',
-											RegInput: '^(?=.*[A-Z])(?=.*[0-9]).{8,40}$',
                     }),
                   }),
                   new InfoField({
@@ -243,13 +227,11 @@ export class Profile extends Block {
                       type: 'password',
                       valueInput: 'newPassword',
                       inputClasses: 'info-field__value info-field__value_right',
-											errorInput: 'Пароль должен содержать от 8 до 40 символов, должна быть одна заглавная буква и цифра',
-											RegInput: '^(?=.*[A-Z])(?=.*[0-9]).{8,40}$',
                     }),
                   }),
 
                 ];
-								this.children.fields = fields;
+                this.children.fields = fields;
                 const footer = new Button({
                   label: 'Сохранить',
                   events: {
@@ -259,9 +241,9 @@ export class Profile extends Block {
                   url: '/profile',
                 });
 
-								this.children.footer = footer;
-								this.setProps({
-									title: '' });
+                this.children.footer = footer;
+                this.setProps({
+                  title: '' });
             },
           },
           classes: 'ya-btn user-info__btn',

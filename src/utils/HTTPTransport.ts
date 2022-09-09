@@ -24,7 +24,12 @@ function queryStringify(data: TRequestData) {
 }
 
 export class HTTPTransport {
-  public get = (url: string, options = {}): Promise<XMLHttpRequest> => this.request(url, { ...options, method: Methods.GET });
+  public get = (url: string, options: TRequestOptions = {}): Promise<XMLHttpRequest> => {
+    if (!!options.data) {
+      url = `${url}${queryStringify(options.data as TRequestData)}`
+    }
+    return this.request(url, { ...options, method: Methods.GET });
+  }
 
   public post = (url: string, options = {}): Promise<XMLHttpRequest> => this.request(url, { ...options, method: Methods.POST });
 
@@ -47,14 +52,8 @@ export class HTTPTransport {
       }
 
       const xhr = new XMLHttpRequest();
-      const isGet = method === Methods.GET;
 
-      xhr.open(
-        method,
-        isGet && !!data
-          ? `${url}${queryStringify(data as TRequestData)}`
-          : url,
-      );
+      xhr.open(method, url);
 
       Object.keys(headers).forEach((key) => {
         xhr.setRequestHeader(key, headers[key]);
@@ -70,7 +69,7 @@ export class HTTPTransport {
       xhr.timeout = timeout;
       xhr.ontimeout = reject;
 
-      if (isGet || !data) {
+      if (!data) {
         xhr.send();
       } else {
         xhr.send(data as any);

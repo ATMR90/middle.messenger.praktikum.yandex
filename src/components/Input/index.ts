@@ -1,4 +1,5 @@
 import Block from '../../utils/Block';
+import { ValidationSettings } from '../../utils/Validation';
 import { ErrorMsg } from '../ErrorMsg';
 import { InputField } from '../InputField';
 import template from './input.pug';
@@ -20,7 +21,7 @@ interface InputProps {
   errorInput?: string,
   RegExp?: any,
   RegInput?: any,
-	placeholderInput?: string
+  placeholderInput?: string
 }
 
 export class Input extends Block {
@@ -37,36 +38,38 @@ export class Input extends Block {
       name: this.props.idInput,
       type: this.props.type,
       classes: this.props.inputClasses,
-			valueInput: this.props.valueInput,
-			placeholderInput: this.props.placeholderInput,
+      valueInput: this.props.valueInput,
+      placeholderInput: this.props.placeholderInput,
       funBlur: (env: FocusEvent) => {
         const val = (env.target as HTMLInputElement).value;
-        this.onValidate(val);
+        const valId = (env.target as HTMLInputElement).id
+        this.onValidate(val, valId);
       },
     });
   }
 
-  protected onValidate(val: string) {
-		if (val === undefined) {
-			val = this.children.inputField.props.valueInput;
-		}
-    const regIn = new RegExp(this.props.RegInput, 'i');
-		const isValid = regIn.test(val);
-		const inputClasses = this.children.inputField.props.classes;
-		const arrClasses = inputClasses.split(' ');
+  protected onValidate(val: string, valId: string) {
+    if (val === undefined) {
+      val = this.children.inputField.props.valueInput;
+    }
+    const validationSettings = ValidationSettings(valId);
+    const regIn = new RegExp(validationSettings[1], 'i');
+    const isValid = regIn.test(val);
+    const inputClasses = this.children.inputField.props.classes;
+    const arrClasses = inputClasses.split(' ');
     if (!isValid) {
-      this.children.errorMsg.setProps({ errorMsg: this.props.errorInput });
+      this.children.errorMsg.setProps({ errorMsg: validationSettings[0] });
       if (!(arrClasses.indexOf('ya-field__input_error') > 0)) {
-				this.children.inputField.setProps({ classes : inputClasses + ' ya-field__input_error', valueInput: val });
+        this.children.inputField.setProps({ classes : inputClasses + ' ya-field__input_error', valueInput: val });
       } else {
-				this.children.inputField.setProps({ classes : inputClasses, valueInput: val });
-			}
+        this.children.inputField.setProps({ classes : inputClasses, valueInput: val });
+      }
     } else {
       this.children.errorMsg.setProps({ errorMsg: '' });
       const strClasses = arrClasses.filter(val => val != 'ya-field__input_error').join(' ');
       this.children.inputField.setProps({ classes : strClasses, valueInput: val });
     }
-		return isValid;
+    return isValid;
   }
 
   render() {
