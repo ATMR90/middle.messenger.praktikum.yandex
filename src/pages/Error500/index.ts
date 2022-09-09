@@ -4,12 +4,6 @@ import * as styles from './error500.scss';
 
 interface Error500Props {
   title: string,
-  classes?: string,
-  url?: string,
-  children?: {
-    fields: Block[],
-    footer: Block[]
-  }
 }
 
 export class Error500 extends Block {
@@ -18,6 +12,6 @@ export class Error500 extends Block {
   }
 
   render() {
-    return this.compile(template, { title: this.props.title, styles });
+    return this.compile(template, {...this.props, styles });
   }
 }

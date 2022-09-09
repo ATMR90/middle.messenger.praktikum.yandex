@@ -2,6 +2,8 @@ import { pageChat } from './pages/Chat/chat';
 import { pageError404 } from './pages/Error404/error404';
 import { pageError500 } from './pages/Error500/error500';
 import { pageProfile } from './pages/Profile/profile';
+import { pageProfileChangePassword } from './pages/ProfileChangePassword/profileChangePassword';
+import { pageProfileChangeUser } from './pages/ProfileChangeUser/profileChangeUser';
 import { pageSignIn } from './pages/SignIn/signIn';
 import { pageSignUp } from './pages/SignUp/signUp';
 
@@ -13,6 +15,12 @@ function funPageSignUp() {
 }
 function funPageProfile() {
   pageProfile();
+}
+function funPageProfileChangeUser() {
+  pageProfileChangeUser();
+}
+function funPageProfileChangePassword() {
+  pageProfileChangePassword();
 }
 function funPageChat() {
   pageChat();
@@ -37,6 +45,12 @@ window.addEventListener('DOMContentLoaded', () => {
       break;
     case '/profile':
       funPageProfile();
+      break;
+    case '/profile-change-user':
+      funPageProfileChangeUser();
+      break;
+    case '/profile-change-password':
+      funPageProfileChangePassword();
       break;
     case '/chat':
       funPageChat();
