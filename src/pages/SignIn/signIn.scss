@@ -1,0 +1,61 @@
+@import "../../scss/style";
+
+.ya-form {
+	height: 100%;
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	&__container {
+		width: 100%;
+		max-width: 340px;
+		min-height: 450px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: rem(30);
+
+		&_shadow {
+			box-shadow: 0 0 6px rgb(0 0 0 / 14%);
+			border-radius: 12px;
+		}
+	}
+
+	&__title {
+		padding-top: rem(20);
+		padding-bottom: rem(40);
+		font-weight: 500;
+		font-size: 20px;
+		line-height: 20px;
+		text-align: center;
+	}
+
+	&__fields {
+		flex: 1 1 100%;
+		width: 100%;
+	}
+
+	&__field {
+		&:not(:last-child) {
+			margin-bottom: rem(16);
+		}
+
+		&:last-child {
+			margin-bottom: rem(47);
+		}
+	}
+
+	&__footer {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+	}
+
+	&__btn {
+		&:not(:last-child) {
+			margin-bottom: rem(14);
+		}
+	}
+}

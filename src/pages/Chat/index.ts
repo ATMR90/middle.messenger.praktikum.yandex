@@ -1,0 +1,126 @@
+import { ChatPanel } from '../../components/ChatPanel';
+import { Input } from '../../components/Input';
+import Block from '../../utils/Block';
+import template from './chat.pug';
+import * as styles from './chat.scss';
+
+interface ChatProps {
+  title: string,
+  classes?: string,
+  url?: string,
+  children?: {
+    fields: Block[],
+    footer: Block[]
+  }
+}
+
+export class Chat extends Block {
+  constructor(props: ChatProps) {
+    super(props);
+  }
+
+  init() {
+    const chatList = [
+      new ChatPanel({
+        label: '',
+        img: './../../assets/img/default_square_image.svg',
+        title: 'Андрей',
+        text: 'Изображение',
+        time: '10:49',
+        newMessage: '2',
+        classes: 'left-panel__chat',
+      }),
+      new ChatPanel({
+        label: '',
+        img: './../../assets/img/default_square_image.svg',
+        title: 'Киноклуб',
+        text: 'стикер',
+        time: '12:00',
+        newMessage: '',
+        classes: 'left-panel__chat',
+      }),
+      new ChatPanel({
+        label: '',
+        img: './../../assets/img/default_square_image.svg',
+        title: 'Илья',
+        text: 'Друзья, у меня для вас особенный выпуск новостей!...',
+        time: '15:12',
+        newMessage: '',
+        classes: 'left-panel__chat',
+      }),
+      new ChatPanel({
+        label: '',
+        img: './../../assets/img/default_square_image.svg',
+        title: 'Вадим',
+        text: 'Круто!',
+        time: 'Пт',
+        newMessage: '',
+        classes: 'left-panel__chat left-panel__chat_active',
+      }),
+      new ChatPanel({
+        label: '',
+        img: './../../assets/img/default_square_image.svg',
+        title: 'тет-а-теты',
+        text: 'И Human Interface Guidelines и Material Design рекомендуют...',
+        time: 'Ср',
+        newMessage: '',
+        classes: 'left-panel__chat',
+      }),
+      new ChatPanel({
+        label: '',
+        img: './../../assets/img/default_square_image.svg',
+        title: '1, 2, 3',
+        text: 'Миллионы россиян ежедневно проводят десятки часов свое...',
+        time: 'Пн',
+        newMessage: '',
+        classes: 'left-panel__chat',
+      }),
+      new ChatPanel({
+        label: '',
+        img: './../../assets/img/default_square_image.svg',
+        title: 'Design Destroyer',
+        text: 'В 2008 году художник Jon Rafman  начал собирать...',
+        time: 'Пн',
+        newMessage: '',
+        classes: 'left-panel__chat',
+      }),
+      new ChatPanel({
+        label: '',
+        img: './../../assets/img/default_square_image.svg',
+        title: 'Day.',
+        text: 'Так увлёкся работой по курсу, что совсем забыл его анонсир...',
+        time: '1 Мая 2020',
+        newMessage: '',
+        classes: 'left-panel__chat',
+      }),
+      new ChatPanel({
+        label: '',
+        img: './../../assets/img/default_square_image.svg',
+        title: 'Стас Рогозин',
+        text: 'Можно или сегодня или завтра вечером.',
+        time: '12 Апр 2020',
+        newMessage: '',
+        classes: 'left-panel__chat',
+      }),
+    ];
+    this.children.chatList = chatList;
+    
+    const message = new Input({
+      label: '',
+      idInput: 'message',
+      type: 'text',
+      valueInput: '',
+      placeholderInput: 'Сообщение',
+      events: {
+        click: () => { },
+      },
+      inputClasses: 'footer-right-panel__input',
+    });
+    this.children.message = message;
+
+  }
+
+  render() {
+    return this.compile(template, { title: this.props.title, styles });
+  }
+}

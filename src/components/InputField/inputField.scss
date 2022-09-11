@@ -1,0 +1,58 @@
+@import "../../scss/style";
+
+.ya-field {
+	display: flex;
+	flex-direction: column;
+
+	&__label {
+		font-weight: 500;
+		font-size: 9px;
+		line-height: 9px;
+		color: #999;
+		user-select: none;
+		order: 1;
+	}
+
+	&__input {
+		font-weight: 500;
+		font-size: 13px;
+		line-height: 13px;
+		color: $mainColor;
+		padding: 7px 1px;
+		border-bottom: 1px solid $themeColor;
+		order: 2;
+
+		&_error {
+			color: red;
+		}
+	}
+
+	input[type="file"] {
+		display: none;
+	}
+
+	input:focus + label {
+		color: $themeColor;
+	}
+
+	&__error {
+		font-weight: 400;
+		font-size: 8px;
+		line-height: 8px;
+		color: $red;
+		order: 3;
+		padding-top: 7px;
+	}
+
+	&_file {
+		.ya-field__label {
+			font-weight: 500;
+			font-size: 12px;
+			line-height: 16px;
+			color: $themeColor;
+			text-align: center;
+			text-decoration-line: underline;
+			cursor: pointer;
+		}
+	}
+}

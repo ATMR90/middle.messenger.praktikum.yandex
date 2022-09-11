@@ -1,0 +1,160 @@
+@import "../../scss/style";
+
+.ya-profile {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+
+	&__header {
+		margin-bottom: rem(60);
+	}
+
+	&__back {
+		height: 100%;
+		width: rem(64);
+		background: #fbfbfb;
+	}
+
+	&__info {
+		flex: 1 1 auto;
+	}
+}
+
+.header-profile {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+
+	&__avatar {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: rem(130);
+		height: rem(130);
+		margin-bottom: rem(21);
+		background: #efefef;
+		border-radius: 50%;
+		position: relative;
+		font-weight: 500;
+		font-size: 13px;
+		line-height: 14px;
+
+		&_hover {
+			&:hover {
+				&::after {
+					content: "";
+					background: rgb(0 0 0 / 50%);
+					width: 100%;
+					height: 100%;
+					border-radius: 50%;
+					z-index: 2;
+				}
+
+				&::before {
+					color: #fff;
+					content: "Поменять аватар";
+					text-align: center;
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+					z-index: 3;
+				}
+			}
+
+			img {
+				position: absolute;
+				z-index: 1;
+			}
+		}
+	}
+
+	&__title {
+		font-weight: 600;
+		font-size: 16px;
+		line-height: 16px;
+	}
+}
+
+.user-info {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	padding: 0 10px;
+
+	&__field {
+		width: 100%;
+		padding: rem(10) 0;
+
+		&:not(:last-child) {
+			border-bottom: 1px solid #eaeaea;
+		}
+
+		&:last-child {
+			margin-bottom: rem(60);
+		}
+
+		&_btn {
+			width: rem(280);
+		}
+
+		@media (min-width: 768px) {
+			max-width: rem(510);
+		}
+	}
+}
+
+.ya-btn.user-info__btn {
+	font-size: 13px;
+	line-height: 13px;
+
+	&_red {
+		color: #f00;
+	}
+}
+
+.info-field {
+	display: flex;
+	justify-content: space-between;
+	font-weight: 500;
+	font-size: 13px;
+	line-height: 13px;
+
+	&__value {
+		font-weight: 500;
+		font-size: 13px;
+		line-height: 13px;
+		color: #999;
+
+		&_right {
+			text-align: right;
+		}
+	}
+}
+
+.profile-back {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	&__text {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		width: rem(29);
+		height: rem(28);
+		background: $themeColor;
+		border-radius: 50%;
+
+		a {
+			height: 100%;
+			width: 100%;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+	}
+}
