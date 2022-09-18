@@ -6,6 +6,10 @@ import { Input } from '../../components/Input';
 import { InfoField } from '../../components/InfoField';
 import ButtonWithImage from '../../components/ButtonWithImage';
 import { ChangeAvatar } from '../../components/ChangeAvatar';
+import { withStore } from '../../utils/Store';
+import { router } from '../..';
+import UserController from '../../controllers/UserController';
+import { UserAPIUpdateProfile } from '../../api/UserAPI';
 
 interface ProfileChangeUserProps {
   title: string,
@@ -17,7 +21,7 @@ interface ProfileChangeUserProps {
   }
 }
 
-export class ProfileChangeUser extends Block {
+export class ProfileChangeUserBase extends Block {
   constructor(props: ProfileChangeUserProps) {
     super( props);
   }
@@ -49,7 +53,7 @@ export class ProfileChangeUser extends Block {
           label: '',
           idInput: 'email',
           type: 'text',
-          valueInput: 'pochta@yandex.ru',
+          valueInput: this.props.email,
           inputClasses: 'info-field__value info-field__value_right',
         }),
       }),
@@ -61,7 +65,7 @@ export class ProfileChangeUser extends Block {
           label: '',
           idInput: 'login',
           type: 'text',
-          valueInput: 'ivanivanov',
+          valueInput: this.props.login,
           inputClasses: 'info-field__value info-field__value_right',
         }),
       }),
@@ -73,7 +77,7 @@ export class ProfileChangeUser extends Block {
           label: '',
           idInput: 'first_name',
           type: 'text',
-          valueInput: 'Иван',
+          valueInput: this.props.first_name,
           inputClasses: 'info-field__value info-field__value_right',
         }),
       }),
@@ -85,7 +89,7 @@ export class ProfileChangeUser extends Block {
           label: '',
           idInput: 'second_name',
           type: 'text',
-          valueInput: 'Иванов',
+          valueInput: this.props.second_name,
           inputClasses: 'info-field__value info-field__value_right',
         }),
       }),
@@ -97,7 +101,7 @@ export class ProfileChangeUser extends Block {
           label: '',
           idInput: 'display_name',
           type: 'text',
-          valueInput: 'Иван',
+          valueInput: this.props.display_name,
           inputClasses: 'info-field__value info-field__value_right',
         }),
       }),
@@ -109,7 +113,7 @@ export class ProfileChangeUser extends Block {
           label: '',
           idInput: 'phone',
           type: 'text',
-          valueInput: '+7 (909) 967 30 30',
+          valueInput: this.props.phone,
           inputClasses: 'info-field__value info-field__value_right',
         }),
       }),
@@ -119,7 +123,38 @@ export class ProfileChangeUser extends Block {
     this.children.footer = new Button({
       label: 'Сохранить',
       events: {
-        click: () => console.log('clicked!'),
+        click: () => {
+					// console.log(this.children.fields[0].children)
+            const valid = this.children.fields.reduce((acc, val) => {
+							// console.log(val.children.fieldValue)
+              const result = val.children.fieldValue.onValidate();
+              return acc && result;
+            }, true);
+            const logEmail = document.querySelector(`#${this.children.fields[0].children.fieldValue.props.idInput}`)!.value;
+            const logLog = document.querySelector(`#${this.children.fields[1].children.fieldValue.props.idInput}`)!.value;
+            const logFirstName = document.querySelector(`#${this.children.fields[2].children.fieldValue.props.idInput}`)!.value;
+            const logSecondName = document.querySelector(`#${this.children.fields[3].children.fieldValue.props.idInput}`)!.value;
+            const logDisplayName = document.querySelector(`#${this.children.fields[4].children.fieldValue.props.idInput}`)!.value;
+            const logPhone = document.querySelector(`#${this.children.fields[5].children.fieldValue.props.idInput}`)!.value;
+            if (valid) {
+              const data = {
+								"first_name": logFirstName,
+								"second_name": logSecondName,
+								"login": logLog,
+								"email": logEmail,
+								"display_name": logDisplayName,
+								"phone": logPhone,
+              } as UserAPIUpdateProfile;
+							console.log('prof-change-log',data)
+							UserController.updateProfile(data)
+							// setTimeout(() => {
+							// 	console.log('timeout')
+							// 	router.go('/settings')
+							// }, 3000)
+							router.go('/settings')
+						}
+					// console.log('clicked!')
+				},
       },
       classes: 'ya-btn ya-btn_main user-info__field_btn',
       url: '/profile',
@@ -130,3 +165,7 @@ export class ProfileChangeUser extends Block {
     return this.compile(template, { title: this.props.title, styles });
   }
 }
+
+const withUser = withStore((state) => ({ ...state.user }))
+
+export const ProfileChangeUser = withUser(ProfileChangeUserBase);

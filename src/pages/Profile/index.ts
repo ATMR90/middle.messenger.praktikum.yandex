@@ -8,6 +8,7 @@ import { ChangeAvatar } from '../../components/ChangeAvatar';
 import store, { withStore } from '../../utils/Store';
 import AuthController from '../../controllers/AuthController';
 import { User } from '../../api/AuthAPI';
+import { Link } from '../../components/Link';
 
 interface ProfileProps {
   title: string,
@@ -23,16 +24,13 @@ interface ProfileProps {
 
 export class ProfileBase extends Block {
   constructor(props: ProfileProps) {
-		const test = {
-			test: "строка"
-		}
-    super({...test, ...props});
+    super(props);
   }
 
   init() {
+		console.log('init',this.props)
 		AuthController.fetchUser();
 		// let data = store.getState().user as User;
-		// console.log(this.props)
 		// console.log(this.props.email)
 		// console.log(this.props.test)
     const avatar = new ButtonWithImage({
@@ -96,20 +94,20 @@ export class ProfileBase extends Block {
     const buttons = [
       new InfoField({
         label: 'Поле',
-        fieldName: new Button({
-          label: 'Изменить данные',
-          classes: 'ya-btn user-info__btn',
-          url: '/profile-change-user',
-        }),
+        fieldName: new Link({
+					label: 'Изменить данные',
+					classes: 'ya-btn user-info__btn',
+					to: '/profile',
+				}),
         value: '',
         classes: 'user-info__field',
       }),
       new InfoField({
         label: 'Поле',
-        fieldName: new Button({
-          label: 'Изменить пароль',
-          classes: 'ya-btn user-info__btn',
-          url: '/profile-change-password',
+        fieldName: new Link({
+					label: 'Изменить данные',
+					classes: 'ya-btn user-info__btn',
+					to: '/password',
         }),
         value: '',
         classes: 'user-info__field',

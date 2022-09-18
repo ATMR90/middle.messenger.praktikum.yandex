@@ -6,6 +6,8 @@ import { Input } from '../../components/Input';
 import { InfoField } from '../../components/InfoField';
 import ButtonWithImage from '../../components/ButtonWithImage';
 import { ChangeAvatar } from '../../components/ChangeAvatar';
+import { router } from '../..';
+import { withStore } from '../../utils/Store';
 
 interface ProfileChangePasswordProps {
   title: string,
@@ -17,7 +19,7 @@ interface ProfileChangePasswordProps {
   }
 }
 
-export class ProfileChangePassword extends Block {
+export class ProfileChangePasswordBase extends Block {
   constructor(props: ProfileChangePasswordProps) {
     super( props);
   }
@@ -49,7 +51,7 @@ export class ProfileChangePassword extends Block {
           label: '',
           idInput: 'oldPassword',
           type: 'password',
-          valueInput: 'password',
+          valueInput: '',
           inputClasses: 'info-field__value info-field__value_right',
         }),
       }),
@@ -61,7 +63,7 @@ export class ProfileChangePassword extends Block {
           label: '',
           idInput: 'newPassword',
           type: 'password',
-          valueInput: 'newPassword',
+          valueInput: '',
           inputClasses: 'info-field__value info-field__value_right',
         }),
       }),
@@ -73,7 +75,7 @@ export class ProfileChangePassword extends Block {
           label: '',
           idInput: 'passwordYet',
           type: 'password',
-          valueInput: 'newPassword',
+          valueInput: '',
           inputClasses: 'info-field__value info-field__value_right',
         }),
       }),
@@ -83,7 +85,10 @@ export class ProfileChangePassword extends Block {
     this.children.footer = new Button({
       label: 'Сохранить',
       events: {
-        click: () => console.log('clicked!'),
+        click: () => {
+					router.go('/settings')
+					// console.log('clicked!')
+				},
       },
       classes: 'ya-btn ya-btn_main user-info__field_btn',
       url: '/profile',
@@ -94,3 +99,7 @@ export class ProfileChangePassword extends Block {
     return this.compile(template, { title: this.props.title, styles });
   }
 }
+
+const withUser = withStore((state) => ({ ...state.user }))
+
+export const ProfileChangePassword = withUser(ProfileChangePasswordBase);

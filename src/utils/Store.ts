@@ -46,13 +46,13 @@ export function withStore(mapStateToProps: (state: any) => any) {
         store.on(StoreEvents.Updated, () => {
           const stateProps = mapStateToProps(store.getState());
 
-					if (isEqual(previousState, stateProps)) {
-						// console.log('isEqual')
-						return;
-					}
+					// if (isEqual(previousState, stateProps)) {
+					// 	console.log('isEqual', stateProps)
+					// 	return;
+					// }
 					
-					// console.log('not isEqual')
           previousState = stateProps;
+					console.log('not isEqual', stateProps)
 
           this.setProps({ ...stateProps });
         });
