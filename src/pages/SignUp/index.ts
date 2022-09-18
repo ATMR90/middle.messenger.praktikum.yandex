@@ -3,6 +3,9 @@ import template from './signUp.pug';
 import { Button } from '../../components/Button';
 import * as styles from './signUp.scss';
 import { Input } from '../../components/Input';
+import { SignUpData } from '../../api/AuthAPI';
+import AuthController from '../../controllers/AuthController';
+import { router } from '../..';
 
 interface SignUpProps {
   title: string,
@@ -16,7 +19,12 @@ interface SignUpProps {
 
 export class SignUp extends Block {
   constructor(props: SignUpProps) {
-    super(props);
+    super(Object.assign(
+			{
+					title: 'Регистрация',
+			},
+			props
+		));
   }
 
   init() {
@@ -124,6 +132,7 @@ export class SignUp extends Block {
             event.preventDefault();
             const valid = this.children.fields.reduce((acc, val) => {
               const result = val.onValidate();
+							// console.log(result)
               return acc && result;
             }, true);
             const logEmail = document.querySelector(`#${this.children.fields[0].props.idInput}`)!.value;
@@ -133,9 +142,16 @@ export class SignUp extends Block {
             const logPhone = document.querySelector(`#${this.children.fields[4].props.idInput}`)!.value;
             const logPass = document.querySelector(`#${this.children.fields[5].props.idInput}`)!.value;
             if (valid) {
-              console.log({
-                Почта: logEmail, Логин: logLog, Имя: logFirstName, Фамилия: logSecondName, Телефон: logPhone, Пароль: logPass,
-              });
+              const data = {
+								"first_name": logFirstName,
+								"second_name": logSecondName,
+								"login": logLog,
+								"email": logEmail,
+								"password": logPass,
+								"phone": logPhone,
+              } as SignUpData;
+							AuthController.signup(data)
+							console.log('SignUp-log',data)
             }
           },
         },
@@ -145,13 +161,18 @@ export class SignUp extends Block {
       new Button({
         label: 'Войти',
         classes: 'ya-btn ya-form__btn',
-        url: '/auth',
+        events: {
+          click: () => {
+						event.preventDefault();
+						router.go('/')
+					}
+				},
       }),
     ];
     this.children.footer = buttons;
   }
 
   render() {
-    return this.compile(template, { title: this.props.title, styles });
+    return this.compile(template, { ...this.props, styles });
   }
 }

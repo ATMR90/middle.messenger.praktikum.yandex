@@ -51,10 +51,17 @@ export class Input extends Block {
   protected onValidate(val: string, valId: string) {
     if (val === undefined) {
       val = this.children.inputField.props.valueInput;
+      valId = this.children.inputField.props.idInput;
     }
+		// console.log(val, valId)
     const validationSettings = ValidationSettings(valId);
     const regIn = new RegExp(validationSettings[1], 'i');
-    const isValid = regIn.test(val);
+		// console.log(val, regIn, regIn.test(val))
+    let isValid = regIn.test(val);
+		// console.log(isValid, regIn)
+		if (!val) {
+			isValid = false
+		}
     const inputClasses = this.children.inputField.props.classes;
     const arrClasses = inputClasses.split(' ');
     if (!isValid) {

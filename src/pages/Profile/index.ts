@@ -5,6 +5,9 @@ import * as styles from './profile.scss';
 import { InfoField } from '../../components/InfoField';
 import ButtonWithImage from '../../components/ButtonWithImage';
 import { ChangeAvatar } from '../../components/ChangeAvatar';
+import store, { withStore } from '../../utils/Store';
+import AuthController from '../../controllers/AuthController';
+import { User } from '../../api/AuthAPI';
 
 interface ProfileProps {
   title: string,
@@ -13,15 +16,25 @@ interface ProfileProps {
   children?: {
     fields: Block[],
     footer: Block[]
-  }
+  },
+	email: string,
+	test: string
 }
 
-export class Profile extends Block {
+export class ProfileBase extends Block {
   constructor(props: ProfileProps) {
-    super( props);
+		const test = {
+			test: "строка"
+		}
+    super({...test, ...props});
   }
 
   init() {
+		AuthController.fetchUser();
+		// let data = store.getState().user as User;
+		// console.log(this.props)
+		// console.log(this.props.email)
+		// console.log(this.props.test)
     const avatar = new ButtonWithImage({
       label: '',
       events: {
@@ -43,37 +56,37 @@ export class Profile extends Block {
       new InfoField({
         label: 'Поле',
         name: 'Почта',
-        value: 'pochta@yandex.ru',
+        value: this.props.email,
         classes: 'user-info__field',
       }),
       new InfoField({
         label: 'Поле',
         name: 'Логин',
-        value: 'ivanivanov',
+        value: this.props.login,
         classes: 'user-info__field',
       }),
       new InfoField({
         label: 'Поле',
         name: 'Имя',
-        value: 'Иван',
+        value: this.props.first_name,
         classes: 'user-info__field',
       }),
       new InfoField({
         label: 'Поле',
         name: 'Фамилия',
-        value: 'Иванов',
+        value: this.props.second_name,
         classes: 'user-info__field',
       }),
       new InfoField({
         label: 'Поле',
         name: 'Имя в чате',
-        value: 'Иван',
+        value: this.props.display_name,
         classes: 'user-info__field',
       }),
       new InfoField({
         label: 'Поле',
         name: 'Телефон',
-        value: '+7 (909) 967 30 30',
+        value: this.props.phone,
         classes: 'user-info__field',
       }),
 
@@ -106,7 +119,12 @@ export class Profile extends Block {
         fieldName: new Button({
           label: 'Выйти',
           classes: 'ya-btn user-info__btn user-info__btn_red',
-          url: '/',
+					events: {
+						click: (e) => {
+							e.preventDefault();
+							AuthController.logout();
+						}
+					}
         }),
         value: '',
         classes: 'user-info__field',
@@ -116,6 +134,12 @@ export class Profile extends Block {
   }
 
   render() {
+		// console.log('render', this.props.email)
     return this.compile(template, { title: this.props.title, styles });
   }
 }
+
+
+const withUser = withStore((state) => ({ ...state.user }))
+
+export const Profile = withUser(ProfileBase);

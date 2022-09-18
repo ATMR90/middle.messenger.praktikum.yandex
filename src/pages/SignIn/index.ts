@@ -3,6 +3,9 @@ import template from './signIn.pug';
 import { Button } from '../../components/Button';
 import * as styles from './signIn.scss';
 import { Input } from '../../components/Input';
+import { SignInData } from '../../api/AuthAPI';
+import AuthController from '../../controllers/AuthController';
+import { router } from '../..';
 
 interface SignInProps {
   title: string,
@@ -16,7 +19,12 @@ interface SignInProps {
 
 export class SignIn extends Block {
   constructor(props: SignInProps) {
-    super(props);
+    super(Object.assign(
+			{
+					title: 'Вход',
+			},
+			props
+		));
   }
 
   init() {
@@ -59,12 +67,18 @@ export class SignIn extends Block {
             event.preventDefault();
             const valid = this.children.fields.reduce((acc, val) => {
               const result = val.onValidate();
+							// console.log(val, result)
               return acc && result;
             }, true);
             const logLog = document.querySelector(`#${this.children.fields[0].props.idInput}`)!.value;
             const logPass = document.querySelector(`#${this.children.fields[1].props.idInput}`)!.value;
             if (valid) {
-              console.log({ login: logLog, password: logPass });
+							const data = {
+								"login": logLog,
+								"password": logPass,
+							} as SignInData;
+							AuthController.signin(data)
+              console.log('Signin-log',data);
             }
           },
         },
@@ -74,13 +88,18 @@ export class SignIn extends Block {
       new Button({
         label: 'Регистрация',
         classes: 'ya-btn ya-form__btn',
-        url: '/registration',
+				events: {
+          click: () => {
+						event.preventDefault();
+						router.go('/sign-up')
+					}
+				},
       }),
     ];
     this.children.footer = buttons;
   }
 
   render() {
-    return this.compile(template, { title: this.props.title, styles });
+    return this.compile(template, { ...this.props, styles });
   }
 }
