@@ -6,6 +6,7 @@ import { Input } from '../../components/Input';
 import { SignInData } from '../../api/AuthAPI';
 import AuthController from '../../controllers/AuthController';
 import { router } from '../..';
+import { Link } from '../../components/Link';
 
 interface SignInProps {
   title: string,
@@ -85,15 +86,10 @@ export class SignIn extends Block {
         classes: 'ya-btn ya-btn_main ya-form__btn',
         type: 'submit',
       }),
-      new Button({
+      new Link({
         label: 'Регистрация',
         classes: 'ya-btn ya-form__btn',
-				events: {
-          click: () => {
-						event.preventDefault();
-						router.go('/sign-up')
-					}
-				},
+				to: '/sign-up',
       }),
     ];
     this.children.footer = buttons;

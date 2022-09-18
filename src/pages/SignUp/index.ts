@@ -6,6 +6,7 @@ import { Input } from '../../components/Input';
 import { SignUpData } from '../../api/AuthAPI';
 import AuthController from '../../controllers/AuthController';
 import { router } from '../..';
+import { Link } from '../../components/Link';
 
 interface SignUpProps {
   title: string,
@@ -158,15 +159,10 @@ export class SignUp extends Block {
         classes: 'ya-btn ya-btn_main ya-form__btn',
         type: 'submit',
       }),
-      new Button({
-        label: 'Войти',
+      new Link({
+        label: 'Регистрация',
         classes: 'ya-btn ya-form__btn',
-        events: {
-          click: () => {
-						event.preventDefault();
-						router.go('/')
-					}
-				},
+				to: '/',
       }),
     ];
     this.children.footer = buttons;

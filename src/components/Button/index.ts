@@ -14,9 +14,6 @@ interface ButtonProps {
 
 export class Button extends Block {
   constructor(props: ButtonProps) {
-    if (props.url === undefined) {
-      props.url = '';
-    }
     super(props);
   }
 

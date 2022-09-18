@@ -121,7 +121,7 @@ export class ProfileBase extends Block {
           classes: 'ya-btn user-info__btn user-info__btn_red',
 					events: {
 						click: (e) => {
-							e.preventDefault();
+							// e.preventDefault();
 							AuthController.logout();
 						}
 					}
