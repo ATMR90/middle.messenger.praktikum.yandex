@@ -9,6 +9,10 @@ export interface UserAPIUpdateProfile {
   email: string;
   phone: string;
 }
+export interface UserAPIUpdatePassword {
+	oldPassword: string;
+  newPassword: string;
+}
 
 export class UserAPI extends BaseAPI {
   constructor() {
@@ -16,7 +20,22 @@ export class UserAPI extends BaseAPI {
   }
 
   public updateProfile(data: UserAPIUpdateProfile) {
-    return this.http.put('/profile', {data: data});
+    return this.http.put('/profile', {headers: {
+			'Content-Type': 'application/json'
+		},data: JSON.stringify(data)});
+  }
+	
+  public updatePassword(data: UserAPIUpdatePassword) {
+    return this.http.put('/password', {headers: {
+			'Content-Type': 'application/json'
+		},data: JSON.stringify(data)});
+  }
+	
+  public updateAvatar(data: FormData) {
+    return this.http.put('/profile/avatar', {headers: {
+			'accept': 'application/json',
+			// 'Content-Type': 'multipart/form-data',
+		},data: data});
   }
 
   create = undefined;

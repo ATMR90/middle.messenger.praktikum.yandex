@@ -100,7 +100,9 @@ export class HTTPTransport {
       xhr.ontimeout = reject;
 
 			// без нее нельзя!!!
-			xhr.setRequestHeader('Content-Type', 'application/json');
+			// xhr.setRequestHeader('Content-Type', 'application/json');
+			// xhr.setRequestHeader('Content-Type', 'multipart/form-data');
+			// xhr.setRequestHeader('accept', 'application/json');
 
       xhr.withCredentials = true;
       xhr.responseType = 'json';
@@ -112,8 +114,9 @@ export class HTTPTransport {
 				// console.log('if')
       } else {
 				// console.log('else')
-				// console.log('else')
-        xhr.send(JSON.stringify(data));
+				// console.log('HTTP', data.get('avatar'))
+        xhr.send(data as any);
+        // xhr.send(data as any);
       }
     });
   };

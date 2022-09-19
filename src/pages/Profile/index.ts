@@ -46,7 +46,7 @@ export class ProfileBase extends Block {
         },
       },
       classes: 'header-profile__avatar header-profile__avatar_hover',
-      src: './../../assets/img/default_square_image.svg',
+      src: `https://ya-praktikum.tech/api/v2/resources${this.props.avatar}`,
     });
     this.children.avatar = avatar;
 
@@ -105,7 +105,7 @@ export class ProfileBase extends Block {
       new InfoField({
         label: 'Поле',
         fieldName: new Link({
-					label: 'Изменить данные',
+					label: 'Изменить пароль',
 					classes: 'ya-btn user-info__btn',
 					to: '/password',
         }),
@@ -133,7 +133,7 @@ export class ProfileBase extends Block {
 
   render() {
 		// console.log('render', this.props.email)
-    return this.compile(template, { title: this.props.title, styles });
+    return this.compile(template, { title: this.props.title || 'Влад!', styles, display_name: this.props.display_name});
   }
 }
 

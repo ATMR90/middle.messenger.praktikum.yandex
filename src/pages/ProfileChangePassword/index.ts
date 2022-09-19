@@ -7,6 +7,8 @@ import { InfoField } from '../../components/InfoField';
 import ButtonWithImage from '../../components/ButtonWithImage';
 import { ChangeAvatar } from '../../components/ChangeAvatar';
 import { router } from '../..';
+import { UserAPIUpdatePassword } from '../../api/UserAPI';
+import UserController from '../../controllers/UserController';
 import { withStore } from '../../utils/Store';
 
 interface ProfileChangePasswordProps {
@@ -21,7 +23,7 @@ interface ProfileChangePasswordProps {
 
 export class ProfileChangePasswordBase extends Block {
   constructor(props: ProfileChangePasswordProps) {
-    super( props);
+    super(props);
   }
 
   init() {
@@ -38,7 +40,7 @@ export class ProfileChangePasswordBase extends Block {
         },
       },
       classes: 'header-profile__avatar header-profile__avatar_hover',
-      src: './../../assets/img/default_square_image.svg',
+      src: `https://ya-praktikum.tech/api/v2/resources${this.props.avatar}`,
     });
     this.children.avatar = avatar;
 
@@ -86,9 +88,32 @@ export class ProfileChangePasswordBase extends Block {
       label: 'Сохранить',
       events: {
         click: () => {
-					router.go('/settings')
-					// console.log('clicked!')
-				},
+          // console.log(this.children.fields[0].children)
+          const valid = this.children.fields.reduce((acc, val) => {
+            // console.log(val.children.fieldValue)
+            const result = val.children.fieldValue.onValidate();
+            return acc && result;
+          }, true);
+          const logOldPassword = document.querySelector(`#${this.children.fields[0].children.fieldValue.props.idInput}`)!.value;
+          const logNewPassword = document.querySelector(`#${this.children.fields[1].children.fieldValue.props.idInput}`)!.value;
+          const logPasswordYet = document.querySelector(`#${this.children.fields[2].children.fieldValue.props.idInput}`)!.value;
+          // const logSecondName = document.querySelector(`#${this.children.fields[3].children.fieldValue.props.idInput}`)!.value;
+          // const logDisplayName = document.querySelector(`#${this.children.fields[4].children.fieldValue.props.idInput}`)!.value;
+          // const logPhone = document.querySelector(`#${this.children.fields[5].children.fieldValue.props.idInput}`)!.value;
+          if (valid) {
+            const data = {
+              "oldPassword": logOldPassword,
+              "newPassword": logNewPassword,
+            } as UserAPIUpdatePassword;
+            console.log('prof-change-log', data)
+            UserController.updatePassword(data)
+            setTimeout(() => {
+              console.log('timeout')
+              router.go('/settings')
+            }, 200)
+            // router.go('/settings')
+          }
+        },
       },
       classes: 'ya-btn ya-btn_main user-info__field_btn',
       url: '/profile',

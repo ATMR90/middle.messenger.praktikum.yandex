@@ -31,13 +31,17 @@ export class AuthAPI extends BaseAPI {
   }
 
   signIn(data: SignInData) {
-    return this.http.post('/signin', {data: data});
+    return this.http.post('/signin', {headers: {
+			'Content-Type': 'application/json'
+		},data: JSON.stringify(data)});
   }
 
 
   signUp(data: SignUpData) {
 		// console.log('API',data)
-    return this.http.post('/signup', {data: data});
+    return this.http.post('/signup', {headers: {
+			'Content-Type': 'application/json'
+		},data: JSON.stringify(data)});
   }
 
   read() {

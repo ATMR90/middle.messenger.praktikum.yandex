@@ -40,7 +40,7 @@ export class ProfileChangeUserBase extends Block {
         },
       },
       classes: 'header-profile__avatar header-profile__avatar_hover',
-      src: './../../assets/img/default_square_image.svg',
+      src: `https://ya-praktikum.tech/api/v2/resources${this.props.avatar}`,
     });
     this.children.avatar = avatar;
 
@@ -147,11 +147,11 @@ export class ProfileChangeUserBase extends Block {
               } as UserAPIUpdateProfile;
 							console.log('prof-change-log',data)
 							UserController.updateProfile(data)
-							// setTimeout(() => {
-							// 	console.log('timeout')
-							// 	router.go('/settings')
-							// }, 3000)
-							router.go('/settings')
+							setTimeout(() => {
+								console.log('timeout')
+								router.go('/settings')
+							}, 200)
+							// router.go('/settings')
 						}
 					// console.log('clicked!')
 				},

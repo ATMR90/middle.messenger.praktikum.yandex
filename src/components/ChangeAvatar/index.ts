@@ -1,3 +1,4 @@
+import UserController from '../../controllers/UserController';
 import Block from '../../utils/Block';
 import { Button } from '../Button';
 import { Input } from '../Input';
@@ -31,7 +32,23 @@ export class ChangeAvatar extends Block {
       label: 'Поменять',
       classes: 'ya-btn ya-btn_main ya-form__btn',
       events: {
-        click: () => { console.log('button'); },
+        click: () => { 
+					const avatarInput = document.querySelector("#avatarInput") as HTMLInputElement;
+					// const file = this.children.inputAvatar!.children.inputField
+					if (avatarInput !== null) {
+						const {files}: { files: FileList | null }  = (avatarInput as HTMLInputElement)
+						const [file] = files;
+						console.log(file)
+						const formData = new FormData();
+						formData.append('avatar', file);
+						console.log(formData, formData.get('Avatar'))
+						UserController.updateAvatar(formData);
+
+					}
+
+					// UserController.updateAvatar()
+					console.log('button'); 
+				},
       },
     });
     this.children.button = button;
