@@ -1,5 +1,6 @@
 // import { pageChat } from './pages/Chat/chat';
 import AuthController from './controllers/AuthController';
+import ChatController from './controllers/ChatController';
 import { Chat } from './pages/Chat';
 import { Error404 } from './pages/Error404';
 // import { pageError404 } from './pages/Error404/error404';
@@ -108,10 +109,13 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 		try {
 			await AuthController.fetchUser();
+			await ChatController.request();
 			// console.log('try')
-			router.start();
+			setTimeout(()=>{router.start();},400)
+			// router.start();
 			if (!isProtectedRoute) {
-				router.go('/settings');
+				setTimeout(()=>{router.go('/settings');},400)
+				// router.go('/settings');
 			}
 		} catch (e) {
 			// console.log('catch')

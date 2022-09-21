@@ -41,6 +41,7 @@ export class HTTPTransport {
 
   public post = (url: string, options = {}): Promise<XMLHttpRequest> => {
     url = this.endpoint + url;
+		// console.log('post-opt',options)
     return this.request(url, { ...options, method: Methods.POST })
   };
 
@@ -72,7 +73,9 @@ export class HTTPTransport {
 
       xhr.open(method, url);
 
+			// console.log('headers', headers)
       Object.keys(headers).forEach((key) => {
+				// console.log('headers-key',headers, key)
         xhr.setRequestHeader(key, headers[key]);
       });
 

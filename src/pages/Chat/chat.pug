@@ -1,11 +1,11 @@
 .ya-chat
 	.ya-chat__left-panel.left-panel
 		.left-panel__profile 
-			a(href="/profile") Профиль
-				<img src="./../../assets/img/arrow_forward.svg" alt="Стрелка вперед">
+			|	!{profLink} 
 		.left-panel__search
 			input.left-panel__input(placeholder="Поиск")
 		ul.left-panel__chat-list
+			|	!{chatBtn}
 			|	!{chatList}
 	.ya-chat__right-panel.right-panel 
 		.right-panel__header.header-right-panel

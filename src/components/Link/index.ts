@@ -9,7 +9,9 @@ interface LinkProps extends PropsWithRouter {
   events?: {
     click: () => void;
   };
-	classes?: string,
+	classes?: string;
+	src?: string;
+	alt?: string;
 }
 
 class BaseLink extends Block {

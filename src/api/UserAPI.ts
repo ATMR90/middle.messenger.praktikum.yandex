@@ -10,8 +10,12 @@ export interface UserAPIUpdateProfile {
   phone: string;
 }
 export interface UserAPIUpdatePassword {
-	oldPassword: string;
+  oldPassword: string;
   newPassword: string;
+}
+
+export interface UserAPISearch {
+  login: string
 }
 
 export class UserAPI extends BaseAPI {
@@ -19,23 +23,32 @@ export class UserAPI extends BaseAPI {
     super('/user');
   }
 
+  public searchProfile(data: UserAPISearch) {
+    return this.http.post('/search', { 
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      data: JSON.stringify(data),
+    });
+  }
+
   public updateProfile(data: UserAPIUpdateProfile) {
     return this.http.put('/profile', {headers: {
-			'Content-Type': 'application/json'
-		},data: JSON.stringify(data)});
+      'Content-Type': 'application/json'
+    },data: JSON.stringify(data)});
   }
-	
+  
   public updatePassword(data: UserAPIUpdatePassword) {
     return this.http.put('/password', {headers: {
-			'Content-Type': 'application/json'
-		},data: JSON.stringify(data)});
+      'Content-Type': 'application/json'
+    },data: JSON.stringify(data)});
   }
-	
+  
   public updateAvatar(data: FormData) {
     return this.http.put('/profile/avatar', {headers: {
-			'accept': 'application/json',
-			// 'Content-Type': 'multipart/form-data',
-		},data: data});
+      'accept': 'application/json',
+      // 'Content-Type': 'multipart/form-data',
+    },data: data});
   }
 
   create = undefined;

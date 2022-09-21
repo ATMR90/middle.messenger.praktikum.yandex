@@ -160,7 +160,7 @@ export class SignUp extends Block {
         type: 'submit',
       }),
       new Link({
-        label: 'Регистрация',
+        label: 'Войти',
         classes: 'ya-btn ya-form__btn',
 				to: '/',
       }),

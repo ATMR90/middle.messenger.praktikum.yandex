@@ -11,7 +11,8 @@ interface ChangeAvatarProps {
     click: () => void
   },
   classes?: string,
-  url?: string
+  url?: string,
+	func?: any,
 }
 
 export class ChangeAvatar extends Block {
@@ -20,6 +21,7 @@ export class ChangeAvatar extends Block {
   }
 
   init() {
+		console.log(this.props.func)
     const inputAvatar = new Input({
       label: 'Выбрать файл на компьютере',
       idInput: 'avatar',
@@ -32,23 +34,7 @@ export class ChangeAvatar extends Block {
       label: 'Поменять',
       classes: 'ya-btn ya-btn_main ya-form__btn',
       events: {
-        click: () => { 
-					const avatarInput = document.querySelector("#avatarInput") as HTMLInputElement;
-					// const file = this.children.inputAvatar!.children.inputField
-					if (avatarInput !== null) {
-						const {files}: { files: FileList | null }  = (avatarInput as HTMLInputElement)
-						const [file] = files;
-						console.log(file)
-						const formData = new FormData();
-						formData.append('avatar', file);
-						console.log(formData, formData.get('Avatar'))
-						UserController.updateAvatar(formData);
-
-					}
-
-					// UserController.updateAvatar()
-					console.log('button'); 
-				},
+        click: this.props.func,
       },
     });
     this.children.button = button;

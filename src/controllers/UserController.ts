@@ -1,7 +1,7 @@
 import { router } from './../index';
 // import API, { AuthAPI, SignInData, SignUpData } from '../api/AuthAPI';
 import store from '../utils/Store';
-import API, { UserAPI, UserAPIUpdatePassword, UserAPIUpdateProfile } from '../api/UserAPI';
+import API, { UserAPI, UserAPISearch, UserAPIUpdatePassword, UserAPIUpdateProfile } from '../api/UserAPI';
 import AuthController from './AuthController';
 
 export class UserController {
@@ -9,6 +9,14 @@ export class UserController {
 
   constructor() {
     this.api = API;
+  }
+
+	async searchProfile(data: UserAPISearch) {
+		try {
+			return await this.api.searchProfile(data);
+    } catch (e: any) {
+      console.error(e);
+    }
   }
 
   async updateProfile(data: UserAPIUpdateProfile) {

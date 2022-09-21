@@ -9,6 +9,7 @@ import store, { withStore } from '../../utils/Store';
 import AuthController from '../../controllers/AuthController';
 import { User } from '../../api/AuthAPI';
 import { Link } from '../../components/Link';
+import UserController from '../../controllers/UserController';
 
 interface ProfileProps {
   title: string,
@@ -39,7 +40,27 @@ export class ProfileBase extends Block {
         click: () => {
           const root = document.querySelector('#app')!;
 
-          const changeAvatar = new ChangeAvatar({ label: 'Загрузите файл', classes: 'ya-form' });
+          const changeAvatar = new ChangeAvatar({ 
+						label: 'Загрузите файл@@', 
+						classes: 'ya-form' ,
+						func: () => {
+              const avatarInput = document.querySelector("#avatarInput") as HTMLInputElement;
+              // const file = this.children.inputAvatar!.children.inputField
+              if (avatarInput !== null) {
+                const { files }: { files: FileList | null } = (avatarInput as HTMLInputElement)
+                const [file] = files;
+                console.log(file)
+                const formData = new FormData();
+                formData.append('avatar', file);
+                console.log(formData, formData.get('Avatar'))
+                UserController.updateAvatar(formData);
+
+              }
+
+              // UserController.updateAvatar()
+              console.log('button!!!');
+            }
+					});
 
           root.innerHTML = '';
           root.append(changeAvatar.getContent()!);
@@ -49,6 +70,15 @@ export class ProfileBase extends Block {
       src: `https://ya-praktikum.tech/api/v2/resources${this.props.avatar}`,
     });
     this.children.avatar = avatar;
+
+		const profLink = new Link({
+			label: '',
+			classes: 'profile-back__text',
+			to: '/messenger',
+			src: './../../assets/img/arrow_back_.svg',
+			alt: 'Стрелка назад',
+		});
+		this.children.profLink = profLink;
 
     const fields = [
       new InfoField({

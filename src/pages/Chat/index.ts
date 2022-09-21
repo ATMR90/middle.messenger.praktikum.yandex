@@ -1,6 +1,12 @@
+import { Button } from '../../components/Button';
+import { ChangeAvatar } from '../../components/ChangeAvatar';
 import { ChatPanel } from '../../components/ChatPanel';
 import { Input } from '../../components/Input';
+import { Link } from '../../components/Link';
+import ChatController from '../../controllers/ChatController';
+import UserController from '../../controllers/UserController';
 import Block from '../../utils/Block';
+import store, { withStore } from '../../utils/Store';
 import template from './chat.pug';
 import * as styles from './chat.scss';
 
@@ -14,13 +20,126 @@ interface ChatProps {
   }
 }
 
-export class Chat extends Block {
+export class ChatBase extends Block {
   constructor(props: ChatProps) {
     super(props);
   }
 
   init() {
+    ChatController.request();
+
+    // console.log(this.props)
+    // console.log(store.getState().chat.chatId)
+    const chatBtn = new Button({
+      label: 'Создать чат',
+      classes: 'ya-btn ya-btn_main ya-form__btn',
+      events: {
+        click: () => {
+
+          // Создание чата
+          // const chatNew = {
+          // 	"title": "Новый чат"
+          // }
+          // ChatController.create(chatNew)
+
+          // Удаление чата
+          // const data = {
+          // 	chatId: store.getState().chat.chatId
+          // }
+          // console.log('chat', data)
+          // ChatController.removeChat(data)
+
+
+          // Добавление пользователей в чат
+          // const data = {
+          // 		users: [310, 304],
+          // 		chatId: 10
+          // }
+          // console.log(data)
+          // ChatController.addUserChat(data)
+
+          // Удаление пользователей из чата
+          // const data = {
+          // 		users: [310],
+          // 		chatId: 10
+          // }
+          // console.log(data)
+          // ChatController.deleteUserChat(data)
+
+          // Запросить пользователей чата
+          // const data = store.getState().chat.chatId
+          // console.log(data)
+          // ChatController.requestChatUsers(data)
+
+          // Получить токен
+          // const data = store.getState().chat.chatId
+          // console.log(data)
+          // ChatController.requestMessageToken(data) 
+
+          // Поиск пользователя
+          // const data = {
+          //   login: 'ATMR'
+          // }
+          // UserController.searchProfile(data)
+
+        }
+      }
+    });
+    const chatBtnTwo = new Button({
+      label: 'Создать чат2',
+      classes: 'ya-btn ya-btn_main ya-form__btn',
+      events: {
+        click: () => {
+          const root = document.querySelector('#app')!;
+
+          const changeAvatar = new ChangeAvatar({
+            label: 'Загрузите аватар чата',
+            classes: 'ya-form',
+            func: () => {
+              const avatarInput = document.querySelector("#avatarInput") as HTMLInputElement;
+              // const file = this.children.inputAvatar!.children.inputField
+              if (avatarInput !== null) {
+                const { files }: { files: FileList | null } = (avatarInput as HTMLInputElement)
+                const [file] = files;
+                const chatID = Number(this.props.chatId);
+                console.log(file)
+                const formData = new FormData();
+                formData.append('chatId', chatID);
+                formData.append('avatar', file);
+                console.log(formData, formData.get('avatar'), typeof formData.get('chatId'))
+                ChatController.updateChatAvatar(formData);
+                // работает! Загрузка аватара чата
+              }
+
+              // UserController.updateAvatar()
+              console.log('button чат');
+            }
+          });
+
+          root.innerHTML = '';
+          root.append(changeAvatar.getContent()!);
+        }
+      }
+    });
+    this.children.chatBtn = [chatBtn, chatBtnTwo];
+    const profLink = new Link({
+      label: 'Профиль',
+      // classes: 'ya-btn ya-form__btn',
+      to: '/settings',
+      src: './../../assets/img/arrow_forward.svg',
+      alt: 'Стрелка вперед'
+    });
+    this.children.profLink = profLink;
     const chatList = [
+      new ChatPanel({
+        label: '',
+        img: `https://ya-praktikum.tech/api/v2/resources${this.props.list.chats[0].avatar}`,
+        title: `${this.props.list.chats[0].title}`,
+        text: 'Изображение',
+        time: '10:49',
+        newMessage: '2',
+        classes: 'left-panel__chat',
+      }),
       new ChatPanel({
         label: '',
         img: './../../assets/img/default_square_image.svg',
@@ -104,7 +223,7 @@ export class Chat extends Block {
       }),
     ];
     this.children.chatList = chatList;
-    
+
     const message = new Input({
       label: '',
       idInput: 'message',
@@ -124,3 +243,8 @@ export class Chat extends Block {
     return this.compile(template, { title: this.props.title, styles });
   }
 }
+
+
+const withUser = withStore((state) => ({ ...state.chat }))
+
+export const Chat = withUser(ChatBase);

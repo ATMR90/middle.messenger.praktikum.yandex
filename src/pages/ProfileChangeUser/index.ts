@@ -23,7 +23,7 @@ interface ProfileChangeUserProps {
 
 export class ProfileChangeUserBase extends Block {
   constructor(props: ProfileChangeUserProps) {
-    super( props);
+    super(props);
   }
 
   init() {
@@ -33,7 +33,27 @@ export class ProfileChangeUserBase extends Block {
         click: () => {
           const root = document.querySelector('#app')!;
 
-          const changeAvatar = new ChangeAvatar({ label: 'Загрузите файл', classes: 'ya-form' });
+          const changeAvatar = new ChangeAvatar({
+            label: 'Загрузите файл',
+            classes: 'ya-form',
+            func: () => {
+              const avatarInput = document.querySelector("#avatarInput") as HTMLInputElement;
+              // const file = this.children.inputAvatar!.children.inputField
+              if (avatarInput !== null) {
+                const { files }: { files: FileList | null } = (avatarInput as HTMLInputElement)
+                const [file] = files;
+                console.log(file)
+                const formData = new FormData();
+                formData.append('avatar', file);
+                console.log(formData, formData.get('Avatar'))
+                UserController.updateAvatar(formData);
+
+              }
+
+              // UserController.updateAvatar()
+              console.log('button');
+            }
+          });
 
           root.innerHTML = '';
           root.append(changeAvatar.getContent()!);
@@ -124,37 +144,37 @@ export class ProfileChangeUserBase extends Block {
       label: 'Сохранить',
       events: {
         click: () => {
-					// console.log(this.children.fields[0].children)
-            const valid = this.children.fields.reduce((acc, val) => {
-							// console.log(val.children.fieldValue)
-              const result = val.children.fieldValue.onValidate();
-              return acc && result;
-            }, true);
-            const logEmail = document.querySelector(`#${this.children.fields[0].children.fieldValue.props.idInput}`)!.value;
-            const logLog = document.querySelector(`#${this.children.fields[1].children.fieldValue.props.idInput}`)!.value;
-            const logFirstName = document.querySelector(`#${this.children.fields[2].children.fieldValue.props.idInput}`)!.value;
-            const logSecondName = document.querySelector(`#${this.children.fields[3].children.fieldValue.props.idInput}`)!.value;
-            const logDisplayName = document.querySelector(`#${this.children.fields[4].children.fieldValue.props.idInput}`)!.value;
-            const logPhone = document.querySelector(`#${this.children.fields[5].children.fieldValue.props.idInput}`)!.value;
-            if (valid) {
-              const data = {
-								"first_name": logFirstName,
-								"second_name": logSecondName,
-								"login": logLog,
-								"email": logEmail,
-								"display_name": logDisplayName,
-								"phone": logPhone,
-              } as UserAPIUpdateProfile;
-							console.log('prof-change-log',data)
-							UserController.updateProfile(data)
-							setTimeout(() => {
-								console.log('timeout')
-								router.go('/settings')
-							}, 200)
-							// router.go('/settings')
-						}
-					// console.log('clicked!')
-				},
+          // console.log(this.children.fields[0].children)
+          const valid = this.children.fields.reduce((acc, val) => {
+            // console.log(val.children.fieldValue)
+            const result = val.children.fieldValue.onValidate();
+            return acc && result;
+          }, true);
+          const logEmail = document.querySelector(`#${this.children.fields[0].children.fieldValue.props.idInput}`)!.value;
+          const logLog = document.querySelector(`#${this.children.fields[1].children.fieldValue.props.idInput}`)!.value;
+          const logFirstName = document.querySelector(`#${this.children.fields[2].children.fieldValue.props.idInput}`)!.value;
+          const logSecondName = document.querySelector(`#${this.children.fields[3].children.fieldValue.props.idInput}`)!.value;
+          const logDisplayName = document.querySelector(`#${this.children.fields[4].children.fieldValue.props.idInput}`)!.value;
+          const logPhone = document.querySelector(`#${this.children.fields[5].children.fieldValue.props.idInput}`)!.value;
+          if (valid) {
+            const data = {
+              "first_name": logFirstName,
+              "second_name": logSecondName,
+              "login": logLog,
+              "email": logEmail,
+              "display_name": logDisplayName,
+              "phone": logPhone,
+            } as UserAPIUpdateProfile;
+            console.log('prof-change-log', data)
+            UserController.updateProfile(data)
+            setTimeout(() => {
+              console.log('timeout')
+              router.go('/settings')
+            }, 200)
+            // router.go('/settings')
+          }
+          // console.log('clicked!')
+        },
       },
       classes: 'ya-btn ya-btn_main user-info__field_btn',
       url: '/profile',
