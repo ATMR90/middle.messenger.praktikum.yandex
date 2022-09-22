@@ -174,6 +174,7 @@
 		font-size: 12px;
 		line-height: 12px;
 		color: #999;
+		overflow-y: scroll;
 	}
 
 	&__footer {
@@ -249,12 +250,14 @@
 
 .messages-chat {
 	display: flex;
+	width: 100%;
 
 	&__container {
 		display: flex;
 		flex-direction: column;
 		justify-content: end;
 		padding-bottom: 10px;
+		height: fit-content;
 	}
 
 	&__data {
@@ -265,7 +268,7 @@
 
 	&__his-message {
 		align-self: flex-start;
-		max-width: 50%;
+		// max-width: 50%;
 		margin-bottom: rem(10);
 		font-weight: 500;
 		font-size: 12px;
@@ -275,7 +278,7 @@
 
 	&__your-message {
 		align-self: flex-end;
-		max-width: 50%;
+		// max-width: 50%;
 		font-weight: 500;
 		font-size: 12px;
 		line-height: 15px;
@@ -287,7 +290,8 @@
 	background: #f8f8f8;
 	border-radius: 0 7px 7px;
 	position: relative;
-	min-width: 80px;
+	min-width: 100px;
+	width: max-content;
 
 	&__container {
 		position: relative;

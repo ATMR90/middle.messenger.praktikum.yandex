@@ -58,7 +58,8 @@ export class ChatController {
   public requestMessageToken(chatId: number) {
     return this.api.requestMessageToken(chatId)
       .then((auth) => {
-        return auth;
+				store.set('chat.chatToken', auth.response || null);
+        return auth.response;
       })
       .catch();
   }

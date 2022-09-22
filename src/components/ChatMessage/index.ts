@@ -1,9 +1,9 @@
 import Block from '../../utils/Block';
 import store from '../../utils/Store';
-import template from './chatPanel.pug';
-import * as styles from './chatPanel.scss';
+import template from './chatMessage.pug';
+import * as styles from './chatMessage.scss';
 
-interface ChatPanelProps {
+interface ChatMessageProps {
   label: string,
   classes?: string
   img?: string,
@@ -16,21 +16,23 @@ interface ChatPanelProps {
     click: (param:any) => void
   };
 	id?: number;
+	content?: string;
+	data?: any;
 }
 
-export class ChatPanel extends Block {
-  constructor(props: ChatPanelProps) {
+export class ChatMessage extends Block {
+  constructor(props: ChatMessageProps) {
     super({...props,
 		events: {
 			click: () => {
-				this.props.onClick(this.props.id)
+				
 			}
 		}});
   }
 
   render() {
     return this.compile(template, {
-      label: this.props.label, styles, img: this.props.img, title: this.props.title, text: this.props.text, time: this.props.time, newMessage: this.props.newMessage,
+      ...this.props, styles,
     });
   }
 }

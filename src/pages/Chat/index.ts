@@ -10,6 +10,7 @@ import Block from '../../utils/Block';
 import store, { withStore } from '../../utils/Store';
 import template from './chat.pug';
 import * as styles from './chat.scss';
+import { messageController } from './../../controllers/';
 
 interface ChatProps {
   title: string,
@@ -31,31 +32,48 @@ export class ChatBase extends Block {
 
 
 
-    let chatsListBlocks:any[] = []
-		let storeData = store.getState()
-		if (Object.keys(storeData.chat.list.chats).length !== 0) {
-			if (typeof storeData.chat.list.chats !== 'undefined') {
-				storeData.chat.list.chats.forEach((data: any) => {
-          let chatID = data.id
-					let chatsList = new ChatPanel({
-						label: '',
-						img: `https://ya-praktikum.tech/api/v2/resources${data.avatar}`,
-						title: `${data.title}`,
-						text: '',
-						time: '',
-						newMessage: '',
-						classes: 'left-panel__chat',
+    let chatsListBlocks: any[] = []
+    let storeData = store.getState()
+    if (Object.keys(storeData.chat.list.chats).length !== 0) {
+      if (typeof storeData.chat.list.chats !== 'undefined') {
+        storeData.chat.list.chats.forEach((data: any) => {
+          let chatsList = new ChatPanel({
+            label: '',
+            img: `https://ya-praktikum.tech/api/v2/resources${data.avatar}`,
+            title: `${data.title}`,
+            text: '',
+            time: '',
+            newMessage: '',
+            classes: 'left-panel__chat',
             onClick: (chatID) => {
-                console.log('Чат', chatID)
-                store.set('chat.chatId', chatID || null);
+              console.log('Чат', chatID)
+              ChatController.requestMessageToken(chatID)
+              store.set('chat.chatId', chatID || null);
+              setTimeout(() => {
+                // Подключится к чату
+                const data = store.getState().chat.chatId
+                console.log(data)
+                const tokenID = store.getState().chat.chatToken.token
+                const userID = store.getState().user.id
+                messageController.connect({
+                  userId: userID,
+                  chatId: data,
+                  token: tokenID
+                })
+                console.log({
+                  userId: userID,
+                  chatId: data,
+                  token: tokenID
+                })
+              }, 300)
             },
             id: data.id
-					});
-					chatsListBlocks.push(chatsList);
-				});
-			}
-		}
-		this.children.chatsListBlock = chatsListBlocks;
+          });
+          chatsListBlocks.push(chatsList);
+        });
+      }
+    }
+    this.children.chatsListBlock = chatsListBlocks;
 
     // console.log(this.props)
     // console.log(store.getState().chat.chatId)
@@ -110,6 +128,25 @@ export class ChatBase extends Block {
           //   login: 'ATMR'
           // }
           // UserController.searchProfile(data)
+
+          // Подключится к чату
+          // const data = store.getState().chat.chatId
+          // console.log(data)
+          // const tokenID = store.getState().chat.chatToken.token
+          // const userID = store.getState().user.id
+          // messageController.connect({
+          //   userId: userID,
+          //   chatId: data,
+          //   token: tokenID
+          // })
+          // console.log({
+          //   userId: userID,
+          //   chatId: data,
+          //   token: tokenID
+          // })
+
+          // Отключиться от чата
+          messageController.leave()
 
         }
       }

@@ -5,6 +5,8 @@ import ButtonWithImage from '../ButtonWithImage';
 import { Input } from '../Input';
 import template from './chatActive.pug';
 import * as styles from './chatActive.scss';
+import {messageController} from './../../controllers/';
+import { ChatMessages } from '../../components/ChatMessages';
 
 interface ChatActiveProps {
   label: string,
@@ -64,12 +66,19 @@ export class ChatActive extends Block {
 			events: {
 				click:() => {
 					let message = this.children.message.getValue()
-					console.log(message)
+					console.log(message, typeof message)
 					// this.children.message.setProps({ valueInput: '' });
+					messageController.sendMessage(message);
 				}
 			}
 		})
 		this.children.btn = btn
+
+		const chatMessages = new ChatMessages({
+			label: '',
+			classes: 'right-panel__messages',
+		})
+		this.children.ChatMessages = chatMessages
 	}
 
   render() {
