@@ -30,6 +30,10 @@ export class InputField extends Block {
     };
   }
 
+	public getValueIn() {
+		return (this.element as HTMLInputElement).value
+	}
+
   render() {
     return this.compile(template, {
       idInput: this.props.idInput,

@@ -109,7 +109,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 		try {
 			await AuthController.fetchUser();
-			await ChatController.request();
+			// await ChatController.request();
 			// console.log('try')
 			setTimeout(()=>{router.start();},400)
 			// router.start();

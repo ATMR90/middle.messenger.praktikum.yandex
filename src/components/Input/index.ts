@@ -79,6 +79,10 @@ export class Input extends Block {
     return isValid;
   }
 
+	public getValue() {
+		return this.children.inputField.getValueIn()
+	}
+
   render() {
     return this.compile(template, {
       label: this.props.label,
