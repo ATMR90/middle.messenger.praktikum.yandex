@@ -78,7 +78,7 @@ export class ChatBase extends Block {
     // console.log(this.props)
     // console.log(store.getState().chat.chatId)
     const chatBtn = new Button({
-      label: 'Создать чат',
+      label: 'Выйти из чата',
       classes: 'ya-btn ya-btn_main ya-form__btn',
       events: {
         click: () => {
