@@ -33,7 +33,7 @@ export class ChatAPI extends BaseAPI {
   }
 
   public removeChat(data: any) {
-    console.log('API', data)
+    // console.log('API', data)
     return this.http.delete('/', {
       headers: {
         'accept': 'application/json',

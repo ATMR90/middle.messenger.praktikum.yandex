@@ -105,10 +105,10 @@ export class ProfileChangePasswordBase extends Block {
               "oldPassword": logOldPassword,
               "newPassword": logNewPassword,
             } as UserAPIUpdatePassword;
-            console.log('prof-change-log', data)
+            // console.log('prof-change-log', data)
             UserController.updatePassword(data)
             setTimeout(() => {
-              console.log('timeout')
+              // console.log('timeout')
               router.go('/settings')
             }, 200)
             // router.go('/settings')

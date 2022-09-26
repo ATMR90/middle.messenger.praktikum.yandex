@@ -29,7 +29,7 @@ export class ProfileBase extends Block {
   }
 
   init() {
-		console.log('init',this.props)
+		// console.log('init',this.props)
 		AuthController.fetchUser();
 		// let data = store.getState().user as User;
 		// console.log(this.props.email)
@@ -49,16 +49,16 @@ export class ProfileBase extends Block {
               if (avatarInput !== null) {
                 const { files }: { files: FileList | null } = (avatarInput as HTMLInputElement)
                 const [file] = files;
-                console.log(file)
+                // console.log(file)
                 const formData = new FormData();
                 formData.append('avatar', file);
-                console.log(formData, formData.get('Avatar'))
+                // console.log(formData, formData.get('Avatar'))
                 UserController.updateAvatar(formData);
 
               }
 
               // UserController.updateAvatar()
-              console.log('button!!!');
+              // console.log('button!!!');
             }
 					});
 

@@ -11,6 +11,7 @@ import store, { withStore } from '../../utils/Store';
 import template from './chat.pug';
 import * as styles from './chat.scss';
 import { messageController } from './../../controllers/';
+import { Modal } from '../../components/Modal';
 
 interface ChatProps {
 	title: string,
@@ -37,7 +38,7 @@ export class ChatBase extends Block {
 		// console.log(this.props)
 		// console.log(store.getState().chat.chatId)
 		const chatBtn = new Button({
-			label: 'Выйти из чата',
+			label: 'Создать чат',
 			classes: 'ya-btn ya-btn_main ya-form__btn',
 			events: {
 				click: () => {
@@ -105,8 +106,10 @@ export class ChatBase extends Block {
 					// })
 
 					// Отключиться от чата
-					messageController.leave()
+					// messageController.leave()
 
+
+					this.children.modal.show()
 				}
 			}
 		});
@@ -127,17 +130,17 @@ export class ChatBase extends Block {
 								const { files }: { files: FileList | null } = (avatarInput as HTMLInputElement)
 								const [file] = files;
 								const chatID = Number(this.props.chatId);
-								console.log(file)
+								// console.log(file)
 								const formData = new FormData();
 								formData.append('chatId', chatID);
 								formData.append('avatar', file);
-								console.log(formData, formData.get('avatar'), typeof formData.get('chatId'))
+								// console.log(formData, formData.get('avatar'), typeof formData.get('chatId'))
 								ChatController.updateChatAvatar(formData);
 								// работает! Загрузка аватара чата
 							}
 
 							// UserController.updateAvatar()
-							console.log('button чат');
+							// console.log('button чат');
 						}
 					});
 
@@ -146,7 +149,27 @@ export class ChatBase extends Block {
 				}
 			}
 		});
-		this.children.chatBtn = [chatBtn, chatBtnTwo];
+		const chatBtnThree = new Button({
+			label: 'Удалить чат',
+			classes: 'ya-btn ya-btn_red ya-form__btn',
+			events: {
+				click: () => {
+					
+					if (store.getState().chat) {
+						console.log(store.getState().chat.list.chats)
+						nameActivChat = store.getState().chat.list.chats.filter((item) => {
+							console.log(item.id, item.id == store.getState().chat.chatId)
+							return item.id == store.getState().chat.chatId
+						})[0]
+						console.log(nameActivChat.title)
+						this.children.modalDel.setProps({subTitle: `Удалить чат: "${nameActivChat.title}"`})
+						console.log(this.children.modalDel)
+					}
+					this.children.modalDel.show()
+				}
+			}
+		});
+		this.children.chatBtn = [chatBtn, chatBtnTwo, chatBtnThree];
 		const profLink = new Link({
 			label: 'Профиль',
 			// classes: 'ya-btn ya-form__btn',
@@ -258,9 +281,9 @@ export class ChatBase extends Block {
 			}),
 		]
 		// this.children.chatsListBlock = chatsListBlocks;
-		console.log('chat', store.getState())
-		console.log('chat', store.getState().user)
-		console.log('chat', store.getState().chat)
+		// console.log('chat', store.getState())
+		// console.log('chat', store.getState().user)
+		// console.log('chat', store.getState().chat)
 		const chatActive = new ChatActive({
 			label: '',
 			classes: 'ya-chat__right-panel',
@@ -269,19 +292,19 @@ export class ChatBase extends Block {
 		this.children.chatActive = chatActive
 
 
-		console.log('CDU', store.getState())
+		// console.log('CDU', store.getState())
 		let chatsListBlocksRen: any[] = []
 		let storeData = store.getState()
-		console.log('CDU_1', storeData)
+		// console.log('CDU_1', storeData)
 		if (storeData.chat) {
 			if (storeData.chat.list.chats) {
 
-				console.log('CDU_2', store.getState())
-				console.log('CDU_2_2', storeData.chat.list.chats)
+				// console.log('CDU_2', store.getState())
+				// console.log('CDU_2_2', storeData.chat.list.chats)
 				if (Object.keys(storeData.chat.list.chats).length !== 0) {
 					if (typeof storeData.chat.list.chats !== 'undefined') {
 						storeData.chat.list.chats.forEach((data: any) => {
-							console.log('CDU_3', data)
+							// console.log('CDU_3', data)
 							let chatsList = new ChatPanel({
 								label: '',
 								img: `https://ya-praktikum.tech/api/v2/resources${data.avatar}`,
@@ -291,13 +314,14 @@ export class ChatBase extends Block {
 								newMessage: '',
 								classes: 'left-panel__chat',
 								onClick: (chatID) => {
-									console.log('Чат', chatID)
+									messageController.leave()
+									// console.log('Чат', chatID)
 									ChatController.requestMessageToken(chatID)
 									store.set('chat.chatId', chatID || null);
 									setTimeout(() => {
 										// Подключится к чату
 										const data = store.getState().chat.chatId
-										console.log(data)
+										// console.log(data)
 										const tokenID = store.getState().chat.chatToken.token
 										const userID = store.getState().user.id
 										messageController.connect({
@@ -305,11 +329,11 @@ export class ChatBase extends Block {
 											chatId: data,
 											token: tokenID
 										})
-										console.log({
-											userId: userID,
-											chatId: data,
-											token: tokenID
-										})
+										// console.log({
+										// 	userId: userID,
+										// 	chatId: data,
+										// 	token: tokenID
+										// })
 									}, 300)
 								},
 								id: data.id
@@ -321,7 +345,7 @@ export class ChatBase extends Block {
 			}
 		}
 		this.children.chatsListBlock = chatsListBlocksRen || chatsListBlocksSkel;
-		console.log('дети', this.children.chatsListBlock)
+		// console.log('дети', this.children.chatsListBlock)
 
 
 
@@ -334,10 +358,10 @@ export class ChatBase extends Block {
 						return true
 					}
 					return false
-				})[0]
+				})[0] as any
 
 				// const chatActive = {title: 'dfd'}
-				console.log('CDU-active', this.children.chatActive);
+				// console.log('CDU-active', this.children.chatActive);
 				(this.children.chatActive as Block).setProps({ title: chatActive.title });
 				(this.children.chatActive as Block).setProps({ img: `https://ya-praktikum.tech/api/v2/resources${chatActive.avatar}` });
 
@@ -350,27 +374,133 @@ export class ChatBase extends Block {
 
 
 
+		const modal = new Modal({
+			label: '',
+			subTitle: 'Добавить чат',
+			classes: '',
+			fields: 
+			new Input({
+        label: 'Название чата',
+        idInput: 'chatName',
+        type: 'text',
+        classes: 'ya-field ya-modal__field',
+        inputClasses: 'ya-field__input',
+
+      }),
+			footer:[
+			new Button({
+				label: 'Создать чат',
+				events: {
+					click: () => {
+
+						// console.log(this.children.modal.children.fields.props.idInput)
+						const valid = this.children.modal.children.fields.onValidate();
+						// const valid = true
+						const chatName = document.querySelector(`#${this.children.modal.children.fields.props.idInput}`)!.value;
+						if (valid) {
+	
+	
+						// Создание чата
+						const chatNew = {
+							"title": chatName
+						}
+						console.log('создание чата', chatNew)
+						// ChatController.create(chatNew)
+						this.children.modal.hide()
+						}
+					},
+				},
+				classes: 'ya-btn ya-btn_main ya-form__btn',
+			}),
+			new Button({
+				label: 'Отмена',
+				events: {
+					click: () => {
+						this.children.modal.hide()
+						// console.log(this.children.modal)
+					}
+				},
+				classes: 'ya-btn ya-form__btn',
+			})
+		]
 
 
+		})
+		// console.log('modal',modal)
+		this.children.modal = modal
+		let nameActivChat = ''
+		if (store.getState().chat) {
+			console.log(store.getState().chat.list.chats)
+			nameActivChat = store.getState().chat.list.chats.filter((item) => {
+				console.log(item.id, item.id == store.getState().chat.chatId)
+				return item.id == store.getState().chat.chatId
+			})[0]
+			console.log(nameActivChat.title)
+		}
+
+		const modalDel = new Modal({
+			label: '',
+			subTitle: `Удалить чат:${nameActivChat.title}`,
+			classes: '',
+			footer:[
+			new Button({
+				label: 'Удалить чат',
+				events: {
+					click: () => {
+
+						// console.log(this.children.modal.children.fields.props.idInput)
+						// const valid = this.children.modalDel.children.fields.onValidate();
+						const valid = true
+						// const chatName = document.querySelector(`#${this.children.modalDel.children.fields.props.idInput}`)!.value;
+						if (valid) {
+	
+	
+					// Удаление чата
+					const data = {
+						chatId: store.getState().chat.chatId
+					}
+					console.log('chat', data)
+					// ChatController.removeChat(data)
+
+						this.children.modalDel.hide()
+						}
+					},
+				},
+				classes: 'ya-btn ya-btn_red ya-form__btn',
+			}),
+			new Button({
+				label: 'Отмена',
+				events: {
+					click: () => {
+						this.children.modalDel.hide()
+						// console.log(this.children.modal)
+					}
+				},
+				classes: 'ya-btn ya-form__btn',
+			})
+		]
 
 
+		})
+		// console.log('modal',modal)
+		this.children.modalDel = modalDel
 
 
 	}
 
 	protected componentDidUpdate(): boolean {
-		console.log('CDU', store.getState())
+		// console.log('CDU', store.getState())
 		let chatsListBlocks: any[] = []
 		let storeData = store.getState()
-		console.log('CDU_1', storeData.chat.list.chats)
+		// console.log('CDU_1', storeData.chat.list.chats)
 		if (storeData.chat.list.chats) {
 
-			console.log('CDU_2', store.getState())
-			console.log('CDU_2_2', storeData.chat.list.chats)
+			// console.log('CDU_2', store.getState())
+			// console.log('CDU_2_2', storeData.chat.list.chats)
 			if (Object.keys(storeData.chat.list.chats).length !== 0) {
 				if (typeof storeData.chat.list.chats !== 'undefined') {
 					storeData.chat.list.chats.forEach((data: any) => {
-						console.log('CDU_3', data)
+						// console.log('CDU_3', data)
 						let chatsList = new ChatPanel({
 							label: '',
 							img: `https://ya-praktikum.tech/api/v2/resources${data.avatar}`,
@@ -380,13 +510,13 @@ export class ChatBase extends Block {
 							newMessage: '',
 							classes: 'left-panel__chat',
 							onClick: (chatID) => {
-								console.log('Чат', chatID)
+								// console.log('Чат', chatID)
 								ChatController.requestMessageToken(chatID)
 								store.set('chat.chatId', chatID || null);
 								setTimeout(() => {
 									// Подключится к чату
 									const data = store.getState().chat.chatId
-									console.log(data)
+									// console.log(data)
 									const tokenID = store.getState().chat.chatToken.token
 									const userID = store.getState().user.id
 									messageController.connect({
@@ -394,11 +524,11 @@ export class ChatBase extends Block {
 										chatId: data,
 										token: tokenID
 									})
-									console.log({
-										userId: userID,
-										chatId: data,
-										token: tokenID
-									})
+									// console.log({
+									// 	userId: userID,
+									// 	chatId: data,
+									// 	token: tokenID
+									// })
 								}, 300)
 							},
 							id: data.id
@@ -409,7 +539,7 @@ export class ChatBase extends Block {
 			}
 		}
 		this.children.chatsListBlock = chatsListBlocks;
-		console.log('дети', this.children.chatsListBlock)
+		// console.log('дети', this.children.chatsListBlock)
 		// 	// this.dispatchComponentDidMount()
 
 
@@ -421,10 +551,10 @@ export class ChatBase extends Block {
 						return true
 					}
 					return false
-				})[0]
+				})[0] as any
 
 				// const chatActive = {title: 'dfd'}
-				console.log('CDU-active', this.children.chatActive);
+				// console.log('CDU-active', this.children.chatActive);
 				(this.children.chatActive as Block).setProps({ title: chatActive.title });
 				(this.children.chatActive as Block).setProps({ img: `https://ya-praktikum.tech/api/v2/resources${chatActive.avatar}` });
 
@@ -450,9 +580,9 @@ export class ChatBase extends Block {
 	}
 
 	render() {
-		console.log('render', store.getState())
-		console.log('render', store.getState().user)
-		console.log('render', store.getState().hat)
+		// console.log('render', store.getState())
+		// console.log('render', store.getState().user)
+		// console.log('render', store.getState().hat)
 		return this.compile(template, { ...this.props, styles });
 	}
 }

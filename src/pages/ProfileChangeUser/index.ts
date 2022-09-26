@@ -42,16 +42,16 @@ export class ProfileChangeUserBase extends Block {
               if (avatarInput !== null) {
                 const { files }: { files: FileList | null } = (avatarInput as HTMLInputElement)
                 const [file] = files;
-                console.log(file)
+                // console.log(file)
                 const formData = new FormData();
                 formData.append('avatar', file);
-                console.log(formData, formData.get('Avatar'))
+                // console.log(formData, formData.get('Avatar'))
                 UserController.updateAvatar(formData);
 
               }
 
               // UserController.updateAvatar()
-              console.log('button');
+              // console.log('button');
             }
           });
 
@@ -165,10 +165,10 @@ export class ProfileChangeUserBase extends Block {
               "display_name": logDisplayName,
               "phone": logPhone,
             } as UserAPIUpdateProfile;
-            console.log('prof-change-log', data)
+            // console.log('prof-change-log', data)
             UserController.updateProfile(data)
             setTimeout(() => {
-              console.log('timeout')
+              // console.log('timeout')
               router.go('/settings')
             }, 200)
             // router.go('/settings')

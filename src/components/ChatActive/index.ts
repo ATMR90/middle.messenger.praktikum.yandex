@@ -7,6 +7,7 @@ import template from './chatActive.pug';
 import * as styles from './chatActive.scss';
 import {messageController} from './../../controllers/';
 import { ChatMessages } from '../../components/ChatMessages';
+import { PopUp } from '../PopUp';
 
 interface ChatActiveProps {
   label: string,
@@ -32,12 +33,12 @@ export class ChatActive extends Block {
   }
 
 	init() {
-		console.log('Activ_chat', store.getState())
-		const storeData = store.getState()
-		console.log(storeData)
-		console.log(typeof storeData)
-		console.log(storeData["chat"])
-		console.log(store.getState())
+		// console.log('Activ_chat', store.getState())
+		// const storeData = store.getState()
+		// console.log(storeData)
+		// console.log(typeof storeData)
+		// console.log(storeData["chat"])
+		// console.log(store.getState())
 		// const chatActiveId = 86
 		// const chatActive = storeData.list.chats.filter((elem:any) => {
 		// 	if (elem.id == chatActiveId) {
@@ -72,7 +73,7 @@ export class ChatActive extends Block {
 			events: {
 				click:() => {
 					let message = this.children.message.getValue()
-					console.log(message, typeof message)
+					// console.log(message, typeof message)
 					// this.children.message.setProps({ valueInput: '' });
 					messageController.sendMessage(message);
 				}
@@ -85,11 +86,19 @@ export class ChatActive extends Block {
 			classes: 'right-panel__messages',
 		})
 		this.children.ChatMessages = chatMessages
+
+
+		const popUp = new PopUp({
+			label: ''
+		})
+		this.children.popUp = popUp
 	}
 
 	// protected componentDidUpdate(oldProps?: any, newProps?: any): boolean {
 	// 	return false
 	// }
+
+
 
   render() {
     return this.compile(template, {

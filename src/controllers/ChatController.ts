@@ -26,12 +26,12 @@ export class ChatController {
     return await this.api.request()
       .then((res: any) => {
 				store.set('chat.list.chats', res.response);
-				console.log('req',store.getState().chat)
+				// console.log('req',store.getState().chat)
         if (!store.getState().chat.chatId) {
-					console.log('req2',store.getState().chat)
+					// console.log('req2',store.getState().chat)
 					store.set('chat.chatId', res.response[0]?.id || null);
         }
-				console.log('req3',store.getState().chat.chatId)
+				// console.log('req3',store.getState().chat.chatId)
         return res.response;
       })
       .catch((e) => {

@@ -21,7 +21,7 @@ export class ChangeAvatar extends Block {
   }
 
   init() {
-		console.log(this.props.func)
+		// console.log(this.props.func)
     const inputAvatar = new Input({
       label: 'Выбрать файл на компьютере',
       idInput: 'avatar',
