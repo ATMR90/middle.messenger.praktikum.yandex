@@ -22,16 +22,20 @@ export class ChatController {
       .catch(e => {console.log(e)});
   }
 
-  public request() {
-    return this.api.request()
+  public async request() {
+    return await this.api.request()
       .then((res: any) => {
 				store.set('chat.list.chats', res.response);
-        if (!store.getState().chatId) {
+				console.log('req',store.getState().chat)
+        if (!store.getState().chat.chatId) {
+					console.log('req2',store.getState().chat)
 					store.set('chat.chatId', res.response[0]?.id || null);
         }
+				console.log('req3',store.getState().chat.chatId)
         return res.response;
       })
-      .catch(() => {
+      .catch((e) => {
+				console.log('ошиб', e)
         router.go('/');
       });
   }

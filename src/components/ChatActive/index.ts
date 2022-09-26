@@ -32,16 +32,22 @@ export class ChatActive extends Block {
   }
 
 	init() {
-		const storeData = store.getState().chat
-		const chatActiveId = storeData.chatId
-		const chatActive = storeData.list.chats.filter((elem:any) => {
-			if (elem.id == chatActiveId) {
-				return true
-			}
-			return false
-		})[0]
-		this.props.title = chatActive.title
-		this.props.img = `https://ya-praktikum.tech/api/v2/resources${chatActive.avatar}`
+		console.log('Activ_chat', store.getState())
+		const storeData = store.getState()
+		console.log(storeData)
+		console.log(typeof storeData)
+		console.log(storeData["chat"])
+		console.log(store.getState())
+		// const chatActiveId = 86
+		// const chatActive = storeData.list.chats.filter((elem:any) => {
+		// 	if (elem.id == chatActiveId) {
+		// 		return true
+		// 	}
+		// 	return false
+		// })[0]
+		// const chatActive = {title: 'Чат'}
+		// this.props.title = chatActive.title
+		// this.props.img = `https://ya-praktikum.tech/api/v2/resources${chatActive.avatar}`
 
 		// console.log(storeData)
 		// console.log(chatActiveId, title, this.props.title)
@@ -80,6 +86,10 @@ export class ChatActive extends Block {
 		})
 		this.children.ChatMessages = chatMessages
 	}
+
+	// protected componentDidUpdate(oldProps?: any, newProps?: any): boolean {
+	// 	return false
+	// }
 
   render() {
     return this.compile(template, {

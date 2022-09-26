@@ -127,17 +127,21 @@ class Block {
   }
 
   private _render() {
+		console.log('BLOCK', this.children)
     const fragment = this.render();
 
     const newElement = fragment.firstElementChild as HTMLElement;
-
+		console.log('BLOCK_2',newElement)
+		console.log('BLOCK_2_2',this._element)
     if (this._element) {
-      this._removeEvents();
+			this._removeEvents();
       this._element.replaceWith(newElement);
+			console.log('BLOCK_2_3',this._element)
     }
 
     this._element = newElement;
-
+		console.log('BLoCK_3', newElement)
+		console.log('BLoCK_3', this._element)
     this._addEvents();
     this._addClass();
   }
@@ -145,6 +149,7 @@ class Block {
   protected compile(template: (context: any) => string, context: any) {
     const contextAndStubs = { ...context };
 
+		console.log('BLOCK_', this.children)
     Object.entries(this.children).forEach(([name, component]) => {
       if (Array.isArray(component)) {
         component.forEach((val) => {
