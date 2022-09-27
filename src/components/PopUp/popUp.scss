@@ -2,17 +2,12 @@
 	position: fixed;
 	top: 40px;
 	right: 30px;
-	// height: 100%;
 	display: none;
-	// flex-direction: column;
-	// justify-content: center;
-	// align-items: center;
 	font-weight: 500;
 	font-size: 12px;
 	line-height: 14px;
 	background: #fff;
 
-	// .ya-form__container
 	&__container {
 		display: flex;
 		flex-direction: column;
@@ -25,7 +20,6 @@
 		}
 	}
 
-	// .ya-pop-up__item
 	&__item:not(:last-child) {
 		margin-bottom: 15px;
 	}
@@ -35,25 +29,20 @@
 	display: flex;
 	width: 100%;
 
-
-	// .pop-up-item__container
 	&__container {
 		display: flex;
 		width: 100%;
 		align-items: center;
 	}
 
-	// .pop-up-item__text
 	&__text {
 		padding-left: 15px;
 		flex: 1 1 auto;
-		// text-align: left;
 		font-weight: 500;
 		font-size: 12px;
 		line-height: 14px;
 	}
 
-	// .pop-up-item__img
 	&__img {
 		width: 22px;
 		height: 22px;

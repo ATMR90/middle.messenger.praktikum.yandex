@@ -1,12 +1,8 @@
-import { router } from './../index';
-// import API, { AuthAPI, SignInData, SignUpData } from '../api/AuthAPI';
-import store from '../utils/Store';
 import API, { UserAPI, UserAPISearch, UserAPIUpdatePassword, UserAPIUpdateProfile } from '../api/UserAPI';
 import AuthController from './AuthController';
 
 export class UserController {
   private readonly api: UserAPI;
-
   constructor() {
     this.api = API;
   }

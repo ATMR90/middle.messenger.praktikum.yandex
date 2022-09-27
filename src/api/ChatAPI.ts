@@ -33,7 +33,6 @@ export class ChatAPI extends BaseAPI {
   }
 
   public removeChat(data: any) {
-    // console.log('API', data)
     return this.http.delete('/', {
       headers: {
         'accept': 'application/json',
@@ -76,7 +75,6 @@ export class ChatAPI extends BaseAPI {
   public updateChatAvatar(data: FormData) {
     return this.http.put('/avatar', {headers: {
       'accept': 'application/json',
-      // 'Content-Type': 'multipart/form-data',
     },data: data});
   }
 

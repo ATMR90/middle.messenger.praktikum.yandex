@@ -11,7 +11,6 @@ interface ChangeAvatarProps {
     click: () => void
   },
   classes?: string,
-  url?: string,
 	func?: any,
 }
 
@@ -21,7 +20,6 @@ export class ChangeAvatar extends Block {
   }
 
   init() {
-		// console.log(this.props.func)
     const inputAvatar = new Input({
       label: 'Выбрать файл на компьютере',
       idInput: 'avatar',
@@ -41,6 +39,6 @@ export class ChangeAvatar extends Block {
   }
 
   render() {
-    return this.compile(template, { label: this.props.label, styles, url: this.props.url || '#' });
+    return this.compile(template, { ...this.props, styles });
   }
 }

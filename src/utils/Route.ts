@@ -1,19 +1,16 @@
 import Block from "./Block";
 
 function isEqual(lhs: string, rhs: string) {
-  // console.log('isEqual', lhs,rhs, lhs === rhs)
   return lhs === rhs;
 }
 
 function render(query: string, block: Block) {
   const root = document.querySelector(query);
   if (root) {
-    // console.log('root', root, query, block)
 		root.innerHTML = ''
     root.append(block.getContent()!);
     return root;
   }
-  // console.log('false', root, query, block)
   return false;
 }
 
@@ -48,13 +45,9 @@ class Route {
   render() {
     if (!this._block) {
       this._block = new this._blockClass();
-      // console.log('render',this._block, this._props.rootQuery)
       render(this._props.rootQuery, this._block);
       return;
     }
-
-		//зачем?
-    // this._block.show();
   }
 }
 

@@ -1,5 +1,4 @@
 import Block from '../../utils/Block';
-import store from '../../utils/Store';
 import template from './chatPanel.pug';
 import * as styles from './chatPanel.scss';
 

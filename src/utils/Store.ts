@@ -7,13 +7,6 @@ export enum StoreEvents {
   Updated = 'updated'
 }
 
-// export interface State {
-// 	user: {
-
-// 	},
-// 	chats: {}[]
-// }
-
 export class Store extends EventBus {
   private state: any = {};
 
@@ -35,7 +28,6 @@ export function withStore(mapStateToProps: (state: any) => any) {
   return function wrap(Component: typeof Block){
     let previousState: any;
 
-
     return class WithStore extends Component {
 
       constructor(props: any) {
@@ -47,12 +39,10 @@ export function withStore(mapStateToProps: (state: any) => any) {
           const stateProps = mapStateToProps(store.getState());
 
 					if (isEqual(previousState, stateProps)) {
-						// console.log('isEqual', stateProps)
 						return;
 					}
 					
           previousState = stateProps;
-					// console.log('not isEqual', stateProps)
 
           this.setProps({ ...stateProps });
         });

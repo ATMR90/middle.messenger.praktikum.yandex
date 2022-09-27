@@ -1,5 +1,4 @@
 import Block from '../../utils/Block';
-import store from '../../utils/Store';
 import template from './chatMessage.pug';
 import * as styles from './chatMessage.scss';
 
@@ -24,9 +23,7 @@ export class ChatMessage extends Block {
   constructor(props: ChatMessageProps) {
     super({...props,
 		events: {
-			click: () => {
-				
-			}
+			click: () => {}
 		}});
   }
 

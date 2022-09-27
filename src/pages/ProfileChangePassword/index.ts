@@ -32,9 +32,7 @@ export class ProfileChangePasswordBase extends Block {
       events: {
         click: () => {
           const root = document.querySelector('#app')!;
-
           const changeAvatar = new ChangeAvatar({ label: 'Загрузите файл', classes: 'ya-form' });
-
           root.innerHTML = '';
           root.append(changeAvatar.getContent()!);
         },
@@ -43,7 +41,6 @@ export class ProfileChangePasswordBase extends Block {
       src: `https://ya-praktikum.tech/api/v2/resources${this.props.avatar}`,
     });
     this.children.avatar = avatar;
-
     const fields = [
       new InfoField({
         label: 'Поле',
@@ -83,40 +80,30 @@ export class ProfileChangePasswordBase extends Block {
       }),
     ];
     this.children.fields = fields;
-
     this.children.footer = new Button({
       label: 'Сохранить',
       events: {
         click: () => {
-          // console.log(this.children.fields[0].children)
           const valid = this.children.fields.reduce((acc, val) => {
-            // console.log(val.children.fieldValue)
             const result = val.children.fieldValue.onValidate();
             return acc && result;
           }, true);
           const logOldPassword = document.querySelector(`#${this.children.fields[0].children.fieldValue.props.idInput}`)!.value;
           const logNewPassword = document.querySelector(`#${this.children.fields[1].children.fieldValue.props.idInput}`)!.value;
           const logPasswordYet = document.querySelector(`#${this.children.fields[2].children.fieldValue.props.idInput}`)!.value;
-          // const logSecondName = document.querySelector(`#${this.children.fields[3].children.fieldValue.props.idInput}`)!.value;
-          // const logDisplayName = document.querySelector(`#${this.children.fields[4].children.fieldValue.props.idInput}`)!.value;
-          // const logPhone = document.querySelector(`#${this.children.fields[5].children.fieldValue.props.idInput}`)!.value;
           if (valid) {
             const data = {
               "oldPassword": logOldPassword,
               "newPassword": logNewPassword,
             } as UserAPIUpdatePassword;
-            // console.log('prof-change-log', data)
             UserController.updatePassword(data)
             setTimeout(() => {
-              // console.log('timeout')
               router.go('/settings')
             }, 200)
-            // router.go('/settings')
           }
         },
       },
       classes: 'ya-btn ya-btn_main user-info__field_btn',
-      url: '/profile',
     });
   }
 

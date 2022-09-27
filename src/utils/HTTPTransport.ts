@@ -41,7 +41,6 @@ export class HTTPTransport {
 
   public post = (url: string, options = {}): Promise<XMLHttpRequest> => {
     url = this.endpoint + url;
-		// console.log('post-opt',options)
     return this.request(url, { ...options, method: Methods.POST })
   };
 
@@ -73,24 +72,9 @@ export class HTTPTransport {
 
       xhr.open(method, url);
 
-			// console.log('headers', headers)
       Object.keys(headers).forEach((key) => {
-				// console.log('headers-key',headers, key)
         xhr.setRequestHeader(key, headers[key]);
       });
-
-			// если убрать, то нужно в контроллере менять поведение на user = response.response
-			// функция из примера
-			// xhr.onreadystatechange = (e) => {
-
-      //   if (xhr.readyState === XMLHttpRequest.DONE) {
-      //     if (xhr.status < 400) {
-      //       resolve(xhr.response);
-      //     } else {
-      //       reject(xhr.response);
-      //     }
-      //   }
-      // };
 
       xhr.onload = function () {
         resolve(xhr);
@@ -102,24 +86,13 @@ export class HTTPTransport {
       xhr.timeout = timeout;
       xhr.ontimeout = reject;
 
-			// без нее нельзя!!!
-			// xhr.setRequestHeader('Content-Type', 'application/json');
-			// xhr.setRequestHeader('Content-Type', 'multipart/form-data');
-			// xhr.setRequestHeader('accept', 'application/json');
-
       xhr.withCredentials = true;
       xhr.responseType = 'json';
 			
-			// console.log('HTTP-opt-data',options, data)
-			// console.log('HTTP',JSON.stringify(data))
       if (!data) {
         xhr.send();
-				// console.log('if')
       } else {
-				// console.log('else')
-				// console.log('HTTP', data.get('avatar'))
         xhr.send(data as any);
-        // xhr.send(data as any);
       }
     });
   };

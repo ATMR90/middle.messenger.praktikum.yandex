@@ -25,32 +25,16 @@ export class ChatMessagesBase extends Block {
 		super({
 			...props,
 			events: {
-				click: () => {
-
-				}
+				click: () => {}
 			}
 		});
 	}
 
 	init(): void {
 		let storeData = store.getState()
-		// console.log('MESs-props', this.props)
-		// console.log('mes', store.getState())
-		// if (this.props.messages) {
-		// console.log('this-mes', this.props.messages)
-		// console.log('this-mes', storeData.messages)
-
-
-
 		if (storeData.messages) {
-			// console.log('this-mes', this.props.messages)
-			// console.log('CDU-STORE', storeData.messages)
-
-
 			let mes: any[] = []
-
 			if (storeData.messages.messages) {
-				// console.log('MESS', storeData.messages.messages)
 				if (Object.keys(storeData.messages.messages).length !== 0) {
 					if (typeof storeData.messages.messages !== 'undefined') {
 						storeData.messages.messages.forEach((data: any) => {
@@ -62,23 +46,15 @@ export class ChatMessagesBase extends Block {
 								id: data.id
 							});
 							mes.push(MesList);
-							// console.log(MesList)
 						});
 					}
 				}
 			}
-			// console.log('this-mes', mes)
 			this.children.mes = mes;
-
 		} else {
-
-
 			if (this.props.messages) {
-
 				let mes: any[] = []
-
 				if (this.props.messages) {
-					// console.log('MESS-PROPS', this.props.messages)
 					if (Object.keys(this.props.messages).length !== 0) {
 						if (typeof this.props.messages !== 'undefined') {
 							this.props.messages.forEach((data: any) => {
@@ -90,54 +66,20 @@ export class ChatMessagesBase extends Block {
 									id: data.id
 								});
 								mes.push(MesList);
-								// console.log(MesList)
 							});
 						}
 					}
 				}
-				// console.log('this-mes', mes)
 				this.children.mes = mes;
-
 			}
-
-
 		}
-
-
-
-
-
-
-
-		// const mes = [
-		// 	new ChatMessage({
-		// 		label:'',
-		// 		classes: 'messages-chat__his-message'
-		// 	})
-		// ]
-
-		// this.children.mes = mes
-		// }
-		// const mes = [
-		// 	new ChatMessage({
-		// 	label: '',
-		// 	classes: 'messages-chat__his-message'
-		// 	}),
-		// ]
-		// this.children.mes = mes
 	}
 
 	componentDidUpdate() {
-		// this.dispatchComponentDidMount()
-		// console.log('CDU_mes-STORE', store.getState())
-		// console.log('CDU_mes-PROPS', this.props.messages)
 		let storeData = store.getState()
 		if (this.props.messages) {
-
 			let mes: any[] = []
-
 			if (this.props.messages) {
-				// console.log('MESS-PROPS', this.props.messages)
 				if (Object.keys(this.props.messages).length !== 0) {
 					if (typeof this.props.messages !== 'undefined') {
 						this.props.messages.forEach((data: any) => {
@@ -149,24 +91,16 @@ export class ChatMessagesBase extends Block {
 								id: data.id
 							});
 							mes.push(MesList);
-							// console.log(MesList)
 						});
 					}
 				}
 			}
-			// console.log('this-mes', mes)
 			this.children.mes = mes;
-
 		}
 		else {
-			// console.log('this-mes', this.props.messages)
-			// console.log('CDU-STORE', storeData.messages)
-
-
 			let mes: any[] = []
 			if (storeData.messages) {
 				if (storeData.messages.messages) {
-					// console.log('MESS-STORE', storeData.messages.messages)
 					if (Object.keys(storeData.messages.messages).length !== 0) {
 						if (typeof storeData.messages.messages !== 'undefined') {
 							storeData.messages.messages.forEach((data: any) => {
@@ -178,53 +112,23 @@ export class ChatMessagesBase extends Block {
 									id: data.id
 								});
 								mes.push(MesList);
-								// console.log(MesList)
 							});
 						}
 					}
 				}
-				// console.log('this-mes', mes)
 				this.children.mes = mes;
-
 			}
 		}
-
-
-
-
-
-
-
-
-
-		// const mes = [
-		// 	new ChatMessage({
-		// 		label:'',
-		// 		classes: 'messages-chat__his-message'
-		// 	})
-		// ]
-
-		// this.children.mes = mes
-		// }
-		// console.log('ПЕРЕД РЕНДОРОМ', this.children.mes)
-		// debugger
-		// this.dispatchComponentDidMount()
 		return true
 	}
 
-
 	componentDidMount() {
-		// console.log('CDMMM', this.props)
-		// console.log('CDMMM', store.getState())
 		let storeData = store.getState()
 		let mes: any[] = []
-
-
 		if (storeData.messages) {
 			if (Object.keys(storeData.messages.messages).length !== 0) {
 				if (typeof storeData.messages.messages !== 'undefined') {
 					storeData.messages.messages.forEach((data: any) => {
-						// console.log(data)
 						let MesList = new ChatMessage({
 							label: '',
 							content: `${data.content}`,
@@ -233,11 +137,9 @@ export class ChatMessagesBase extends Block {
 							id: data.id
 						});
 						mes.push(MesList);
-						// console.log(MesList)
 					});
 				}
 			}
-			// console.log(mes)
 			this.children.mes = mes;
 		}
 	}

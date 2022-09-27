@@ -47,7 +47,6 @@ export class UserAPI extends BaseAPI {
   public updateAvatar(data: FormData) {
     return this.http.put('/profile/avatar', {headers: {
       'accept': 'application/json',
-      // 'Content-Type': 'multipart/form-data',
     },data: data});
   }
 

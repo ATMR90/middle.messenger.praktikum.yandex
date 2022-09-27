@@ -1,4 +1,3 @@
-import { convertKeysToCamelCase } from '../utils/keysConverter';
 import store from '../utils/Store';
 
 export interface IMessageWebSocketConnect {
@@ -10,7 +9,6 @@ export interface IMessageWebSocketConnect {
 export interface IMessageWebSocketGet {
   offset: number
 }
-
 
 class MessageController {
   private _ws: WebSocket;
@@ -43,7 +41,6 @@ class MessageController {
   private _handleOpen() {
     this.getMessages({ offset: 0 });
     this._ping = setInterval(() => {
-			console.log('interval',this._ws)
       this._ws.send(JSON.stringify({
 				type: 'ping',
 			}));
@@ -52,25 +49,19 @@ class MessageController {
 
   private _handleMassage(evt: MessageEvent) {
     const data = JSON.parse(evt.data);
-		console.log ('MessageEvent', data)
     if (Array.isArray(data)) {
       if (!data.length) {
 
         store.set('messages', { messages: [] });
       } else if (data[0].id === 0) {
-        // store.set('messages', { messages: data.map((item) => convertKeysToCamelCase(item)) });
         store.set('messages', { messages: data });
       } else {
 				const messages = [
-					// ...store.getState().messages.messages,
-          // ...data.map((item) => convertKeysToCamelCase(item)),
           ...data,
         ];
-				console.log('Array else', messages)
         store.set('messages',{ messages });
       }
     } else if (typeof data === 'object' && data.type === 'message') {
-      // const messages = [convertKeysToCamelCase(data), ...store.getState().messages.messages];
       const messages = [(data), ...store.getState().messages.messages];
       store.set('messages',{ messages });
     }
@@ -105,7 +96,6 @@ class MessageController {
     this._chatId = options.chatId;
     this._token = options.token;
     this._ws = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${options.userId}/${options.chatId}/${options.token}`);
-    console.log(this._ws)
 		this._addEvents();
   }
 
@@ -123,7 +113,6 @@ class MessageController {
   }
 
   public sendMessage(message: string) {
-		console.log(this._ws)
     this._ws.send(JSON.stringify({
       content: message,
       type: 'message',

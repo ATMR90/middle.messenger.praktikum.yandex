@@ -27,10 +27,6 @@
 		}
 	}
 
-	input[type="file"] {
-		// display: none;
-	}
-
 	input:focus + label {
 		color: $themeColor;
 	}

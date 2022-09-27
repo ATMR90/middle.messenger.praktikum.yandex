@@ -38,7 +38,6 @@ export class AuthAPI extends BaseAPI {
 
 
   signUp(data: SignUpData) {
-		// console.log('API',data)
     return this.http.post('/signup', {headers: {
 			'Content-Type': 'application/json'
 		},data: JSON.stringify(data)});

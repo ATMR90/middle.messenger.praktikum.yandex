@@ -8,7 +8,6 @@ interface ButtonProps {
     click: (e?:any) => void
   },
   classes?: string,
-  url?: string,
   type?: string
 }
 

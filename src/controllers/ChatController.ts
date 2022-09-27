@@ -3,16 +3,12 @@ import API, { ChatAPI, ChatAPIAddUser, ChatAPICreate } from '../api/ChatApi';
 import store from '../utils/Store';
 
 export class ChatController {
-
 	private readonly api: ChatAPI;
-
   constructor() {
     this.api = API;
   }
 
-
   public create(data: ChatAPICreate) {
-
     return this.api.create(data)
       .then((res: any) => {
 				const chat = res.response
@@ -27,16 +23,13 @@ export class ChatController {
     return await this.api.request()
       .then((res: any) => {
 				store.set('chat.list.chats', res.response);
-				// console.log('req',store.getState().chat)
         if (!store.getState().chat.chatId) {
-					// console.log('req2',store.getState().chat)
 					store.set('chat.chatId', res.response[0]?.id || null);
         }
-				// console.log('req3',store.getState().chat.chatId)
         return res.response;
       })
       .catch((e) => {
-				console.log('ошиб', e)
+				console.log('ошибка', e)
         router.go('/');
       });
   }

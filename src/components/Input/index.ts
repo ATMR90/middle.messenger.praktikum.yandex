@@ -53,12 +53,9 @@ export class Input extends Block {
       val = this.children.inputField.props.valueInput;
       valId = this.children.inputField.props.idInput;
     }
-		// console.log(val, valId)
     const validationSettings = ValidationSettings(valId);
     const regIn = new RegExp(validationSettings[1], 'i');
-		// console.log(val, regIn, regIn.test(val))
     let isValid = regIn.test(val);
-		// console.log(isValid, regIn)
 		if (!val) {
 			isValid = false
 		}

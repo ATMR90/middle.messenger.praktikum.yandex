@@ -5,7 +5,6 @@ import * as styles from './signUp.scss';
 import { Input } from '../../components/Input';
 import { SignUpData } from '../../api/AuthAPI';
 import AuthController from '../../controllers/AuthController';
-import { router } from '../..';
 import { Link } from '../../components/Link';
 
 interface SignUpProps {
@@ -124,7 +123,6 @@ export class SignUp extends Block {
       }),
     ];
     this.children.fields = fields;
-
     const buttons = [
       new Button({
         label: 'Зарегистрироваться',
@@ -133,7 +131,6 @@ export class SignUp extends Block {
             event.preventDefault();
             const valid = this.children.fields.reduce((acc, val) => {
               const result = val.onValidate();
-							// console.log(result)
               return acc && result;
             }, true);
             const logEmail = document.querySelector(`#${this.children.fields[0].props.idInput}`)!.value;

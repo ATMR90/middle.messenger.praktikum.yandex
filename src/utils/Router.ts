@@ -25,7 +25,6 @@ class Router {
     const route = new Route(pathname, block, { rootQuery: this._rootQuery });
 
     this.routes.push(route);
-    // console.log('use',route)
     return this;
   }
 
@@ -42,23 +41,19 @@ class Router {
     const route = this.getRoute(pathname);
     if (!route) {
 			this.go('/404')
-      // console.log('!route',pathname, route)
       return;
     }
 
     if (this._currentRoute && this._currentRoute !== route) {
-      // console.log('leave',route)
       this._currentRoute.leave();
     }
 
     this._currentRoute = route;
-    // console.log('up-render',route)
     route.render();
   }
 
   public go(pathname: string) {
     this.history.pushState({}, '', pathname);
-    // console.log('router.go',pathname)
     this._onRoute(pathname);
   }
 
@@ -71,7 +66,6 @@ class Router {
   }
 
   private getRoute(pathname: string) {
-    // console.log('getRoute',pathname, this.routes.find(route => route.match(pathname)))
     return this.routes.find(route => route.match(pathname));
   }
 }

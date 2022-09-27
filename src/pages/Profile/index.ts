@@ -5,11 +5,10 @@ import * as styles from './profile.scss';
 import { InfoField } from '../../components/InfoField';
 import ButtonWithImage from '../../components/ButtonWithImage';
 import { ChangeAvatar } from '../../components/ChangeAvatar';
-import store, { withStore } from '../../utils/Store';
 import AuthController from '../../controllers/AuthController';
-import { User } from '../../api/AuthAPI';
 import { Link } from '../../components/Link';
 import UserController from '../../controllers/UserController';
+import { withStore } from '../../utils/Store';
 
 interface ProfileProps {
   title: string,
@@ -29,39 +28,26 @@ export class ProfileBase extends Block {
   }
 
   init() {
-		// console.log('init',this.props)
 		AuthController.fetchUser();
-		// let data = store.getState().user as User;
-		// console.log(this.props.email)
-		// console.log(this.props.test)
     const avatar = new ButtonWithImage({
       label: '',
       events: {
         click: () => {
           const root = document.querySelector('#app')!;
-
           const changeAvatar = new ChangeAvatar({ 
 						label: 'Загрузите файл@@', 
 						classes: 'ya-form' ,
 						func: () => {
               const avatarInput = document.querySelector("#avatarInput") as HTMLInputElement;
-              // const file = this.children.inputAvatar!.children.inputField
               if (avatarInput !== null) {
                 const { files }: { files: FileList | null } = (avatarInput as HTMLInputElement)
                 const [file] = files;
-                // console.log(file)
                 const formData = new FormData();
                 formData.append('avatar', file);
-                // console.log(formData, formData.get('Avatar'))
                 UserController.updateAvatar(formData);
-
               }
-
-              // UserController.updateAvatar()
-              // console.log('button!!!');
             }
 					});
-
           root.innerHTML = '';
           root.append(changeAvatar.getContent()!);
         },
@@ -70,7 +56,6 @@ export class ProfileBase extends Block {
       src: `https://ya-praktikum.tech/api/v2/resources${this.props.avatar}`,
     });
     this.children.avatar = avatar;
-
 		const profLink = new Link({
 			label: '',
 			classes: 'profile-back__text',
@@ -79,7 +64,6 @@ export class ProfileBase extends Block {
 			alt: 'Стрелка назад',
 		});
 		this.children.profLink = profLink;
-
     const fields = [
       new InfoField({
         label: 'Поле',
@@ -117,10 +101,8 @@ export class ProfileBase extends Block {
         value: this.props.phone,
         classes: 'user-info__field',
       }),
-
     ];
     this.children.fields = fields;
-
     const buttons = [
       new InfoField({
         label: 'Поле',
@@ -148,8 +130,7 @@ export class ProfileBase extends Block {
           label: 'Выйти',
           classes: 'ya-btn user-info__btn user-info__btn_red',
 					events: {
-						click: (e) => {
-							// e.preventDefault();
+						click: () => {
 							AuthController.logout();
 						}
 					}
@@ -162,11 +143,9 @@ export class ProfileBase extends Block {
   }
 
   render() {
-		// console.log('render', this.props.email)
     return this.compile(template, { title: this.props.title || 'Влад!', styles, display_name: this.props.display_name});
   }
 }
-
 
 const withUser = withStore((state) => ({ ...state.user }))
 
