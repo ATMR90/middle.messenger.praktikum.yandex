@@ -4,8 +4,7 @@
 			.header-right-panel__avatar
 				img(src=img)
 			.header-right-panel__name=title
-		.header-right-panel__settings
-			<img src="./../../assets/img/settings_dots.svg" alt="Опции">
+		|	!{dots}
 		|	!{popUp}
 	|	!{ChatMessages}
 	.right-panel__footer.footer-right-panel
@@ -15,3 +14,5 @@
 			|	!{message}
 		.footer-right-panel__enter
 			|	!{btn}
+	| !{modalAdd}
+	| !{modalDel}

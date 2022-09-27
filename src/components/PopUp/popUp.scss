@@ -1,14 +1,16 @@
 .ya-pop-up {
 	position: fixed;
-	right: 0;
-	height: 100%;
+	top: 40px;
+	right: 30px;
+	// height: 100%;
 	display: none;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+	// flex-direction: column;
+	// justify-content: center;
+	// align-items: center;
 	font-weight: 500;
 	font-size: 12px;
 	line-height: 14px;
+	background: #fff;
 
 	// .ya-form__container
 	&__container {
@@ -25,13 +27,14 @@
 
 	// .ya-pop-up__item
 	&__item:not(:last-child) {
-		margin-bottom: rem(15);
+		margin-bottom: 15px;
 	}
 }
 
 .pop-up-item {
 	display: flex;
 	width: 100%;
+
 
 	// .pop-up-item__container
 	&__container {
@@ -44,7 +47,10 @@
 	&__text {
 		padding-left: 15px;
 		flex: 1 1 auto;
-		text-align: left;
+		// text-align: left;
+		font-weight: 500;
+		font-size: 12px;
+		line-height: 14px;
 	}
 
 	// .pop-up-item__img

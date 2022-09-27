@@ -13,7 +13,8 @@ export class UserController {
 
 	async searchProfile(data: UserAPISearch) {
 		try {
-			return await this.api.searchProfile(data);
+			const user = await this.api.searchProfile(data);
+			return user
     } catch (e: any) {
       console.error(e);
     }

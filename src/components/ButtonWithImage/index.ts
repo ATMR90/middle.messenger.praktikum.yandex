@@ -10,7 +10,8 @@ interface ButtonWithImageProps {
   classes?: string,
   url?: string,
   src?: string,
-  alt?: string
+  alt?: string,
+	classDiv?: string,
 }
 
 export default class ButtonWithImage extends Block {
