@@ -35,6 +35,7 @@
     "max-classes-per-file": "off",
     "import/no-extraneous-dependencies": "off",
 		"no-useless-constructor": "off",
-		"@typescript-eslint/no-useless-constructor": "off"
+		"@typescript-eslint/no-useless-constructor": "off",
+		"import/no-named-as-default": 0
   }
 }

@@ -34,7 +34,7 @@ export class AuthController {
   async fetchUser() {
     let response = await this.api.read();
     if (response.status < 400) {
-      response = response.response
+      response = response.response;
     } else {
       throw new Error(`Ошибка: ${response.status}`);
     }

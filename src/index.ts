@@ -14,10 +14,10 @@ import store from './utils/Store';
 enum Routes {
   Index = '/',
   Register = '/sign-up',
-  Profile = '/settings'
+  Profile = '/settings',
 }
 
-export const router = new Router("#app");
+export const router = new Router('#app');
 window.storeWin = store; 
 window.addEventListener('DOMContentLoaded', async () => {
   router
@@ -30,7 +30,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     .use('/password', ProfileChangePassword)
     .use('/500', Error500)
     .use('/404', Error404)
-    .use('*', Error404)
+    .use('*', Error404);
 
 		let isProtectedRoute = true;
 
@@ -43,13 +43,13 @@ window.addEventListener('DOMContentLoaded', async () => {
 
 		try {
 			await AuthController.fetchUser();
-			setTimeout(()=>{router.start();},400)
+			setTimeout(()=>{router.start();}, 400);
 			if (!isProtectedRoute) {
-				setTimeout(()=>{router.go('/settings');},400)
+				setTimeout(()=>{router.go('/settings');}, 400);
 			}
 		} catch (e) {
 			router.start();
-			if(isProtectedRoute){
+			if (isProtectedRoute) {
 				router.go('/');
 			}
 		}

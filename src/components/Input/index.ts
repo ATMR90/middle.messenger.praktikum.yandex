@@ -57,7 +57,7 @@ export class Input extends Block {
     const regIn = new RegExp(validationSettings[1], 'i');
     let isValid = regIn.test(val);
 		if (!val) {
-			isValid = false
+			isValid = false;
 		}
     const inputClasses = this.children.inputField.props.classes;
     const arrClasses = inputClasses.split(' ');
@@ -77,7 +77,7 @@ export class Input extends Block {
   }
 
 	public getValue() {
-		return this.children.inputField.getValueIn()
+		return this.children.inputField.getValueIn();
 	}
 
   render() {

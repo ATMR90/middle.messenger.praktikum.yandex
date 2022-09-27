@@ -36,15 +36,15 @@ export class ProfileChangeUserBase extends Block {
             label: 'Загрузите файл',
             classes: 'ya-form',
             func: () => {
-              const avatarInput = document.querySelector("#avatarInput") as HTMLInputElement;
+              const avatarInput = document.querySelector('#avatarInput') as HTMLInputElement;
               if (avatarInput !== null) {
-                const { files }: { files: FileList | null } = (avatarInput as HTMLInputElement)
+                const { files }: { files: FileList | null } = (avatarInput as HTMLInputElement);
                 const [file] = files;
                 const formData = new FormData();
                 formData.append('avatar', file);
                 UserController.updateAvatar(formData);
               }
-            }
+            },
           });
           root.innerHTML = '';
           root.append(changeAvatar.getContent()!);
@@ -145,17 +145,17 @@ export class ProfileChangeUserBase extends Block {
           const logPhone = document.querySelector(`#${this.children.fields[5].children.fieldValue.props.idInput}`)!.value;
           if (valid) {
             const data = {
-              "first_name": logFirstName,
-              "second_name": logSecondName,
-              "login": logLog,
-              "email": logEmail,
-              "display_name": logDisplayName,
-              "phone": logPhone,
+              'first_name': logFirstName,
+              'second_name': logSecondName,
+              'login': logLog,
+              'email': logEmail,
+              'display_name': logDisplayName,
+              'phone': logPhone,
             } as UserAPIUpdateProfile;
-            UserController.updateProfile(data)
+            UserController.updateProfile(data);
             setTimeout(() => {
-              router.go('/settings')
-            }, 200)
+              router.go('/settings');
+            }, 200);
           }
         },
       },
@@ -168,6 +168,6 @@ export class ProfileChangeUserBase extends Block {
   }
 }
 
-const withUser = withStore((state) => ({ ...state.user }))
+const withUser = withStore((state) => ({ ...state.user }));
 
 export const ProfileChangeUser = withUser(ProfileChangeUserBase);

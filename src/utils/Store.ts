@@ -4,7 +4,7 @@ import Block from './Block';
 import isEqual from './isEqual';
 
 export enum StoreEvents {
-  Updated = 'updated'
+  Updated = 'updated',
 }
 
 export class Store extends EventBus {
@@ -25,7 +25,7 @@ const store = new Store();
 
 export function withStore(mapStateToProps: (state: any) => any) {
 
-  return function wrap(Component: typeof Block){
+  return function wrap(Component: typeof Block) {
     let previousState: any;
 
     return class WithStore extends Component {
@@ -47,9 +47,9 @@ export function withStore(mapStateToProps: (state: any) => any) {
           this.setProps({ ...stateProps });
         });
       }
-    }
+    };
 
-  }
+  };
 
 }
 

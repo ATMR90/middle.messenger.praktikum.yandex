@@ -26,28 +26,28 @@ export class UserAPI extends BaseAPI {
   public searchProfile(data: UserAPISearch) {
     return this.http.post('/search', { 
       headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
       },
       data: JSON.stringify(data),
     });
   }
 
   public updateProfile(data: UserAPIUpdateProfile) {
-    return this.http.put('/profile', {headers: {
-      'Content-Type': 'application/json'
-    },data: JSON.stringify(data)});
+    return this.http.put('/profile', { headers: {
+      'Content-Type': 'application/json',
+    }, data: JSON.stringify(data) });
   }
   
   public updatePassword(data: UserAPIUpdatePassword) {
-    return this.http.put('/password', {headers: {
-      'Content-Type': 'application/json'
-    },data: JSON.stringify(data)});
+    return this.http.put('/password', { headers: {
+      'Content-Type': 'application/json',
+    }, data: JSON.stringify(data) });
   }
   
   public updateAvatar(data: FormData) {
-    return this.http.put('/profile/avatar', {headers: {
+    return this.http.put('/profile/avatar', { headers: {
       'accept': 'application/json',
-    },data: data});
+    }, data: data });
   }
 
   create = undefined;

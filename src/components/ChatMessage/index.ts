@@ -21,10 +21,10 @@ interface ChatMessageProps {
 
 export class ChatMessage extends Block {
   constructor(props: ChatMessageProps) {
-    super({...props,
+    super({ ...props,
 		events: {
-			click: () => {}
-		}});
+			click: () => {},
+		} });
   }
 
   render() {

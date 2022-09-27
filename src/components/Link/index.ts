@@ -1,5 +1,5 @@
-import { PropsWithRouter, withRouter } from "../../hocs/withRouter";
-import Block from "../../utils/Block";
+import { PropsWithRouter, withRouter } from '../../hocs/withRouter';
+import Block from '../../utils/Block';
 import template from './link.pug';
 import * as styles from './link.scss';
 
@@ -19,7 +19,7 @@ class BaseLink extends Block {
     super({
       ...props,
       events: {
-        click: () => this.navigate()
+        click: () => this.navigate(),
       },
     });
   }

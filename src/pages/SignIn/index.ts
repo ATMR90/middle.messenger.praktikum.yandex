@@ -23,7 +23,7 @@ export class SignIn extends Block {
 			{
 					title: 'Вход',
 			},
-			props
+			props,
 		));
   }
 
@@ -71,11 +71,11 @@ export class SignIn extends Block {
             const logPass = document.querySelector(`#${this.children.fields[1].props.idInput}`)!.value;
             if (valid) {
 							const data = {
-								"login": logLog,
-								"password": logPass,
+								'login': logLog,
+								'password': logPass,
 							} as SignInData;
-							AuthController.signin(data)
-              console.log('Signin-log',data);
+							AuthController.signin(data);
+              console.log('Signin-log', data);
             }
           },
         },

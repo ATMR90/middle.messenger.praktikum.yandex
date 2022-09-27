@@ -32,7 +32,7 @@ export class HTTPTransport {
   }
 
   public get = (url: string, options: TRequestOptions = {}): Promise<XMLHttpRequest> => {
-    url = this.endpoint + url
+    url = this.endpoint + url;
     if (!!options.data) {
       url = `${url}${queryStringify(options.data as TRequestData)}`;
     }
@@ -41,17 +41,17 @@ export class HTTPTransport {
 
   public post = (url: string, options = {}): Promise<XMLHttpRequest> => {
     url = this.endpoint + url;
-    return this.request(url, { ...options, method: Methods.POST })
+    return this.request(url, { ...options, method: Methods.POST });
   };
 
   public put = (url: string, options = {}): Promise<XMLHttpRequest> => {
     url = this.endpoint + url;
-    return this.request(url, { ...options, method: Methods.PUT })
+    return this.request(url, { ...options, method: Methods.PUT });
   };
 
   public delete = (url: string, options = {}): Promise<XMLHttpRequest> => { 
     url = this.endpoint + url;
-    return this.request(url, { ...options, method: Methods.DELETE })
+    return this.request(url, { ...options, method: Methods.DELETE });
   };
 
   private request = (url: string, options: TRequestOptions = {}): any => {

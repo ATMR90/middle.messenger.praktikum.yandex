@@ -19,12 +19,12 @@ interface ChatPanelProps {
 
 export class ChatPanel extends Block {
   constructor(props: ChatPanelProps) {
-    super({...props,
+    super({ ...props,
 		events: {
 			click: () => {
-				this.props.onClick(this.props.id)
-			}
-		}});
+				this.props.onClick(this.props.id);
+			},
+		} });
   }
 
   render() {

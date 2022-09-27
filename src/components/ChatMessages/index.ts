@@ -25,15 +25,15 @@ export class ChatMessagesBase extends Block {
 		super({
 			...props,
 			events: {
-				click: () => {}
-			}
+				click: () => {},
+			},
 		});
 	}
 
 	init(): void {
-		let storeData = store.getState()
+		let storeData = store.getState();
 		if (storeData.messages) {
-			let mes: any[] = []
+			let mes: any[] = [];
 			if (storeData.messages.messages) {
 				if (Object.keys(storeData.messages.messages).length !== 0) {
 					if (typeof storeData.messages.messages !== 'undefined') {
@@ -43,7 +43,7 @@ export class ChatMessagesBase extends Block {
 								content: `${data.content}`,
 								data: formatDate(data.time),
 								classes: 'messages-chat__his-message',
-								id: data.id
+								id: data.id,
 							});
 							mes.push(MesList);
 						});
@@ -53,7 +53,7 @@ export class ChatMessagesBase extends Block {
 			this.children.mes = mes;
 		} else {
 			if (this.props.messages) {
-				let mes: any[] = []
+				let mes: any[] = [];
 				if (this.props.messages) {
 					if (Object.keys(this.props.messages).length !== 0) {
 						if (typeof this.props.messages !== 'undefined') {
@@ -63,7 +63,7 @@ export class ChatMessagesBase extends Block {
 									content: `${data.content}`,
 									data: formatDate(data.time),
 									classes: 'messages-chat__his-message',
-									id: data.id
+									id: data.id,
 								});
 								mes.push(MesList);
 							});
@@ -76,9 +76,9 @@ export class ChatMessagesBase extends Block {
 	}
 
 	componentDidUpdate() {
-		let storeData = store.getState()
+		let storeData = store.getState();
 		if (this.props.messages) {
-			let mes: any[] = []
+			let mes: any[] = [];
 			if (this.props.messages) {
 				if (Object.keys(this.props.messages).length !== 0) {
 					if (typeof this.props.messages !== 'undefined') {
@@ -88,7 +88,7 @@ export class ChatMessagesBase extends Block {
 								content: `${data.content}`,
 								data: formatDate(data.time),
 								classes: 'messages-chat__his-message',
-								id: data.id
+								id: data.id,
 							});
 							mes.push(MesList);
 						});
@@ -96,9 +96,8 @@ export class ChatMessagesBase extends Block {
 				}
 			}
 			this.children.mes = mes;
-		}
-		else {
-			let mes: any[] = []
+		} else {
+			let mes: any[] = [];
 			if (storeData.messages) {
 				if (storeData.messages.messages) {
 					if (Object.keys(storeData.messages.messages).length !== 0) {
@@ -109,7 +108,7 @@ export class ChatMessagesBase extends Block {
 									content: `${data.content}`,
 									data: formatDate(data.time),
 									classes: 'messages-chat__his-message',
-									id: data.id
+									id: data.id,
 								});
 								mes.push(MesList);
 							});
@@ -119,12 +118,12 @@ export class ChatMessagesBase extends Block {
 				this.children.mes = mes;
 			}
 		}
-		return true
+		return true;
 	}
 
 	componentDidMount() {
-		let storeData = store.getState()
-		let mes: any[] = []
+		let storeData = store.getState();
+		let mes: any[] = [];
 		if (storeData.messages) {
 			if (Object.keys(storeData.messages.messages).length !== 0) {
 				if (typeof storeData.messages.messages !== 'undefined') {
@@ -134,7 +133,7 @@ export class ChatMessagesBase extends Block {
 							content: `${data.content}`,
 							data: formatDate(data.time),
 							classes: 'messages-chat__his-message',
-							id: data.id
+							id: data.id,
 						});
 						mes.push(MesList);
 					});
@@ -151,6 +150,6 @@ export class ChatMessagesBase extends Block {
 	}
 }
 
-const withUser = withStore((state) => ({ ...state.messages }))
+const withUser = withStore((state) => ({ ...state.messages }));
 
 export const ChatMessages = withUser(ChatMessagesBase);

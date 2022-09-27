@@ -59,11 +59,11 @@ class MessageController {
 				const messages = [
           ...data,
         ];
-        store.set('messages',{ messages });
+        store.set('messages', { messages });
       }
     } else if (typeof data === 'object' && data.type === 'message') {
       const messages = [(data), ...store.getState().messages.messages];
-      store.set('messages',{ messages });
+      store.set('messages', { messages });
     }
   }
 

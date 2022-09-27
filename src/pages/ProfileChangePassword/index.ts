@@ -89,17 +89,15 @@ export class ProfileChangePasswordBase extends Block {
             return acc && result;
           }, true);
           const logOldPassword = document.querySelector(`#${this.children.fields[0].children.fieldValue.props.idInput}`)!.value;
-          const logNewPassword = document.querySelector(`#${this.children.fields[1].children.fieldValue.props.idInput}`)!.value;
-          const logPasswordYet = document.querySelector(`#${this.children.fields[2].children.fieldValue.props.idInput}`)!.value;
-          if (valid) {
+          const logNewPassword = document.querySelector(`#${this.children.fields[1].children.fieldValue.props.idInput}`)!.value;          if (valid) {
             const data = {
-              "oldPassword": logOldPassword,
-              "newPassword": logNewPassword,
+              'oldPassword': logOldPassword,
+              'newPassword': logNewPassword,
             } as UserAPIUpdatePassword;
-            UserController.updatePassword(data)
+            UserController.updatePassword(data);
             setTimeout(() => {
-              router.go('/settings')
-            }, 200)
+              router.go('/settings');
+            }, 200);
           }
         },
       },
@@ -112,6 +110,6 @@ export class ProfileChangePasswordBase extends Block {
   }
 }
 
-const withUser = withStore((state) => ({ ...state.user }))
+const withUser = withStore((state) => ({ ...state.user }));
 
 export const ProfileChangePassword = withUser(ProfileChangePasswordBase);

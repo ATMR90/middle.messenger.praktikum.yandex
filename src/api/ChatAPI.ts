@@ -19,17 +19,17 @@ export class ChatAPI extends BaseAPI {
     { 
       headers: {
       'accept': 'application/json',
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
       },
       data: JSON.stringify(data),
     });
-    return res
+    return res;
   }
 
   public request() {
     const res = this.http.get('/', {
     });
-    return res
+    return res;
   }
 
   public removeChat(data: any) {
@@ -73,9 +73,9 @@ export class ChatAPI extends BaseAPI {
   }
   
   public updateChatAvatar(data: FormData) {
-    return this.http.put('/avatar', {headers: {
+    return this.http.put('/avatar', { headers: {
       'accept': 'application/json',
-    },data: data});
+    }, data: data });
   }
 
   read = undefined;

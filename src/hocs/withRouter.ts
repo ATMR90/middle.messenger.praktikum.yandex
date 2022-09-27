@@ -1,5 +1,5 @@
-import { router } from "..";
-import Block from "../utils/Block";
+import { router } from '..';
+import Block from '../utils/Block';
 
 export function withRouter(Component: typeof Block) {
   type Props = typeof Component extends typeof Block ? any : any;
@@ -8,7 +8,7 @@ export function withRouter(Component: typeof Block) {
     constructor(props: Props & PropsWithRouter) {
       super({ ...props, router: router });
     }
-  }
+  };
 }
 
 export interface PropsWithRouter {

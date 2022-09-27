@@ -1,4 +1,4 @@
-import Block from "../../utils/Block";
+import Block from '../../utils/Block';
 import template from './modal.pug';
 import * as styles from './modal.scss';
 

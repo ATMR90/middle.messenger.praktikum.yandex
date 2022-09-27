@@ -1,5 +1,5 @@
 import { router } from '..';
-import API, { ChatAPI, ChatAPIAddUser, ChatAPICreate } from '../api/ChatApi';
+import API, { ChatAPI, ChatAPIAddUser, ChatAPICreate } from '../api/ChatAPI';
 import store from '../utils/Store';
 
 export class ChatController {
@@ -11,16 +11,16 @@ export class ChatController {
   public create(data: ChatAPICreate) {
     return this.api.create(data)
       .then((res: any) => {
-				const chat = res.response
-				this.request()
+				const chat = res.response;
+				this.request();
 				store.set('chat.chatId', chat.id || null);
         return chat.id;
       })
-      .catch(e => {console.log(e)});
+      .catch(e => {console.log(e);});
   }
 
   public async request() {
-    return await this.api.request()
+    return this.api.request()
       .then((res: any) => {
 				store.set('chat.list.chats', res.response);
         if (!store.getState().chat.chatId) {
@@ -29,7 +29,7 @@ export class ChatController {
         return res.response;
       })
       .catch((e) => {
-				console.log('ошибка', e)
+				console.log('ошибка', e);
         router.go('/');
       });
   }

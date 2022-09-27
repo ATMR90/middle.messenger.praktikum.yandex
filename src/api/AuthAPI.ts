@@ -31,16 +31,16 @@ export class AuthAPI extends BaseAPI {
   }
 
   signIn(data: SignInData) {
-    return this.http.post('/signin', {headers: {
-			'Content-Type': 'application/json'
-		},data: JSON.stringify(data)});
+    return this.http.post('/signin', { headers: {
+			'Content-Type': 'application/json',
+		}, data: JSON.stringify(data) });
   }
 
 
   signUp(data: SignUpData) {
-    return this.http.post('/signup', {headers: {
-			'Content-Type': 'application/json'
-		},data: JSON.stringify(data)});
+    return this.http.post('/signup', { headers: {
+			'Content-Type': 'application/json',
+		}, data: JSON.stringify(data) });
   }
 
   read() {

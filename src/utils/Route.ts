@@ -1,4 +1,4 @@
-import Block from "./Block";
+import Block from './Block';
 
 function isEqual(lhs: string, rhs: string) {
   return lhs === rhs;
@@ -7,7 +7,7 @@ function isEqual(lhs: string, rhs: string) {
 function render(query: string, block: Block) {
   const root = document.querySelector(query);
   if (root) {
-		root.innerHTML = ''
+		root.innerHTML = '';
     root.append(block.getContent()!);
     return root;
   }

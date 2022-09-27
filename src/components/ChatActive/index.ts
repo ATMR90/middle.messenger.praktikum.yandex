@@ -5,7 +5,7 @@ import ButtonWithImage from '../ButtonWithImage';
 import { Input } from '../Input';
 import template from './chatActive.pug';
 import * as styles from './chatActive.scss';
-import {messageController} from './../../controllers/';
+import { messageController } from './../../controllers/';
 import { ChatMessages } from '../../components/ChatMessages';
 import { PopUp } from '../PopUp';
 import { Modal } from '../Modal';
@@ -27,12 +27,37 @@ interface ChatActiveProps {
 	id?: number;
 }
 
+async function addUser(nickName:any) {
+	const dataSearch = {
+		login: nickName,
+	};
+	const userIDtemp = await UserController.searchProfile(dataSearch).then(res => res?.response);
+	const userID = userIDtemp[0].id;
+	const data = {
+			users: [userID],
+			chatId: store.getState().chat.chatId,
+	};
+	ChatController.addUserChat(data);
+}
+async function delUser(nickName:any) {
+	const dataSearch = {
+		login: nickName,
+	};
+	const userIDtemp = await UserController.searchProfile(dataSearch).then(res => res?.response);
+	const userID = userIDtemp[0].id;
+	const data = {
+			users: [userID],
+			chatId: store.getState().chat.chatId,
+	};
+	ChatController.deleteUserChat(data);
+}
+
 export class ChatActive extends Block {
   constructor(props: ChatActiveProps) {
-    super({...props,
+    super({ ...props,
 		events: {
-			click: () => {}
-		}});
+			click: () => {},
+		} });
   }
 
 	init() {
@@ -50,24 +75,24 @@ export class ChatActive extends Block {
     this.children.message = message;
 		const btn = new ButtonWithImage({
 			label:'',
-			src: "../../assets/img/arrow_forward_enter_.svg",
-			alt: "Отправить",
+			src: '../../assets/img/arrow_forward_enter_.svg',
+			alt: 'Отправить',
 			classes: 'ya-btn-img',
 			events: {
 				click:() => {
-					let message = this.children.message.getValue()
+					let message = this.children.message.getValue();
 					this.children.message.setProps({ valueInput: '' });
 					messageController.sendMessage(message);
-				}
-			}
-		})
-		this.children.btn = btn
+				},
+			},
+		});
+		this.children.btn = btn;
 
 		const chatMessages = new ChatMessages({
 			label: '',
 			classes: 'right-panel__messages',
-		})
-		this.children.ChatMessages = chatMessages
+		});
+		this.children.ChatMessages = chatMessages;
 
 
 		const popUp = new PopUp({
@@ -78,28 +103,28 @@ export class ChatActive extends Block {
 					src: './../../assets/img/pop_up_plus_.svg',
 					events: {
 						click: () => {
-							this.children.popUp.hide()
-							this.children.modalAdd.show()
-						}
+							this.children.popUp.hide();
+							this.children.modalAdd.show();
+						},
 					},
 					classes: 'pop-up-item__container ya-pop-up__item pop-up-item',
-					classDiv: 'pop-up-item__text'
+					classDiv: 'pop-up-item__text',
 				}),
 				new ButtonWithImage({
 					label: 'Удалить пользователя',
 					src: './../../assets/img/pop_up_delete_.svg',
 					events: {
 						click: () => {
-							this.children.popUp.hide()
-							this.children.modalDel.show()
-						}
+							this.children.popUp.hide();
+							this.children.modalDel.show();
+						},
 					},
 					classes: 'pop-up-item__container ya-pop-up__item pop-up-item',
-					classDiv: 'pop-up-item__text'
+					classDiv: 'pop-up-item__text',
 				}),
-			]
-		})
-		this.children.popUp = popUp
+			],
+		});
+		this.children.popUp = popUp;
 		const dots = new ButtonWithImage({
 			label: '',
 			src:'./../../assets/img/settings_dots.svg',
@@ -107,15 +132,15 @@ export class ChatActive extends Block {
 			classes:'header-right-panel__settings',
 			events: {
 				click: () => {
-					this.children.popUp.show()
-				}
-			}
-		})
-		this.children.dots = dots
+					this.children.popUp.show();
+				},
+			},
+		});
+		this.children.dots = dots;
 
 		const modalAdd = new Modal({
 			label: '',
-			subTitle: `Добавить пользователя`,
+			subTitle: 'Добавить пользователя',
 			classes: '',
 			fields: 
 			new Input({
@@ -132,8 +157,8 @@ export class ChatActive extends Block {
 					events: {
 						click: () => {
 							const nickName = document.querySelector(`#${this.children.modalDel.children.fields.props.idInput}`)!.value;
-							addUser(nickName)
-							this.children.modalAdd.hide()
+							addUser(nickName);
+							this.children.modalAdd.hide();
 						},
 					},
 					classes: 'ya-btn ya-btn_main ya-form__btn',
@@ -142,18 +167,18 @@ export class ChatActive extends Block {
 					label: 'Отмена',
 					events: {
 						click: () => {
-							this.children.modalAdd.hide()
-						}
+							this.children.modalAdd.hide();
+						},
 					},
 					classes: 'ya-btn ya-form__btn',
-				})
-			]
-		})
-		this.children.modalAdd = modalAdd
+				}),
+			],
+		});
+		this.children.modalAdd = modalAdd;
 
 		const modalDel = new Modal({
 			label: '',
-			subTitle: `Удалить пользователя`,
+			subTitle: 'Удалить пользователя',
 			classes: '',
 			fields: 
 				new Input({
@@ -169,8 +194,8 @@ export class ChatActive extends Block {
 					events: {
 						click: () => {
 							const nickName = document.querySelector(`#${this.children.modalDel.children.fields.props.idInput}`)!.value;
-							delUser(nickName)
-							this.children.modalDel.hide()
+							delUser(nickName);
+							this.children.modalDel.hide();
 						},
 					},
 					classes: 'ya-btn ya-btn_red ya-form__btn',
@@ -179,44 +204,19 @@ export class ChatActive extends Block {
 					label: 'Отмена',
 					events: {
 						click: () => {
-							this.children.modalDel.hide()
-						}
+							this.children.modalDel.hide();
+						},
 					},
 					classes: 'ya-btn ya-form__btn',
-				})
-			]
-		})
-		this.children.modalDel = modalDel
+				}),
+			],
+		});
+		this.children.modalDel = modalDel;
 	}
 
   render() {
     return this.compile(template, {
-      ...this.props, styles
+      ...this.props, styles,
     });
   }
-}
-
-async function addUser(nickName:any){
-		const dataSearch = {
-			login: nickName
-		}
-		const userIDtemp = await UserController.searchProfile(dataSearch).then(res => res?.response)
-		const userID = userIDtemp[0].id;
-		const data = {
-				users: [userID],
-				chatId: store.getState().chat.chatId
-		}
-		ChatController.addUserChat(data)
-}
-async function delUser(nickName:any){
-		const dataSearch = {
-			login: nickName
-		}
-		const userIDtemp = await UserController.searchProfile(dataSearch).then(res => res?.response)
-		const userID = userIDtemp[0].id;
-		const data = {
-				users: [userID],
-				chatId: store.getState().chat.chatId
-		}
-		ChatController.deleteUserChat(data)
 }

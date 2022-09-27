@@ -23,7 +23,7 @@ export class SignUp extends Block {
 			{
 					title: 'Регистрация',
 			},
-			props
+			props,
 		));
   }
 
@@ -141,15 +141,15 @@ export class SignUp extends Block {
             const logPass = document.querySelector(`#${this.children.fields[5].props.idInput}`)!.value;
             if (valid) {
               const data = {
-								"first_name": logFirstName,
-								"second_name": logSecondName,
-								"login": logLog,
-								"email": logEmail,
-								"password": logPass,
-								"phone": logPhone,
+								'first_name': logFirstName,
+								'second_name': logSecondName,
+								'login': logLog,
+								'email': logEmail,
+								'password': logPass,
+								'phone': logPhone,
               } as SignUpData;
-							AuthController.signup(data)
-							console.log('SignUp-log',data)
+							AuthController.signup(data);
+							console.log('SignUp-log', data);
             }
           },
         },

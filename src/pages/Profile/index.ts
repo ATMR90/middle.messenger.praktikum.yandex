@@ -36,17 +36,17 @@ export class ProfileBase extends Block {
           const root = document.querySelector('#app')!;
           const changeAvatar = new ChangeAvatar({ 
 						label: 'Загрузите файл@@', 
-						classes: 'ya-form' ,
+						classes: 'ya-form',
 						func: () => {
-              const avatarInput = document.querySelector("#avatarInput") as HTMLInputElement;
+              const avatarInput = document.querySelector('#avatarInput') as HTMLInputElement;
               if (avatarInput !== null) {
-                const { files }: { files: FileList | null } = (avatarInput as HTMLInputElement)
+                const { files }: { files: FileList | null } = (avatarInput as HTMLInputElement);
                 const [file] = files;
                 const formData = new FormData();
                 formData.append('avatar', file);
                 UserController.updateAvatar(formData);
               }
-            }
+            },
 					});
           root.innerHTML = '';
           root.append(changeAvatar.getContent()!);
@@ -132,8 +132,8 @@ export class ProfileBase extends Block {
 					events: {
 						click: () => {
 							AuthController.logout();
-						}
-					}
+						},
+					},
         }),
         value: '',
         classes: 'user-info__field',
@@ -143,10 +143,10 @@ export class ProfileBase extends Block {
   }
 
   render() {
-    return this.compile(template, { title: this.props.title || 'Влад!', styles, display_name: this.props.display_name});
+    return this.compile(template, { title: this.props.title || 'Влад!', styles, display_name: this.props.display_name });
   }
 }
 
-const withUser = withStore((state) => ({ ...state.user }))
+const withUser = withStore((state) => ({ ...state.user }));
 
 export const Profile = withUser(ProfileBase);

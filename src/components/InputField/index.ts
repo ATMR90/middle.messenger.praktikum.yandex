@@ -31,7 +31,7 @@ export class InputField extends Block {
   }
 
 	public getValueIn() {
-		return (this.element as HTMLInputElement).value
+		return (this.element as HTMLInputElement).value;
 	}
 
   render() {

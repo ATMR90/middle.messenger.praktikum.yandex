@@ -1,4 +1,3 @@
-import UserController from '../../controllers/UserController';
 import Block from '../../utils/Block';
 import { Button } from '../Button';
 import { Input } from '../Input';
