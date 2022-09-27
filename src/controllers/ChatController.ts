@@ -16,6 +16,7 @@ export class ChatController {
     return this.api.create(data)
       .then((res: any) => {
 				const chat = res.response
+				this.request()
 				store.set('chat.chatId', chat.id || null);
         return chat.id;
       })

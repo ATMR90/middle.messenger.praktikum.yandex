@@ -30,7 +30,7 @@ export class ChatPanel extends Block {
 
   render() {
     return this.compile(template, {
-      label: this.props.label, styles, img: this.props.img, title: this.props.title, text: this.props.text, time: this.props.time, newMessage: this.props.newMessage,
+      ...this.props, styles,
     });
   }
 }

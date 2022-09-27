@@ -318,6 +318,7 @@ export class ChatBase extends Block {
 									// console.log('Чат', chatID)
 									ChatController.requestMessageToken(chatID)
 									store.set('chat.chatId', chatID || null);
+									console.log('click',this)
 									setTimeout(() => {
 										// Подключится к чату
 										const data = store.getState().chat.chatId
@@ -335,6 +336,13 @@ export class ChatBase extends Block {
 										// 	token: tokenID
 										// })
 									}, 300)
+									this.children.chatsListBlock.map((item:any) => {
+										if (item.props.id == chatID) {
+											console.log('class',item)
+											item.setProps({classes: 'left-panel__chat left-panel__chat_active'})
+										}
+									})
+									console.log('click-init',this, chatID)
 								},
 								id: data.id
 							});
@@ -362,7 +370,7 @@ export class ChatBase extends Block {
 
 				// const chatActive = {title: 'dfd'}
 				// console.log('CDU-active', this.children.chatActive);
-				(this.children.chatActive as Block).setProps({ title: chatActive.title });
+				(this.children.chatActive as Block).setProps({ title: chatActive.title || null });
 				(this.children.chatActive as Block).setProps({ img: `https://ya-praktikum.tech/api/v2/resources${chatActive.avatar}` });
 
 				// console.log(storeData)
@@ -405,7 +413,7 @@ export class ChatBase extends Block {
 							"title": chatName
 						}
 						console.log('создание чата', chatNew)
-						// ChatController.create(chatNew)
+						ChatController.create(chatNew)
 						this.children.modal.hide()
 						}
 					},
@@ -460,7 +468,7 @@ export class ChatBase extends Block {
 						chatId: store.getState().chat.chatId
 					}
 					console.log('chat', data)
-					// ChatController.removeChat(data)
+					ChatController.removeChat(data)
 
 						this.children.modalDel.hide()
 						}
@@ -529,7 +537,16 @@ export class ChatBase extends Block {
 									// 	chatId: data,
 									// 	token: tokenID
 									// })
-								}, 300)
+								}, 300);
+								this.children.chatsListBlock.map((item:any) => {
+									if (item.props.id == chatID) {
+										console.log('class',item)
+										item.setProps({classes: 'left-panel__chat left-panel__chat_active'})
+									}
+								})
+								// (this.children.chatsListBlock as Array<Block>)[0].setProps({classes: 'left-panel__chat left-panel__chat_active'})
+								console.log('click-CDU',this, chatID)
+								addClassesActiv(chatID)
 							},
 							id: data.id
 						});
@@ -554,8 +571,9 @@ export class ChatBase extends Block {
 				})[0] as any
 
 				// const chatActive = {title: 'dfd'}
-				// console.log('CDU-active', this.children.chatActive);
-				(this.children.chatActive as Block).setProps({ title: chatActive.title });
+				console.log('CDU-active', this.children.chatActive);
+				console.log('CDU-active2', chatActive);
+				(this.children.chatActive as Block).setProps({ title: chatActive.title || null });
 				(this.children.chatActive as Block).setProps({ img: `https://ya-praktikum.tech/api/v2/resources${chatActive.avatar}` });
 
 				// console.log(storeData)
@@ -591,3 +609,7 @@ export class ChatBase extends Block {
 const withUser = withStore((state) => ({ ...state.chat }))
 
 export const Chat = withUser(ChatBase);
+
+// function addClassesActiv(chatID:number) {
+// 	document.querySelectorAll('left-panel__chat')
+// }
