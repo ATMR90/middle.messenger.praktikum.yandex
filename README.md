@@ -75,3 +75,36 @@ npm run ts:start
 ```bash
 npm run lint
 ```
+
+
+## Спринт 3:
+
+### Добавленные технологии:
+* Добавлен роутинг
+* Подключены HTTP API и WebSocket
+* Защита от XSS и DOS
+
+### Команда запуска проекта
+```bash
+npm run start
+```
+
+### Команда запуска проекта в режиме development
+```bash
+npm run ts
+```
+
+### Команда сборки проекта
+```bash
+npm run ts:build
+```
+
+### Команда сборки проекта и запуск express-server
+```bash
+npm run ts:start
+```
+
+### Команда проверки проекта анализаторами ESLint, Stylelint
+```bash
+npm run lint
+```
