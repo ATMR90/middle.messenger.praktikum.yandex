@@ -42,8 +42,8 @@ class MessageController {
     this.getMessages({ offset: 0 });
     this._ping = setInterval(() => {
       this._ws.send(JSON.stringify({
-				type: 'ping',
-			}));
+        type: 'ping',
+      }));
     }, 10000);
   }
 
@@ -56,7 +56,7 @@ class MessageController {
       } else if (data[0].id === 0) {
         store.set('messages', { messages: data });
       } else {
-				const messages = [
+        const messages = [
           ...data,
         ];
         store.set('messages', { messages });
@@ -96,7 +96,7 @@ class MessageController {
     this._chatId = options.chatId;
     this._token = options.token;
     this._ws = new WebSocket(`wss://ya-praktikum.tech/ws/chats/${options.userId}/${options.chatId}/${options.token}`);
-		this._addEvents();
+    this._addEvents();
   }
 
   public getMessages(options: IMessageWebSocketGet) {

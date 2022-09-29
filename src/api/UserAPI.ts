@@ -17,11 +17,11 @@ export interface UserAPISearch {
   login: string
 }
 
-export class UserAPI{
-	protected http: HTTPTransport;
-	static API_URL = process.env.API_URL || 'https://ya-praktikum.tech/api/v2';
+export class UserAPI {
+  protected http: HTTPTransport;
+  static API_URL = process.env.API_URL || 'https://ya-praktikum.tech/api/v2';
   constructor() {
-		this.http = new HTTPTransport(UserAPI.API_URL,'/user');
+    this.http = new HTTPTransport(UserAPI.API_URL, '/user');
   }
 
   public searchProfile(data: UserAPISearch):Promise<XMLHttpRequest> {

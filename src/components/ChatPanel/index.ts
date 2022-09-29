@@ -10,21 +10,21 @@ interface ChatPanelProps {
   text?: string,
   time?: string,
   newMessage?: string;
-	onClick?: (chatID:number) => void 
+  onClick?: (chatID:number) => void 
   events?: {
     click: () => void
   };
-	id?: number;
+  id?: number;
 }
 
 export class ChatPanel extends Block {
   constructor(props: ChatPanelProps) {
     super({ ...props,
-		events: {
-			click: () => {
-				this.props.onClick(this.props.id);
-			},
-		} });
+    events: {
+      click: () => {
+        this.props.onClick(this.props.id);
+      },
+    } });
   }
 
   render() {

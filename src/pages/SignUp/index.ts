@@ -1,11 +1,13 @@
 import Block from '../../utils/Block';
 import template from './signUp.pug';
-import { Button } from '../../components/Button';
 import * as styles from './signUp.scss';
+
+import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
+import { Link } from '../../components/Link';
+
 import { SignUpData } from '../../api/AuthAPI';
 import AuthController from '../../controllers/AuthController';
-import { Link } from '../../components/Link';
 
 interface SignUpProps {
   title: string,
@@ -20,15 +22,15 @@ interface SignUpProps {
 export class SignUp extends Block {
   constructor(props: SignUpProps) {
     super(Object.assign(
-			{
-					title: 'Регистрация',
-			},
-			props,
-		));
+      {
+          title: 'Регистрация',
+      },
+      props,
+    ));
   }
 
   init() {
-    const fields = [
+    this.children.fields = [
       new Input({
         label: 'Почта',
         idInput: 'email',
@@ -122,8 +124,7 @@ export class SignUp extends Block {
         },
       }),
     ];
-    this.children.fields = fields;
-    const buttons = [
+    this.children.footer = [
       new Button({
         label: 'Зарегистрироваться',
         events: {
@@ -139,17 +140,17 @@ export class SignUp extends Block {
             const logSecondName = document.querySelector(`#${this.children.fields[3].props.idInput}`)!.value;
             const logPhone = document.querySelector(`#${this.children.fields[4].props.idInput}`)!.value;
             const logPass = document.querySelector(`#${this.children.fields[5].props.idInput}`)!.value;
-            if (valid) {
+            if (valid && logEmail && logLog && logFirstName && logSecondName && logPhone) {
               const data = {
-								'first_name': logFirstName,
-								'second_name': logSecondName,
-								'login': logLog,
-								'email': logEmail,
-								'password': logPass,
-								'phone': logPhone,
+                'first_name': logFirstName,
+                'second_name': logSecondName,
+                'login': logLog,
+                'email': logEmail,
+                'password': logPass,
+                'phone': logPhone,
               } as SignUpData;
-							AuthController.signup(data);
-							console.log('SignUp-log', data);
+              AuthController.signup(data);
+              console.log('SignUp-log', data);
             }
           },
         },
@@ -159,10 +160,9 @@ export class SignUp extends Block {
       new Link({
         label: 'Войти',
         classes: 'ya-btn ya-form__btn',
-				to: '/',
+        to: '/',
       }),
     ];
-    this.children.footer = buttons;
   }
 
   render() {

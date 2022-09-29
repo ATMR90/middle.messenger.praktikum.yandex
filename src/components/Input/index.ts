@@ -1,9 +1,11 @@
 import Block from '../../utils/Block';
+import template from './input.pug';
 import { ValidationSettings } from '../../utils/Validation';
+
+import * as styles from './input.scss';
+
 import { ErrorMsg } from '../ErrorMsg';
 import { InputField } from '../InputField';
-import template from './input.pug';
-import * as styles from './input.scss';
 
 interface InputProps {
   label: string,
@@ -55,10 +57,7 @@ export class Input extends Block {
     }
     const validationSettings = ValidationSettings(valId);
     const regIn = new RegExp(validationSettings[1], 'i');
-    let isValid = regIn.test(val);
-		if (!val) {
-			isValid = false;
-		}
+    const isValid = val && regIn.test(val);
     const inputClasses = this.children.inputField.props.classes;
     const arrClasses = inputClasses.split(' ');
     if (!isValid) {
@@ -76,9 +75,9 @@ export class Input extends Block {
     return isValid;
   }
 
-	public getValue() {
-		return this.children.inputField.getValueIn();
-	}
+  public getValue() {
+    return this.children.inputField.getValueIn();
+  }
 
   render() {
     return this.compile(template, {

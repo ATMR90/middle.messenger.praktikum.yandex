@@ -1,9 +1,9 @@
 import { router } from '..';
-import API, { ChatAPI, ChatAPIAddUser, ChatAPICreate, ChatAPIDelete } from '../api/ChatAPI';
 import store from '../utils/Store';
+import API, { ChatAPI, ChatAPIAddUser, ChatAPICreate, ChatAPIDelete } from '../api/ChatAPI';
 
 export class ChatController {
-	private readonly api: ChatAPI;
+  private readonly api: ChatAPI;
   constructor() {
     this.api = API;
   }
@@ -11,9 +11,9 @@ export class ChatController {
   public create(data: ChatAPICreate) {
     return this.api.create(data)
       .then((res: any) => {
-				const chat = res.response;
-				this.request();
-				store.set('chat.chatId', chat.id || null);
+        const chat = res.response;
+        this.request();
+        store.set('chat.chatId', chat.id || null);
         return chat.id;
       })
       .catch(e => {console.log(e);});
@@ -22,14 +22,14 @@ export class ChatController {
   public async request() {
     return this.api.request()
       .then((res: any) => {
-				store.set('chat.list.chats', res.response);
+        store.set('chat.list.chats', res.response);
         if (!store.getState().chat.chatId) {
-					store.set('chat.chatId', res.response[0]?.id || null);
+          store.set('chat.chatId', res.response[0]?.id || null);
         }
         return res.response;
       })
       .catch((e) => {
-				console.log('ошибка', e);
+        console.log('ошибка', e);
         router.go('/');
       });
   }
@@ -56,7 +56,7 @@ export class ChatController {
   public requestMessageToken(chatId: number) {
     return this.api.requestMessageToken(chatId)
       .then((auth) => {
-				store.set('chat.chatToken', auth.response || null);
+        store.set('chat.chatToken', auth.response || null);
         return auth.response;
       })
       .catch();

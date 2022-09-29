@@ -30,7 +30,7 @@ class Router {
 
   public start() {
     window.onpopstate = (event: PopStateEvent) => {
-			const target = event.currentTarget as Window;
+      const target = event.currentTarget as Window;
       this._onRoute(target.location.pathname);
     };
 
@@ -40,7 +40,7 @@ class Router {
   private _onRoute(pathname: string) {
     const route = this.getRoute(pathname);
     if (!route) {
-			this.go('/404');
+      this.go('/404');
       return;
     }
 

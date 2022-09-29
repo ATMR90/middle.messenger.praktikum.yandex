@@ -10,9 +10,9 @@ interface ChatMessageProps {
   text?: string,
   time?: string,
   newMessage?: string;
-	id?: number;
-	content?: string;
-	data?: any;
+  id?: number;
+  content?: string;
+  data?: any;
 }
 
 export class ChatMessage extends Block {

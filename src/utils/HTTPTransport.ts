@@ -87,7 +87,7 @@ export class HTTPTransport {
 
       xhr.withCredentials = true;
       xhr.responseType = 'json';
-			
+
       if (!data) {
         xhr.send();
       } else {

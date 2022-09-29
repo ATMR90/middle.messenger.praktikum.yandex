@@ -1,5 +1,9 @@
+import Router from './utils/Router';
+import store from './utils/Store';
+import 'dotenv/config';
 
 import AuthController from './controllers/AuthController';
+
 import { Chat } from './pages/Chat';
 import { Error404 } from './pages/Error404';
 import { Error500 } from './pages/Error500';
@@ -8,9 +12,6 @@ import { ProfileChangePassword } from './pages/ProfileChangePassword';
 import { ProfileChangeUser } from './pages/ProfileChangeUser';
 import { SignIn } from './pages/SignIn';
 import { SignUp } from './pages/SignUp';
-import Router from './utils/Router';
-import store from './utils/Store';
-import 'dotenv/config';
 
 enum Routes {
   Index = '/',
@@ -33,7 +34,7 @@ window.addEventListener('DOMContentLoaded', async () => {
     .use('/404', Error404)
     .use('*', Error404);
 
-		let isProtectedRoute = true;
+    let isProtectedRoute = true;
 
   switch (window.location.pathname) {
     case Routes.Index:
@@ -42,16 +43,16 @@ window.addEventListener('DOMContentLoaded', async () => {
       break;
   }
 
-		try {
-			await AuthController.fetchUser();
-			setTimeout(()=>{router.start();}, 400);
-			if (!isProtectedRoute) {
-				setTimeout(()=>{router.go('/messenger');}, 400);
-			}
-		} catch (e) {
-			router.start();
-			if (isProtectedRoute) {
-				router.go('/');
-			}
-		}
+    try {
+      await AuthController.fetchUser();
+      setTimeout(()=>{router.start();}, 400);
+      if (!isProtectedRoute) {
+        setTimeout(()=>{router.go('/messenger');}, 400);
+      }
+    } catch (e) {
+      router.start();
+      if (isProtectedRoute) {
+        router.go('/');
+      }
+    }
 });

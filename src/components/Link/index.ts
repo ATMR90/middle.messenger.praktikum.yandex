@@ -1,5 +1,6 @@
 import { PropsWithRouter, withRouter } from '../../hocs/withRouter';
 import Block from '../../utils/Block';
+
 import template from './link.pug';
 import * as styles from './link.scss';
 
@@ -9,9 +10,9 @@ interface LinkProps extends PropsWithRouter {
   events?: {
     click: () => void;
   };
-	classes?: string;
-	src?: string;
-	alt?: string;
+  classes?: string;
+  src?: string;
+  alt?: string;
 }
 
 class BaseLink extends Block {

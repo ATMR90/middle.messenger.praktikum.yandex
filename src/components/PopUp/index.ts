@@ -7,13 +7,13 @@ interface PopUpProps {
   events?: {
     click: () => void;
   };
-	classes?: string;
-	src?: string;
-	alt?: string;
-	subTitle?: string;
-	fields?: Block | Block[];
-	footer?: Block | Block[];
-	btn?: Block | Block[];
+  classes?: string;
+  src?: string;
+  alt?: string;
+  subTitle?: string;
+  fields?: Block | Block[];
+  footer?: Block | Block[];
+  btn?: Block | Block[];
 }
 
 export class PopUp extends Block {

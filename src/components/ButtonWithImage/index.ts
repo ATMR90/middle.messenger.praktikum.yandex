@@ -10,10 +10,10 @@ interface ButtonWithImageProps {
   classes?: string,
   src?: string,
   alt?: string,
-	classDiv?: string,
+  classDiv?: string, 
 }
 
-export default class ButtonWithImage extends Block {
+export class ButtonWithImage extends Block {
   constructor(props: ButtonWithImageProps) {
     const defaultValue = {
       src: '',

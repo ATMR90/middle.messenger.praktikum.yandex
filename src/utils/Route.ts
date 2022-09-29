@@ -1,18 +1,5 @@
 import Block from './Block';
-
-function isEqual(lhs: string, rhs: string) {
-  return lhs === rhs;
-}
-
-function render(query: string, block: Block) {
-  const root = document.querySelector(query);
-  if (root) {
-		root.innerHTML = '';
-    root.append(block.getContent()!);
-    return root;
-  }
-  return false;
-}
+import { render } from './render';
 
 class Route {
   private _pathname: string;
@@ -35,11 +22,11 @@ class Route {
   }
 
   leave() {
-		this._block = null;
+    this._block = null;
   }
 
   match(pathname: string) {
-    return isEqual(pathname, this._pathname);
+    return pathname === this._pathname; 
   }
 
   render() {

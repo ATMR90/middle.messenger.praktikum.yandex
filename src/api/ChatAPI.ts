@@ -1,5 +1,4 @@
-import { HTTPTransport } from "../utils/HTTPTransport";
-
+import { HTTPTransport } from '../utils/HTTPTransport';
 
 export interface ChatAPICreate {
   title: string;
@@ -15,14 +14,14 @@ export interface ChatAPIAddUser {
 }
 
 export class ChatAPI {
-	protected http: HTTPTransport;
-	static API_URL = process.env.API_URL || 'https://ya-praktikum.tech/api/v2';
+  protected http: HTTPTransport;
+  static API_URL = process.env.API_URL || 'https://ya-praktikum.tech/api/v2';
   constructor() {
-		this.http = new HTTPTransport(ChatAPI.API_URL,'/chats');
+    this.http = new HTTPTransport(ChatAPI.API_URL, '/chats');
   }
 
   public create(data: ChatAPICreate):Promise<XMLHttpRequest> {
-    const res = this.http.post('/', 
+    return this.http.post('/', 
     { 
       headers: {
       'accept': 'application/json',
@@ -30,13 +29,12 @@ export class ChatAPI {
       },
       data: JSON.stringify(data),
     });
-    return res;
+
   }
 
   public request():Promise<XMLHttpRequest> {
-    const res = this.http.get('/', {
+    return this.http.get('/', {
     });
-    return res;
   }
 
   public removeChat(data: ChatAPIDelete):Promise<XMLHttpRequest> {

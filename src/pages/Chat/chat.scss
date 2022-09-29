@@ -100,6 +100,12 @@
 		overflow: hidden;
 		background: #efefef;
 		flex-shrink: 0;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
 	}
 
 	&__message {
@@ -209,6 +215,12 @@
 		background: #efefef;
 		flex-shrink: 0;
 		margin-right: 10px;
+
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+		}
 	}
 
 	&__settings {

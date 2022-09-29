@@ -1,11 +1,13 @@
 import Block from '../../utils/Block';
 import template from './signIn.pug';
-import { Button } from '../../components/Button';
 import * as styles from './signIn.scss';
+
+import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
+import { Link } from '../../components/Link';
+
 import { SignInData } from '../../api/AuthAPI';
 import AuthController from '../../controllers/AuthController';
-import { Link } from '../../components/Link';
 
 interface SignInProps {
   title: string,
@@ -20,15 +22,15 @@ interface SignInProps {
 export class SignIn extends Block {
   constructor(props: SignInProps) {
     super(Object.assign(
-			{
-					title: 'Вход',
-			},
-			props,
-		));
+      {
+          title: 'Вход',
+      },
+      props,
+    ));
   }
 
   init() {
-    const fields = [
+    this.children.fields  = [
       new Input({
         label: 'Логин',
         idInput: 'login',
@@ -56,8 +58,7 @@ export class SignIn extends Block {
         },
       }),
     ];
-    this.children.fields = fields;
-    const buttons = [
+    this.children.footer = [
       new Button({
         label: 'Войти',
         events: {
@@ -69,12 +70,12 @@ export class SignIn extends Block {
             }, true);
             const logLog = document.querySelector(`#${this.children.fields[0].props.idInput}`)!.value;
             const logPass = document.querySelector(`#${this.children.fields[1].props.idInput}`)!.value;
-            if (valid) {
-							const data = {
-								'login': logLog,
-								'password': logPass,
-							} as SignInData;
-							AuthController.signin(data);
+            if (valid && logLog && logPass) {
+              const data = {
+                'login': logLog,
+                'password': logPass,
+              } as SignInData;
+              AuthController.signin(data);
               console.log('Signin-log', data);
             }
           },
@@ -85,10 +86,9 @@ export class SignIn extends Block {
       new Link({
         label: 'Регистрация',
         classes: 'ya-btn ya-form__btn',
-				to: '/sign-up',
+        to: '/sign-up',
       }),
     ];
-    this.children.footer = buttons;
   }
 
   render() {

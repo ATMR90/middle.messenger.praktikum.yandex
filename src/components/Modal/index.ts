@@ -7,12 +7,12 @@ interface ModalProps {
   events?: {
     click: () => void;
   };
-	classes?: string;
-	src?: string;
-	alt?: string;
-	subTitle?: string;
-	fields?: Block | Block[];
-	footer?: Block | Block[];
+  classes?: string;
+  src?: string;
+  alt?: string;
+  subTitle?: string;
+  fields?: Block | Block[];
+  footer?: Block | Block[];
 }
 
 export class Modal extends Block {

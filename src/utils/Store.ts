@@ -1,7 +1,7 @@
-import { set } from './helpers';
-import { EventBus } from './EventBus';
 import Block from './Block';
 import isEqual from './isEqual';
+import { set } from './helpers';
+import { EventBus } from './EventBus';
 
 export enum StoreEvents {
   Updated = 'updated',
@@ -38,10 +38,10 @@ export function withStore(mapStateToProps: (state: any) => any) {
         store.on(StoreEvents.Updated, () => {
           const stateProps = mapStateToProps(store.getState());
 
-					if (isEqual(previousState, stateProps)) {
-						return;
-					}
-					
+          if (isEqual(previousState, stateProps)) {
+            return;
+          }
+          
           previousState = stateProps;
 
           this.setProps({ ...stateProps });

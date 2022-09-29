@@ -1,15 +1,20 @@
+import { router } from '../..';
 import Block from '../../utils/Block';
+import { render } from '../../utils/render';
+import { withStore } from '../../utils/Store';
+
 import template from './profileChangeUser.pug';
-import { Button } from '../../components/Button';
 import * as styles from './profileChangeUser.scss';
+
+import { Button } from '../../components/Button';
+import { ButtonWithImage } from '../../components/ButtonWithImage';
 import { Input } from '../../components/Input';
 import { InfoField } from '../../components/InfoField';
-import ButtonWithImage from '../../components/ButtonWithImage';
+
 import { ChangeAvatar } from '../../components/ChangeAvatar';
-import { withStore } from '../../utils/Store';
-import { router } from '../..';
-import UserController from '../../controllers/UserController';
+
 import { UserAPIUpdateProfile } from '../../api/UserAPI';
+import UserController from '../../controllers/UserController';
 
 interface ProfileChangeUserProps {
   title: string,
@@ -27,13 +32,12 @@ export class ProfileChangeUserBase extends Block {
   }
 
   init() {
-    const avatar = new ButtonWithImage({
+    this.children.avatar = new ButtonWithImage({
       label: '',
       events: {
         click: () => {
-          const root = document.querySelector('#app')!;
           const changeAvatar = new ChangeAvatar({
-            label: 'Загрузите файл',
+            label: 'Загрузите файл аватара',
             classes: 'ya-form',
             func: () => {
               const avatarInput = document.querySelector('#avatarInput') as HTMLInputElement;
@@ -46,15 +50,13 @@ export class ProfileChangeUserBase extends Block {
               }
             },
           });
-          root.innerHTML = '';
-          root.append(changeAvatar.getContent()!);
+          render('#app', changeAvatar);
         },
       },
       classes: 'header-profile__avatar header-profile__avatar_hover',
       src: `https://ya-praktikum.tech/api/v2/resources${this.props.avatar}`,
     });
-    this.children.avatar = avatar;
-    const fields = [
+    this.children.fields = [
       new InfoField({
         label: 'Поле',
         name: 'Почта',
@@ -128,7 +130,6 @@ export class ProfileChangeUserBase extends Block {
         }),
       }),
     ];
-    this.children.fields = fields;
     this.children.footer = new Button({
       label: 'Сохранить',
       events: {
@@ -143,7 +144,7 @@ export class ProfileChangeUserBase extends Block {
           const logSecondName = document.querySelector(`#${this.children.fields[3].children.fieldValue.props.idInput}`)!.value;
           const logDisplayName = document.querySelector(`#${this.children.fields[4].children.fieldValue.props.idInput}`)!.value;
           const logPhone = document.querySelector(`#${this.children.fields[5].children.fieldValue.props.idInput}`)!.value;
-          if (valid) {
+          if (valid && logEmail && logLog && logFirstName && logSecondName && logDisplayName && logPhone) {
             const data = {
               'first_name': logFirstName,
               'second_name': logSecondName,

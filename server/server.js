@@ -1,7 +1,7 @@
 const fallback = require('express-history-api-fallback');
 const express = require('express');
 const path = require('path');
-const limit = require('./utils/limit')
+const limit = require('./utils/limit');
 
 const { PORT } = require('./utils/constants');
 const { NODE_ENV } = require('./utils/constants');

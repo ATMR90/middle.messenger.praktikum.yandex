@@ -26,23 +26,23 @@ export interface User {
 }
 
 export class AuthAPI {
-	protected http: HTTPTransport;
-	static API_URL = process.env.API_URL || 'https://ya-praktikum.tech/api/v2';
+  protected http: HTTPTransport;
+  static API_URL = process.env.API_URL || 'https://ya-praktikum.tech/api/v2';
   constructor() {
-		this.http = new HTTPTransport(AuthAPI.API_URL,'/auth');
+    this.http = new HTTPTransport(AuthAPI.API_URL, '/auth');
   }
 
   signIn(data: SignInData):Promise<XMLHttpRequest> {
     return this.http.post('/signin', { headers: {
-			'Content-Type': 'application/json',
-		}, data: JSON.stringify(data) });
+      'Content-Type': 'application/json',
+    }, data: JSON.stringify(data) });
   }
 
 
   signUp(data: SignUpData):Promise<XMLHttpRequest> {
     return this.http.post('/signup', { headers: {
-			'Content-Type': 'application/json',
-		}, data: JSON.stringify(data) });
+      'Content-Type': 'application/json',
+    }, data: JSON.stringify(data) });
   }
 
   read():Promise<XMLHttpRequest> {
