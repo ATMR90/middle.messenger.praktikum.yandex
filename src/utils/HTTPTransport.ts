@@ -24,11 +24,10 @@ function queryStringify(data: TRequestData) {
 }
 
 export class HTTPTransport {
-  static API_URL = 'https://ya-praktikum.tech/api/v2';
   protected endpoint: string;
 
-  constructor(endpoint: string) {
-    this.endpoint = `${HTTPTransport.API_URL}${endpoint}`;
+  constructor(api:string, endpoint: string) {
+    this.endpoint = `${api}${endpoint}`;
   }
 
   public get = (url: string, options: TRequestOptions = {}): Promise<XMLHttpRequest> => {

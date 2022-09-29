@@ -1,5 +1,4 @@
-import BaseAPI from './BaseAPI';
-
+import { HTTPTransport } from '../utils/HTTPTransport';
 
 export interface UserAPIUpdateProfile {
   first_name: string;
@@ -18,12 +17,14 @@ export interface UserAPISearch {
   login: string
 }
 
-export class UserAPI extends BaseAPI {
+export class UserAPI{
+	protected http: HTTPTransport;
+	static API_URL = process.env.API_URL || 'https://ya-praktikum.tech/api/v2';
   constructor() {
-    super('/user');
+		this.http = new HTTPTransport(UserAPI.API_URL,'/user');
   }
 
-  public searchProfile(data: UserAPISearch) {
+  public searchProfile(data: UserAPISearch):Promise<XMLHttpRequest> {
     return this.http.post('/search', { 
       headers: {
         'Content-Type': 'application/json',
@@ -32,28 +33,23 @@ export class UserAPI extends BaseAPI {
     });
   }
 
-  public updateProfile(data: UserAPIUpdateProfile) {
+  public updateProfile(data: UserAPIUpdateProfile):Promise<XMLHttpRequest> {
     return this.http.put('/profile', { headers: {
       'Content-Type': 'application/json',
     }, data: JSON.stringify(data) });
   }
   
-  public updatePassword(data: UserAPIUpdatePassword) {
+  public updatePassword(data: UserAPIUpdatePassword):Promise<XMLHttpRequest> {
     return this.http.put('/password', { headers: {
       'Content-Type': 'application/json',
     }, data: JSON.stringify(data) });
   }
   
-  public updateAvatar(data: FormData) {
+  public updateAvatar(data: FormData):Promise<XMLHttpRequest> {
     return this.http.put('/profile/avatar', { headers: {
       'accept': 'application/json',
     }, data: data });
   }
-
-  create = undefined;
-  read = undefined;
-  update = undefined;
-  delete = undefined;
 }
 
 export default new UserAPI();

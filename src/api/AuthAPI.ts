@@ -1,4 +1,4 @@
-import BaseAPI from './BaseAPI';
+import { HTTPTransport } from '../utils/HTTPTransport';
 
 export interface SignInData {
   login: string;
@@ -25,35 +25,33 @@ export interface User {
   avatar: string;
 }
 
-export class AuthAPI extends BaseAPI {
+export class AuthAPI {
+	protected http: HTTPTransport;
+	static API_URL = process.env.API_URL || 'https://ya-praktikum.tech/api/v2';
   constructor() {
-    super('/auth');
+		this.http = new HTTPTransport(AuthAPI.API_URL,'/auth');
   }
 
-  signIn(data: SignInData) {
+  signIn(data: SignInData):Promise<XMLHttpRequest> {
     return this.http.post('/signin', { headers: {
 			'Content-Type': 'application/json',
 		}, data: JSON.stringify(data) });
   }
 
 
-  signUp(data: SignUpData) {
+  signUp(data: SignUpData):Promise<XMLHttpRequest> {
     return this.http.post('/signup', { headers: {
 			'Content-Type': 'application/json',
 		}, data: JSON.stringify(data) });
   }
 
-  read() {
+  read():Promise<XMLHttpRequest> {
     return this.http.get('/user');
   }
 
-  logout() {
+  logout():Promise<XMLHttpRequest> {
     return this.http.post('/logout');
   }
-
-  create = undefined;
-  update = undefined;
-  delete = undefined;
 }
 
 export default new AuthAPI();

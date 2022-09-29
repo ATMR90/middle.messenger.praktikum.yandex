@@ -5,7 +5,7 @@ import * as styles from './button.scss';
 interface ButtonProps {
   label: string,
   events?: {
-    click: (e?:any) => void
+    click: (e?:Event) => void
   },
   classes?: string,
   type?: string

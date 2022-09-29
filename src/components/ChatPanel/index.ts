@@ -10,9 +10,9 @@ interface ChatPanelProps {
   text?: string,
   time?: string,
   newMessage?: string;
-	onClick?: (chatID:any) => void 
+	onClick?: (chatID:number) => void 
   events?: {
-    click: (param:any) => void
+    click: () => void
   };
 	id?: number;
 }

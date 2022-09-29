@@ -10,10 +10,6 @@ interface ChatMessageProps {
   text?: string,
   time?: string,
   newMessage?: string;
-	onClick?: (chatID:any) => void 
-  events?: {
-    click: (param:any) => void
-  };
 	id?: number;
 	content?: string;
 	data?: any;
@@ -21,10 +17,7 @@ interface ChatMessageProps {
 
 export class ChatMessage extends Block {
   constructor(props: ChatMessageProps) {
-    super({ ...props,
-		events: {
-			click: () => {},
-		} });
+    super(props);
   }
 
   render() {

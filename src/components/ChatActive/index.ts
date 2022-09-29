@@ -20,35 +20,34 @@ interface ChatActiveProps {
   text?: string,
   time?: string,
   newMessage?: string;
-	onClick?: (chatID:any) => void 
-  events?: {
-    click: (param:any) => void
-  };
 	id?: number;
 }
 
-async function addUser(nickName:any) {
+interface dataSearchUser {
+	users: number[];
+	chatId: number;
+}
+
+async function searchUser(nickName: string):Promise<dataSearchUser> {
 	const dataSearch = {
 		login: nickName,
 	};
 	const userIDtemp = await UserController.searchProfile(dataSearch).then(res => res?.response);
+	console.log(userIDtemp)
 	const userID = userIDtemp[0].id;
 	const data = {
 			users: [userID],
 			chatId: store.getState().chat.chatId,
 	};
+	return data
+}
+
+async function addUser(nickName:string) {
+	const data = await searchUser(nickName)
 	ChatController.addUserChat(data);
 }
-async function delUser(nickName:any) {
-	const dataSearch = {
-		login: nickName,
-	};
-	const userIDtemp = await UserController.searchProfile(dataSearch).then(res => res?.response);
-	const userID = userIDtemp[0].id;
-	const data = {
-			users: [userID],
-			chatId: store.getState().chat.chatId,
-	};
+async function delUser(nickName:string) {
+	const data = await searchUser(nickName)
 	ChatController.deleteUserChat(data);
 }
 
@@ -61,7 +60,7 @@ export class ChatActive extends Block {
   }
 
 	init() {
-		const message = new Input({
+		this.children.message  = new Input({
       label: '',
       idInput: 'message',
       type: 'text',
@@ -72,8 +71,7 @@ export class ChatActive extends Block {
       },
       inputClasses: 'footer-right-panel__input',
     });
-    this.children.message = message;
-		const btn = new ButtonWithImage({
+		this.children.btn = new ButtonWithImage({
 			label:'',
 			src: '../../assets/img/arrow_forward_enter_.svg',
 			alt: 'Отправить',
@@ -86,16 +84,13 @@ export class ChatActive extends Block {
 				},
 			},
 		});
-		this.children.btn = btn;
 
-		const chatMessages = new ChatMessages({
+		this.children.ChatMessages = new ChatMessages({
 			label: '',
 			classes: 'right-panel__messages',
 		});
-		this.children.ChatMessages = chatMessages;
 
-
-		const popUp = new PopUp({
+		this.children.popUp = new PopUp({
 			label: '',
 			btn: [
 				new ButtonWithImage({
@@ -124,8 +119,8 @@ export class ChatActive extends Block {
 				}),
 			],
 		});
-		this.children.popUp = popUp;
-		const dots = new ButtonWithImage({
+
+		this.children.dots = new ButtonWithImage({
 			label: '',
 			src:'./../../assets/img/settings_dots.svg',
 			alt:'Опции',
@@ -136,9 +131,8 @@ export class ChatActive extends Block {
 				},
 			},
 		});
-		this.children.dots = dots;
 
-		const modalAdd = new Modal({
+		this.children.modalAdd = new Modal({
 			label: '',
 			subTitle: 'Добавить пользователя',
 			classes: '',
@@ -156,8 +150,10 @@ export class ChatActive extends Block {
 					label: 'Добавить',
 					events: {
 						click: () => {
-							const nickName = document.querySelector(`#${this.children.modalDel.children.fields.props.idInput}`)!.value;
-							addUser(nickName);
+							const nickName = document.querySelector(`#${this.children.modalAdd.children.fields.props.idInput}`)!.value;
+							if (nickName){
+								addUser(nickName);
+							}
 							this.children.modalAdd.hide();
 						},
 					},
@@ -174,9 +170,8 @@ export class ChatActive extends Block {
 				}),
 			],
 		});
-		this.children.modalAdd = modalAdd;
 
-		const modalDel = new Modal({
+		this.children.modalDel = new Modal({
 			label: '',
 			subTitle: 'Удалить пользователя',
 			classes: '',
@@ -194,7 +189,9 @@ export class ChatActive extends Block {
 					events: {
 						click: () => {
 							const nickName = document.querySelector(`#${this.children.modalDel.children.fields.props.idInput}`)!.value;
-							delUser(nickName);
+							if (nickName) {
+								delUser(nickName);
+							}
 							this.children.modalDel.hide();
 						},
 					},
@@ -211,7 +208,6 @@ export class ChatActive extends Block {
 				}),
 			],
 		});
-		this.children.modalDel = modalDel;
 	}
 
   render() {

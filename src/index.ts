@@ -10,6 +10,7 @@ import { SignIn } from './pages/SignIn';
 import { SignUp } from './pages/SignUp';
 import Router from './utils/Router';
 import store from './utils/Store';
+import 'dotenv/config';
 
 enum Routes {
   Index = '/',
@@ -45,7 +46,7 @@ window.addEventListener('DOMContentLoaded', async () => {
 			await AuthController.fetchUser();
 			setTimeout(()=>{router.start();}, 400);
 			if (!isProtectedRoute) {
-				setTimeout(()=>{router.go('/settings');}, 400);
+				setTimeout(()=>{router.go('/messenger');}, 400);
 			}
 		} catch (e) {
 			router.start();

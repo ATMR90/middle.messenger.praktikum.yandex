@@ -1,5 +1,5 @@
 import { router } from '..';
-import API, { ChatAPI, ChatAPIAddUser, ChatAPICreate } from '../api/ChatAPI';
+import API, { ChatAPI, ChatAPIAddUser, ChatAPICreate, ChatAPIDelete } from '../api/ChatAPI';
 import store from '../utils/Store';
 
 export class ChatController {
@@ -34,7 +34,7 @@ export class ChatController {
       });
   }
 
-  public removeChat(data: any) {
+  public removeChat(data: ChatAPIDelete) {
     return this.api.removeChat(data)
       .then(() => {
         this.request();

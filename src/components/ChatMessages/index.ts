@@ -13,21 +13,12 @@ interface ChatMessagesProps {
 	text?: string,
 	time?: string,
 	newMessage?: string;
-	onClick?: (chatID: any) => void
-	events?: {
-		click: (param: any) => void
-	};
 	id?: number;
 }
 
 export class ChatMessagesBase extends Block {
 	constructor(props: ChatMessagesProps) {
-		super({
-			...props,
-			events: {
-				click: () => {},
-			},
-		});
+		super(props);
 	}
 
 	init(): void {
@@ -38,14 +29,14 @@ export class ChatMessagesBase extends Block {
 				if (Object.keys(storeData.messages.messages).length !== 0) {
 					if (typeof storeData.messages.messages !== 'undefined') {
 						storeData.messages.messages.forEach((data: any) => {
-							let MesList = new ChatMessage({
+							let mesList = new ChatMessage({
 								label: '',
 								content: `${data.content}`,
 								data: formatDate(data.time),
 								classes: 'messages-chat__his-message',
 								id: data.id,
 							});
-							mes.push(MesList);
+							mes.push(mesList);
 						});
 					}
 				}
@@ -58,14 +49,14 @@ export class ChatMessagesBase extends Block {
 					if (Object.keys(this.props.messages).length !== 0) {
 						if (typeof this.props.messages !== 'undefined') {
 							this.props.messages.forEach((data: any) => {
-								let MesList = new ChatMessage({
+								let mesList = new ChatMessage({
 									label: '',
 									content: `${data.content}`,
 									data: formatDate(data.time),
 									classes: 'messages-chat__his-message',
 									id: data.id,
 								});
-								mes.push(MesList);
+								mes.push(mesList);
 							});
 						}
 					}
@@ -83,14 +74,14 @@ export class ChatMessagesBase extends Block {
 				if (Object.keys(this.props.messages).length !== 0) {
 					if (typeof this.props.messages !== 'undefined') {
 						this.props.messages.forEach((data: any) => {
-							let MesList = new ChatMessage({
+							let mesList = new ChatMessage({
 								label: '',
 								content: `${data.content}`,
 								data: formatDate(data.time),
 								classes: 'messages-chat__his-message',
 								id: data.id,
 							});
-							mes.push(MesList);
+							mes.push(mesList);
 						});
 					}
 				}
@@ -103,14 +94,14 @@ export class ChatMessagesBase extends Block {
 					if (Object.keys(storeData.messages.messages).length !== 0) {
 						if (typeof storeData.messages.messages !== 'undefined') {
 							storeData.messages.messages.forEach((data: any) => {
-								let MesList = new ChatMessage({
+								let mesList = new ChatMessage({
 									label: '',
 									content: `${data.content}`,
 									data: formatDate(data.time),
 									classes: 'messages-chat__his-message',
 									id: data.id,
 								});
-								mes.push(MesList);
+								mes.push(mesList);
 							});
 						}
 					}
@@ -128,14 +119,14 @@ export class ChatMessagesBase extends Block {
 			if (Object.keys(storeData.messages.messages).length !== 0) {
 				if (typeof storeData.messages.messages !== 'undefined') {
 					storeData.messages.messages.forEach((data: any) => {
-						let MesList = new ChatMessage({
+						let mesList = new ChatMessage({
 							label: '',
 							content: `${data.content}`,
 							data: formatDate(data.time),
 							classes: 'messages-chat__his-message',
 							id: data.id,
 						});
-						mes.push(MesList);
+						mes.push(mesList);
 					});
 				}
 			}

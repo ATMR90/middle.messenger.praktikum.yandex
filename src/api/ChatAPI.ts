@@ -1,20 +1,27 @@
-import BaseAPI from './BaseAPI';
+import { HTTPTransport } from "../utils/HTTPTransport";
+
 
 export interface ChatAPICreate {
-  title: string
+  title: string;
+}
+
+export interface ChatAPIDelete {
+  chatId: number;
 }
 
 export interface ChatAPIAddUser {
-  users: number []
-  chatId: number
+  users: number [];
+  chatId: number;
 }
 
-export class ChatAPI extends BaseAPI {
+export class ChatAPI {
+	protected http: HTTPTransport;
+	static API_URL = process.env.API_URL || 'https://ya-praktikum.tech/api/v2';
   constructor() {
-    super('/chats');
+		this.http = new HTTPTransport(ChatAPI.API_URL,'/chats');
   }
 
-  public create(data: ChatAPICreate) {
+  public create(data: ChatAPICreate):Promise<XMLHttpRequest> {
     const res = this.http.post('/', 
     { 
       headers: {
@@ -26,13 +33,13 @@ export class ChatAPI extends BaseAPI {
     return res;
   }
 
-  public request() {
+  public request():Promise<XMLHttpRequest> {
     const res = this.http.get('/', {
     });
     return res;
   }
 
-  public removeChat(data: any) {
+  public removeChat(data: ChatAPIDelete):Promise<XMLHttpRequest> {
     return this.http.delete('/', {
       headers: {
         'accept': 'application/json',
@@ -42,7 +49,7 @@ export class ChatAPI extends BaseAPI {
     });
   }
 
-  public addUserChat(data: ChatAPIAddUser) {
+  public addUserChat(data: ChatAPIAddUser):Promise<XMLHttpRequest> {
     return this.http.put('/users', {
       headers: {
         'accept': 'application/json',
@@ -52,7 +59,7 @@ export class ChatAPI extends BaseAPI {
     });
   }
 
-  public deleteUserChat(data: ChatAPIAddUser) {
+  public deleteUserChat(data: ChatAPIAddUser):Promise<XMLHttpRequest> {
     return this.http.delete('/users', {
       headers: {
         'accept': 'application/json',
@@ -62,25 +69,21 @@ export class ChatAPI extends BaseAPI {
     });
   }
 
-  public requestMessageToken(chatId: number) {
+  public requestMessageToken(chatId: number):Promise<XMLHttpRequest> {
     return this.http.post(`/token/${chatId}`, {
     });
   }
 
-  public requestChatUsers(chatId: number) {
+  public requestChatUsers(chatId: number):Promise<XMLHttpRequest> {
     return this.http.get(`/${chatId}/users`, {
     });
   }
   
-  public updateChatAvatar(data: FormData) {
+  public updateChatAvatar(data: FormData):Promise<XMLHttpRequest> {
     return this.http.put('/avatar', { headers: {
       'accept': 'application/json',
     }, data: data });
   }
-
-  read = undefined;
-  update = undefined;
-  delete = undefined;
 }
 
 export default new ChatAPI();

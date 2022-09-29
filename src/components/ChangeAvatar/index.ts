@@ -10,7 +10,7 @@ interface ChangeAvatarProps {
     click: () => void
   },
   classes?: string,
-	func?: any,
+  func?: () => void,
 }
 
 export class ChangeAvatar extends Block {
