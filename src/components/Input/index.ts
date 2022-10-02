@@ -50,33 +50,33 @@ export class Input extends Block {
     });
   }
 
-  protected onValidate(val: string, valId: string) {
-    if (val === undefined) {
-      val = this.children.inputField.props.valueInput;
-      valId = this.children.inputField.props.idInput;
+  public onValidate(val: string, valId: string) {
+    if (val === undefined || val == null) {
+      val = (this.children.inputField as Block).props.valueInput;
+      valId = (this.children.inputField as Block).props.idInput;
     }
     const validationSettings = ValidationSettings(valId);
     const regIn = new RegExp(validationSettings[1], 'i');
     const isValid = val && regIn.test(val);
-    const inputClasses = this.children.inputField.props.classes;
+    const inputClasses = (this.children.inputField as Block).props.classes;
     const arrClasses = inputClasses.split(' ');
     if (!isValid) {
-      this.children.errorMsg.setProps({ errorMsg: validationSettings[0] });
+      (this.children.errorMsg as Block).setProps({ errorMsg: validationSettings[0] });
       if (!(arrClasses.indexOf('ya-field__input_error') > 0)) {
-        this.children.inputField.setProps({ classes : inputClasses + ' ya-field__input_error', valueInput: val });
+        (this.children.inputField as Block).setProps({ classes : inputClasses + ' ya-field__input_error', valueInput: val });
       } else {
-        this.children.inputField.setProps({ classes : inputClasses, valueInput: val });
+        (this.children.inputField as Block).setProps({ classes : inputClasses, valueInput: val });
       }
     } else {
-      this.children.errorMsg.setProps({ errorMsg: '' });
-      const strClasses = arrClasses.filter(val => val != 'ya-field__input_error').join(' ');
-      this.children.inputField.setProps({ classes : strClasses, valueInput: val });
+      (this.children.errorMsg as Block).setProps({ errorMsg: '' });
+      const strClasses = arrClasses.filter((val:string) => val != 'ya-field__input_error').join(' ');
+      (this.children.inputField as Block).setProps({ classes : strClasses, valueInput: val });
     }
     return isValid;
   }
 
   public getValue() {
-    return this.children.inputField.getValueIn();
+    return (this.children.inputField as InputField).getValueIn();
   }
 
   render() {

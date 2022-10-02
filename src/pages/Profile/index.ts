@@ -45,7 +45,7 @@ export class ProfileBase extends Block {
                 const avatarInput = document.querySelector('#avatarInput') as HTMLInputElement;
                 if (avatarInput !== null) {
                   const { files }: { files: FileList | null } = (avatarInput as HTMLInputElement);
-                  const [file] = files;
+                  const [file] = files as any;
                   const formData = new FormData();
                   formData.append('avatar', file);
                   UserController.updateAvatar(formData);

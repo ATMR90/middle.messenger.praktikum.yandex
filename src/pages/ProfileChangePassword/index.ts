@@ -43,7 +43,7 @@ export class ProfileChangePasswordBase extends Block {
               const avatarInput = document.querySelector('#avatarInput') as HTMLInputElement;
               if (avatarInput !== null) {
                 const { files }: { files: FileList | null } = (avatarInput as HTMLInputElement);
-                const [file] = files;
+                const [file] = files as any;
                 const formData = new FormData();
                 formData.append('avatar', file);
                 UserController.updateAvatar(formData);
@@ -98,12 +98,12 @@ export class ProfileChangePasswordBase extends Block {
       label: 'Сохранить',
       events: {
         click: () => {
-          const valid = this.children.fields.reduce((acc, val) => {
+          const valid = (this.children.fields as Array<any>).reduce((acc, val) => {
             const result = val.children.fieldValue.onValidate();
             return acc && result;
           }, true);
-          const logOldPassword = document.querySelector(`#${this.children.fields[0].children.fieldValue.props.idInput}`)!.value;
-          const logNewPassword = document.querySelector(`#${this.children.fields[1].children.fieldValue.props.idInput}`)!.value;
+          const logOldPassword = document.querySelector((`#${(this.children.fields as Array<any>)[0].children.fieldValue.props.idInput}`) as any).value;
+          const logNewPassword = document.querySelector((`#${(this.children.fields as Array<any>)[1].children.fieldValue.props.idInput}`) as any).value;
           if (valid && logOldPassword && logNewPassword) {
             const data = {
               'oldPassword': logOldPassword,

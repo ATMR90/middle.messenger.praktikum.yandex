@@ -1,6 +1,5 @@
 import Router from './utils/Router';
 import store from './utils/Store';
-import 'dotenv/config';
 
 import AuthController from './controllers/AuthController';
 

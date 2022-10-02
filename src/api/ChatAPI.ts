@@ -16,7 +16,7 @@ export interface ChatAPIAddUser {
 
 export class ChatAPI {
   protected http: HTTPTransport;
-  static API_URL = process.env.API_URL || 'https://ya-praktikum.tech/api/v2';
+  static API_URL = 'https://ya-praktikum.tech/api/v2';
   constructor() {
     this.http = new HTTPTransport(ChatAPI.API_URL, '/chats');
   }

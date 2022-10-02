@@ -43,7 +43,7 @@ export class ProfileChangeUserBase extends Block {
               const avatarInput = document.querySelector('#avatarInput') as HTMLInputElement;
               if (avatarInput !== null) {
                 const { files }: { files: FileList | null } = (avatarInput as HTMLInputElement);
-                const [file] = files;
+                const [file] = files as any;
                 const formData = new FormData();
                 formData.append('avatar', file);
                 UserController.updateAvatar(formData);
@@ -134,16 +134,16 @@ export class ProfileChangeUserBase extends Block {
       label: 'Сохранить',
       events: {
         click: () => {
-          const valid = this.children.fields.reduce((acc, val) => {
+          const valid = (this.children.fields as Array<any>).reduce((acc, val) => {
             const result = val.children.fieldValue.onValidate();
             return acc && result;
           }, true);
-          const logEmail = document.querySelector(`#${this.children.fields[0].children.fieldValue.props.idInput}`)!.value;
-          const logLog = document.querySelector(`#${this.children.fields[1].children.fieldValue.props.idInput}`)!.value;
-          const logFirstName = document.querySelector(`#${this.children.fields[2].children.fieldValue.props.idInput}`)!.value;
-          const logSecondName = document.querySelector(`#${this.children.fields[3].children.fieldValue.props.idInput}`)!.value;
-          const logDisplayName = document.querySelector(`#${this.children.fields[4].children.fieldValue.props.idInput}`)!.value;
-          const logPhone = document.querySelector(`#${this.children.fields[5].children.fieldValue.props.idInput}`)!.value;
+          const logEmail = document.querySelector((`#${(this.children.fields as Array<any>)[0].children.fieldValue.props.idInput}`) as any).value;
+          const logLog = document.querySelector((`#${(this.children.fields as Array<any>)[1].children.fieldValue.props.idInput}`) as any).value;
+          const logFirstName = document.querySelector((`#${(this.children.fields as Array<any>)[2].children.fieldValue.props.idInput}`) as any).value;
+          const logSecondName = document.querySelector((`#${(this.children.fields as Array<any>)[3].children.fieldValue.props.idInput}`) as any).value;
+          const logDisplayName = document.querySelector((`#${(this.children.fields as Array<any>)[4].children.fieldValue.props.idInput}`) as any).value;
+          const logPhone = document.querySelector((`#${(this.children.fields as Array<any>)[5].children.fieldValue.props.idInput}`) as any).value;
           if (valid && logEmail && logLog && logFirstName && logSecondName && logDisplayName && logPhone) {
             const data = {
               'first_name': logFirstName,

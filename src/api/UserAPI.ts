@@ -19,7 +19,7 @@ export interface UserAPISearch {
 
 export class UserAPI {
   protected http: HTTPTransport;
-  static API_URL = process.env.API_URL || 'https://ya-praktikum.tech/api/v2';
+  static API_URL = 'https://ya-praktikum.tech/api/v2';
   constructor() {
     this.http = new HTTPTransport(UserAPI.API_URL, '/user');
   }

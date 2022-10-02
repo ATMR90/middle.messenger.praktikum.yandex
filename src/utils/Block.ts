@@ -17,9 +17,7 @@ class Block {
 
   protected _element: HTMLElement | null = null;
 
-  private _meta: { props: any };
-
-  protected children: Record<string, Block> | Record<string, Block[]>;
+  public children: Record<string, Block> | Record<string, Block[]>;
 
   /** JSDoc
    * 
@@ -31,10 +29,6 @@ class Block {
     const eventBus = new EventBus();
 
     const { props, children } = this._getChildrenAndProps(propsWithChildren);
-
-    this._meta = {
-      props,
-    };
 
     this.children = children;
 
@@ -207,10 +201,6 @@ class Block {
         throw new Error('Нет доступа');
       },
     });
-  }
-
-  private _createDocumentElement(tagName: string) {
-    return document.createElement(tagName);
   }
 
   show() {

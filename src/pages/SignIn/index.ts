@@ -39,7 +39,7 @@ export class SignIn extends Block {
         inputClasses: 'ya-field__input',
         events: {
           focusin: () => {
-            const loginL = document.querySelector(`#${this.children.fields[0].props.idInput}`);
+            const loginL = document.querySelector(`#${(this.children.fields as Array<any>)[0].props.idInput}`);
             loginL?.classList.remove('ya-field__input_error');
           },
         },
@@ -52,7 +52,7 @@ export class SignIn extends Block {
         inputClasses: 'ya-field__input',
         events: {
           focusin: () => {
-            const loginL = document.querySelector(`#${this.children.fields[1].props.idInput}`);
+            const loginL = document.querySelector(`#${(this.children.fields as Array<any>)[1].props.idInput}`);
             loginL?.classList.remove('ya-field__input_error');
           },
         },
@@ -63,13 +63,13 @@ export class SignIn extends Block {
         label: 'Войти',
         events: {
           click: () => {
-            event.preventDefault();
-            const valid = this.children.fields.reduce((acc, val) => {
+            event?.preventDefault();
+            const valid = (this.children.fields as Array<any>).reduce((acc, val) => {
               const result = val.onValidate();
               return acc && result;
             }, true);
-            const logLog = document.querySelector(`#${this.children.fields[0].props.idInput}`)!.value;
-            const logPass = document.querySelector(`#${this.children.fields[1].props.idInput}`)!.value;
+            const logLog = document.querySelector((`#${(this.children.fields as Array<any>)[0].props.idInput}`) as any).value;
+            const logPass = document.querySelector((`#${(this.children.fields as Array<any>)[1].props.idInput}`) as any).value;
             if (valid && logLog && logPass) {
               const data = {
                 'login': logLog,
