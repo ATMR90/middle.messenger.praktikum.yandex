@@ -37,7 +37,10 @@ module.exports = {
       },
       {
         test: /\.pug$/,
-        loader: 'pug-loader'
+        loader: '@webdiscus/pug-loader',
+        options: {
+          method: 'compile', // default method `compile` can be omitted
+        }
       },
       {
         test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf)$/,
@@ -55,7 +58,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './static/index.html',
+      template: 'static/index.html',
     }),
     new MiniCssExtractPlugin(),
     new CopyWebpackPlugin({
