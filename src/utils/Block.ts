@@ -11,7 +11,7 @@ class Block {
 
   public _id = makeUUID();
 
-  protected props: any;
+  public props: any;
 
   private eventBus: () => EventBus;
 

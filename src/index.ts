@@ -20,6 +20,7 @@ enum Routes {
 }
 
 export const router = new Router('#app');
+// @ts-ignore
 window.storeWin = store; 
 window.addEventListener('DOMContentLoaded', async () => {
   router
