@@ -40,7 +40,7 @@ module.exports = {
         loader: '@webdiscus/pug-loader',
         options: {
           method: 'compile', // default method `compile` can be omitted
-        }
+        },
       },
       {
         test: /\.(png|svg|jpg|gif|woff(2)?|eot|ttf|otf)$/,

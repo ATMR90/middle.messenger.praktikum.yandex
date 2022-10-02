@@ -16,6 +16,12 @@ import { messageController } from './../../controllers/';
 import UserController from '../../controllers/UserController';
 import ChatController from '../../controllers/ChatController';
 
+import settingsDots from './../../assets/img/settings_dots.svg';
+import clip from './../../assets/img/clip.svg';
+import arrowForwardEnter from '../../assets/img/arrow_forward_enter_.svg';
+import popUpPlus from './../../assets/img/pop_up_plus_.svg';
+import popUpDelete from './../../assets/img/pop_up_delete_.svg';
+
 interface ChatActiveProps {
   label: string,
   classes?: string
@@ -76,7 +82,7 @@ export class ChatActive extends Block {
     });
     this.children.btn = new ButtonWithImage({
       label:'',
-      src: '../../assets/img/arrow_forward_enter_.svg',
+      src: arrowForwardEnter,
       alt: 'Отправить',
       classes: 'ya-btn-img',
       events: {
@@ -98,7 +104,7 @@ export class ChatActive extends Block {
       btn: [
         new ButtonWithImage({
           label: 'Добавить пользователя',
-          src: './../../assets/img/pop_up_plus_.svg',
+          src: popUpPlus,
           events: {
             click: () => {
               (this.children.popUp as Block).hide();
@@ -110,7 +116,7 @@ export class ChatActive extends Block {
         }),
         new ButtonWithImage({
           label: 'Удалить пользователя',
-          src: './../../assets/img/pop_up_delete_.svg',
+          src: popUpDelete,
           events: {
             click: () => {
               (this.children.popUp as Block).hide();
@@ -125,13 +131,23 @@ export class ChatActive extends Block {
 
     this.children.dots = new ButtonWithImage({
       label: '',
-      src:'./../../assets/img/settings_dots.svg',
+      src:settingsDots,
       alt:'Опции',
       classes:'header-right-panel__settings',
       events: {
         click: () => {
           (this.children.popUp as Block).show();
         },
+      },
+    });
+
+    this.children.clip = new ButtonWithImage({
+      label: '',
+      src:clip,
+      alt:'Прикрепить',
+      classes:'header-right-panel__settings',
+      events: {
+        click: () => {},
       },
     });
 

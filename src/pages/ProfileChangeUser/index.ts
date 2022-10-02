@@ -10,11 +10,14 @@ import { Button } from '../../components/Button';
 import { ButtonWithImage } from '../../components/ButtonWithImage';
 import { Input } from '../../components/Input';
 import { InfoField } from '../../components/InfoField';
+import { Link } from '../../components/Link';
 
 import { ChangeAvatar } from '../../components/ChangeAvatar';
 
 import { UserAPIUpdateProfile } from '../../api/UserAPI';
 import UserController from '../../controllers/UserController';
+
+import arrowBack from './../../assets/img/arrow_back_.svg';
 
 interface ProfileChangeUserProps {
   title: string,
@@ -55,6 +58,13 @@ export class ProfileChangeUserBase extends Block {
       },
       classes: 'header-profile__avatar header-profile__avatar_hover',
       src: `https://ya-praktikum.tech/api/v2/resources${this.props.avatar}`,
+    });
+    this.children.profLink = new Link({
+      label: '',
+      classes: 'profile-back__text',
+      to: '/messenger',
+      src: arrowBack,
+      alt: 'Стрелка назад',
     });
     this.children.fields = [
       new InfoField({

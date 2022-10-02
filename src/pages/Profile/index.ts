@@ -15,6 +15,8 @@ import { ChangeAvatar } from '../../components/ChangeAvatar';
 import AuthController from '../../controllers/AuthController';
 import UserController from '../../controllers/UserController';
 
+import arrowBack from './../../assets/img/arrow_back_.svg';
+
 interface ProfileProps {
   title: string,
   classes?: string,
@@ -62,7 +64,7 @@ export class ProfileBase extends Block {
       label: '',
       classes: 'profile-back__text',
       to: '/messenger',
-      src: './../../assets/img/arrow_back_.svg',
+      src: arrowBack,
       alt: 'Стрелка назад',
     });
     this.children.fields = [

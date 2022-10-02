@@ -17,6 +17,8 @@ import { Modal } from '../../components/Modal';
 import ChatController from '../../controllers/ChatController';
 import { messageController } from './../../controllers/';
 
+import ArrowForward from './../../assets/img/arrow_forward.svg';
+
 interface ChatProps {
   title: string,
   classes?: string,
@@ -88,7 +90,7 @@ export class ChatBase extends Block {
     this.children.profLink = new Link({
       label: 'Профиль',
       to: '/settings',
-      src: './../../assets/img/arrow_forward.svg',
+      src: ArrowForward,
       alt: 'Стрелка вперед',
     });
     let chatsListBlocksSkel = [
