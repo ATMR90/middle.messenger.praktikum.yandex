@@ -8,15 +8,14 @@ interface ButtonWithImageProps {
     click: () => void
   },
   classes?: string,
-  url?: string,
   src?: string,
-  alt?: string
+  alt?: string,
+  classDiv?: string, 
 }
 
-export default class ButtonWithImage extends Block {
+export class ButtonWithImage extends Block {
   constructor(props: ButtonWithImageProps) {
     const defaultValue = {
-      url: '',
       src: '',
       alt: '',
     };

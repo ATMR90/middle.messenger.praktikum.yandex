@@ -5,18 +5,14 @@ import * as styles from './button.scss';
 interface ButtonProps {
   label: string,
   events?: {
-    click: () => void
+    click: (e?:Event) => void
   },
   classes?: string,
-  url?: string,
   type?: string
 }
 
 export class Button extends Block {
   constructor(props: ButtonProps) {
-    if (props.url === undefined) {
-      props.url = '';
-    }
     super(props);
   }
 

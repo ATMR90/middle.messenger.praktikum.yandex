@@ -128,23 +128,18 @@ class Block {
 
   private _render() {
     const fragment = this.render();
-
     const newElement = fragment.firstElementChild as HTMLElement;
-
     if (this._element) {
       this._removeEvents();
       this._element.replaceWith(newElement);
     }
-
     this._element = newElement;
-
     this._addEvents();
     this._addClass();
   }
 
   protected compile(template: (context: any) => string, context: any) {
     const contextAndStubs = { ...context };
-
     Object.entries(this.children).forEach(([name, component]) => {
       if (Array.isArray(component)) {
         component.forEach((val) => {
@@ -156,7 +151,6 @@ class Block {
         });
         return;
       }
-
       contextAndStubs[name] = `<div data-id='${component._id}'></div>`;
     });
 
@@ -220,7 +214,7 @@ class Block {
   }
 
   show() {
-    this.getContent()!.style.display = 'block';
+    this.getContent()!.style.display = 'flex';
   }
 
   hide() {

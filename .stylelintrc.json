@@ -1,29 +1,29 @@
 {
-	"extends": [
-		"stylelint-config-standard",
-		"stylelint-config-standard-scss"
-	],
-	"plugins": [
-		"stylelint-scss"
-	],
-	"rules": {
-		"at-rule-no-unknown": null,
-		"scss/at-rule-no-unknown": true,
-		"color-hex-case": "lower",
-		"scss/dollar-variable-pattern": "^[a-z][a-zA-Z]+$",
-		"scss/selector-no-redundant-nesting-selector": true,
-		"indentation": "tab",
-		"selector-class-pattern": [
-			"^([a-z-]+)+(__([a-z-]+)+)?(_[a-z]+([a-z-]+)*){0,2}$",
-			{
-				"message": "Selector class pattern does not match project conventions",
-				"resolveNestedSelectors": true
-			}
-		],
-		"scss/at-mixin-pattern": "^[a-zA-Z]+$",
-		"max-line-length": 200
-	},
-	"ignoreFiles": [
-		"dist/*"
-	]
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-standard-scss"
+  ],
+  "plugins": [
+    "stylelint-scss"
+  ],
+  "rules": {
+    "at-rule-no-unknown": null,
+    "scss/at-rule-no-unknown": true,
+    "color-hex-case": "lower",
+    "scss/dollar-variable-pattern": "^[a-z][a-zA-Z]+$",
+    "scss/selector-no-redundant-nesting-selector": true,
+    "indentation": "tab",
+    "selector-class-pattern": [
+      "^([a-z-]+)+(__([a-z-]+)+)?(_[a-z]+([a-z-]+)*){0,2}$",
+      {
+        "message": "Selector class pattern does not match project conventions",
+        "resolveNestedSelectors": true
+      }
+    ],
+    "scss/at-mixin-pattern": "^[a-zA-Z]+$",
+    "max-line-length": 200
+  },
+  "ignoreFiles": [
+    "dist/*"
+  ]
 }

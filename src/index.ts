@@ -1,65 +1,58 @@
-import { pageChat } from './pages/Chat/chat';
-import { pageError404 } from './pages/Error404/error404';
-import { pageError500 } from './pages/Error500/error500';
-import { pageProfile } from './pages/Profile/profile';
-import { pageProfileChangePassword } from './pages/ProfileChangePassword/profileChangePassword';
-import { pageProfileChangeUser } from './pages/ProfileChangeUser/profileChangeUser';
-import { pageSignIn } from './pages/SignIn/signIn';
-import { pageSignUp } from './pages/SignUp/signUp';
+import Router from './utils/Router';
+import store from './utils/Store';
+import 'dotenv/config';
 
-function funPageSignIn() {
-  pageSignIn();
-}
-function funPageSignUp() {
-  pageSignUp();
-}
-function funPageProfile() {
-  pageProfile();
-}
-function funPageProfileChangeUser() {
-  pageProfileChangeUser();
-}
-function funPageProfileChangePassword() {
-  pageProfileChangePassword();
-}
-function funPageChat() {
-  pageChat();
-}
-function funpageError404() {
-  pageError404();
-}
-function funpageError500() {
-  pageError500();
+import AuthController from './controllers/AuthController';
+
+import { Chat } from './pages/Chat';
+import { Error404 } from './pages/Error404';
+import { Error500 } from './pages/Error500';
+import { Profile } from './pages/Profile';
+import { ProfileChangePassword } from './pages/ProfileChangePassword';
+import { ProfileChangeUser } from './pages/ProfileChangeUser';
+import { SignIn } from './pages/SignIn';
+import { SignUp } from './pages/SignUp';
+
+enum Routes {
+  Index = '/',
+  Register = '/sign-up',
+  Profile = '/settings',
 }
 
-window.addEventListener('DOMContentLoaded', () => {
-  const path = document.location.pathname;
-  switch (path) {
-    case '/':
-      break;
-    case '/auth':
-      funPageSignIn();
-      break;
-    case '/registration':
-      funPageSignUp();
-      break;
-    case '/profile':
-      funPageProfile();
-      break;
-    case '/profile-change-user':
-      funPageProfileChangeUser();
-      break;
-    case '/profile-change-password':
-      funPageProfileChangePassword();
-      break;
-    case '/chat':
-      funPageChat();
-      break;
-    case '/404':
-      funpageError404();
-      break;
-    case '/500':
-      funpageError500();
+export const router = new Router('#app');
+window.storeWin = store; 
+window.addEventListener('DOMContentLoaded', async () => {
+  router
+    .use('/', SignIn)
+    .use('/sign-up', SignUp)
+    .use('/settings', Profile)
+    .use('/messenger', Chat)
+    .use('/sign-in', SignIn)
+    .use('/profile', ProfileChangeUser)
+    .use('/password', ProfileChangePassword)
+    .use('/500', Error500)
+    .use('/404', Error404)
+    .use('*', Error404);
+
+    let isProtectedRoute = true;
+
+  switch (window.location.pathname) {
+    case Routes.Index:
+    case Routes.Register:
+      isProtectedRoute = false;
       break;
   }
+
+    try {
+      await AuthController.fetchUser();
+      setTimeout(()=>{router.start();}, 400);
+      if (!isProtectedRoute) {
+        setTimeout(()=>{router.go('/messenger');}, 400);
+      }
+    } catch (e) {
+      router.start();
+      if (isProtectedRoute) {
+        router.go('/');
+      }
+    }
 });

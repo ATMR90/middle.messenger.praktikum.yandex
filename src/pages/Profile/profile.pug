@@ -1,12 +1,11 @@
 .ya-profile
-	a(href="/chat").ya-profile__back.profile-back 
-		.profile-back__text 
-			img(src="./../../assets/img/arrow_back_.svg", alt="Стрелка назад")
+	.ya-profile__back.profile-back 
+		| !{profLink}
 	.ya-profile__info
 		.ya-profile__header.header-profile 
 			| !{avatar}
 			.header-profile__title.
-			|	!{title}
+			|	!{display_name}
 		.ya-profile__user-info.user-info
 			|	!{fields}
 		.ya-profile__settings.user-info

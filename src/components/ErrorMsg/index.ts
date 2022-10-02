@@ -13,7 +13,7 @@ export class ErrorMsg extends Block {
 
   render() {
     return this.compile(template, {
-      errorMsg: this.props.errorMsg,
+      ...this.props,
       styles,
     });
   }

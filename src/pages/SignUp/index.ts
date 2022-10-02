@@ -1,8 +1,13 @@
 import Block from '../../utils/Block';
 import template from './signUp.pug';
-import { Button } from '../../components/Button';
 import * as styles from './signUp.scss';
+
+import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
+import { Link } from '../../components/Link';
+
+import { SignUpData } from '../../api/AuthAPI';
+import AuthController from '../../controllers/AuthController';
 
 interface SignUpProps {
   title: string,
@@ -16,11 +21,16 @@ interface SignUpProps {
 
 export class SignUp extends Block {
   constructor(props: SignUpProps) {
-    super(props);
+    super(Object.assign(
+      {
+          title: 'Регистрация',
+      },
+      props,
+    ));
   }
 
   init() {
-    const fields = [
+    this.children.fields = [
       new Input({
         label: 'Почта',
         idInput: 'email',
@@ -114,9 +124,7 @@ export class SignUp extends Block {
         },
       }),
     ];
-    this.children.fields = fields;
-
-    const buttons = [
+    this.children.footer = [
       new Button({
         label: 'Зарегистрироваться',
         events: {
@@ -132,26 +140,32 @@ export class SignUp extends Block {
             const logSecondName = document.querySelector(`#${this.children.fields[3].props.idInput}`)!.value;
             const logPhone = document.querySelector(`#${this.children.fields[4].props.idInput}`)!.value;
             const logPass = document.querySelector(`#${this.children.fields[5].props.idInput}`)!.value;
-            if (valid) {
-              console.log({
-                Почта: logEmail, Логин: logLog, Имя: logFirstName, Фамилия: logSecondName, Телефон: logPhone, Пароль: logPass,
-              });
+            if (valid && logEmail && logLog && logFirstName && logSecondName && logPhone) {
+              const data = {
+                'first_name': logFirstName,
+                'second_name': logSecondName,
+                'login': logLog,
+                'email': logEmail,
+                'password': logPass,
+                'phone': logPhone,
+              } as SignUpData;
+              AuthController.signup(data);
+              console.log('SignUp-log', data);
             }
           },
         },
         classes: 'ya-btn ya-btn_main ya-form__btn',
         type: 'submit',
       }),
-      new Button({
+      new Link({
         label: 'Войти',
         classes: 'ya-btn ya-form__btn',
-        url: '/auth',
+        to: '/',
       }),
     ];
-    this.children.footer = buttons;
   }
 
   render() {
-    return this.compile(template, { title: this.props.title, styles });
+    return this.compile(template, { ...this.props, styles });
   }
 }

@@ -24,20 +24,36 @@ function queryStringify(data: TRequestData) {
 }
 
 export class HTTPTransport {
+  protected endpoint: string;
+
+  constructor(api:string, endpoint: string) {
+    this.endpoint = `${api}${endpoint}`;
+  }
+
   public get = (url: string, options: TRequestOptions = {}): Promise<XMLHttpRequest> => {
+    url = this.endpoint + url;
     if (!!options.data) {
       url = `${url}${queryStringify(options.data as TRequestData)}`;
     }
     return this.request(url, { ...options, method: Methods.GET });
   };
 
-  public post = (url: string, options = {}): Promise<XMLHttpRequest> => this.request(url, { ...options, method: Methods.POST });
+  public post = (url: string, options = {}): Promise<XMLHttpRequest> => {
+    url = this.endpoint + url;
+    return this.request(url, { ...options, method: Methods.POST });
+  };
 
-  public put = (url: string, options = {}): Promise<XMLHttpRequest> => this.request(url, { ...options, method: Methods.PUT });
+  public put = (url: string, options = {}): Promise<XMLHttpRequest> => {
+    url = this.endpoint + url;
+    return this.request(url, { ...options, method: Methods.PUT });
+  };
 
-  public delete = (url: string, options = {}): Promise<XMLHttpRequest> => this.request(url, { ...options, method: Methods.DELETE });
+  public delete = (url: string, options = {}): Promise<XMLHttpRequest> => { 
+    url = this.endpoint + url;
+    return this.request(url, { ...options, method: Methods.DELETE });
+  };
 
-  request = (url: string, options: TRequestOptions = {}): any => {
+  private request = (url: string, options: TRequestOptions = {}): any => {
     const {
       headers = {},
       method = Methods.GET,
@@ -68,6 +84,9 @@ export class HTTPTransport {
 
       xhr.timeout = timeout;
       xhr.ontimeout = reject;
+
+      xhr.withCredentials = true;
+      xhr.responseType = 'json';
 
       if (!data) {
         xhr.send();

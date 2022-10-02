@@ -1,7 +1,7 @@
 {
-	"extends": "@parcel/config-default",
-	"transformers": {
-		"*.pug": ["parcel-transformer-pug-precompile"],
-		"*.scss": ["@parcel/transformer-sass"]
-	}
+  "extends": "@parcel/config-default",
+  "transformers": {
+    "*.pug": ["parcel-transformer-pug-precompile"],
+    "*.scss": ["@parcel/transformer-sass"]
+  }
 }

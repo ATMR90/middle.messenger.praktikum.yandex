@@ -1,8 +1,13 @@
 import Block from '../../utils/Block';
 import template from './signIn.pug';
-import { Button } from '../../components/Button';
 import * as styles from './signIn.scss';
+
+import { Button } from '../../components/Button';
 import { Input } from '../../components/Input';
+import { Link } from '../../components/Link';
+
+import { SignInData } from '../../api/AuthAPI';
+import AuthController from '../../controllers/AuthController';
 
 interface SignInProps {
   title: string,
@@ -16,11 +21,16 @@ interface SignInProps {
 
 export class SignIn extends Block {
   constructor(props: SignInProps) {
-    super(props);
+    super(Object.assign(
+      {
+          title: 'Вход',
+      },
+      props,
+    ));
   }
 
   init() {
-    const fields = [
+    this.children.fields  = [
       new Input({
         label: 'Логин',
         idInput: 'login',
@@ -33,7 +43,6 @@ export class SignIn extends Block {
             loginL?.classList.remove('ya-field__input_error');
           },
         },
-
       }),
       new Input({
         label: 'Пароль',
@@ -49,9 +58,7 @@ export class SignIn extends Block {
         },
       }),
     ];
-    this.children.fields = fields;
-
-    const buttons = [
+    this.children.footer = [
       new Button({
         label: 'Войти',
         events: {
@@ -63,24 +70,28 @@ export class SignIn extends Block {
             }, true);
             const logLog = document.querySelector(`#${this.children.fields[0].props.idInput}`)!.value;
             const logPass = document.querySelector(`#${this.children.fields[1].props.idInput}`)!.value;
-            if (valid) {
-              console.log({ login: logLog, password: logPass });
+            if (valid && logLog && logPass) {
+              const data = {
+                'login': logLog,
+                'password': logPass,
+              } as SignInData;
+              AuthController.signin(data);
+              console.log('Signin-log', data);
             }
           },
         },
         classes: 'ya-btn ya-btn_main ya-form__btn',
         type: 'submit',
       }),
-      new Button({
+      new Link({
         label: 'Регистрация',
         classes: 'ya-btn ya-form__btn',
-        url: '/registration',
+        to: '/sign-up',
       }),
     ];
-    this.children.footer = buttons;
   }
 
   render() {
-    return this.compile(template, { title: this.props.title, styles });
+    return this.compile(template, { ...this.props, styles });
   }
 }

@@ -23,7 +23,7 @@ export class InfoField extends Block {
 
   render() {
     return this.compile(template, {
-      label: this.props.label, styles, idInput: this.props.idInput, type: this.props.type, name: this.props.name, value: this.props.value,
+    ...this.props, styles,
     });
   }
 }

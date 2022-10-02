@@ -1,0 +1,59 @@
+.ya-pop-up {
+	position: fixed;
+	top: 40px;
+	right: 30px;
+	display: none;
+	font-weight: 500;
+	font-size: 12px;
+	line-height: 14px;
+	background: #fff;
+
+	&__container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		padding: 15px;
+
+		&_shadow {
+			box-shadow: 0 0 6px rgb(0 0 0 / 14%);
+			border-radius: 12px;
+		}
+	}
+
+	&__item:not(:last-child) {
+		margin-bottom: 15px;
+	}
+}
+
+.pop-up-item {
+	display: flex;
+	width: 100%;
+
+	&__container {
+		display: flex;
+		width: 100%;
+		align-items: center;
+	}
+
+	&__text {
+		padding-left: 15px;
+		flex: 1 1 auto;
+		font-weight: 500;
+		font-size: 12px;
+		line-height: 14px;
+	}
+
+	&__img {
+		width: 22px;
+		height: 22px;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+
+	button {
+		font-weight: inherit;
+		font-size: inherit;
+		line-height: inherit;
+	}
+}

@@ -1,0 +1,18 @@
+.right-panel 
+	.right-panel__header.header-right-panel
+		.header-right-panel__title 
+			.header-right-panel__avatar
+				img(src=img)
+			.header-right-panel__name=title
+		|	!{dots}
+		|	!{popUp}
+	|	!{ChatMessages}
+	.right-panel__footer.footer-right-panel
+		.footer-right-panel__clip
+			<img src="./../../assets/img/clip.svg" alt="Прикрепить">
+		.footer-right-panel__message
+			|	!{message}
+		.footer-right-panel__enter
+			|	!{btn}
+	| !{modalAdd}
+	| !{modalDel}

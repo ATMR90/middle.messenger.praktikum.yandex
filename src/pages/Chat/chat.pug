@@ -1,51 +1,12 @@
 .ya-chat
 	.ya-chat__left-panel.left-panel
 		.left-panel__profile 
-			a(href="/profile") Профиль
-				<img src="./../../assets/img/arrow_forward.svg" alt="Стрелка вперед">
+			|	!{profLink} 
 		.left-panel__search
 			input.left-panel__input(placeholder="Поиск")
 		ul.left-panel__chat-list
-			|	!{chatList}
-	.ya-chat__right-panel.right-panel 
-		.right-panel__header.header-right-panel
-			.header-right-panel__title 
-				.header-right-panel__avatar
-				.header-right-panel__name Вадим
-			.header-right-panel__settings
-				<img src="./../../assets/img/settings_dots.svg" alt="Опции">
-		.right-panel__messages.messages-chat
-			.messages-chat__container
-				time.messages-chat__data(datetime="2022-06-19") 19 июня
-				.messages-chat__his-message.his-message
-					.his-message__container 
-						.his-message__text 
-							<p>Привет! Смотри, тут всплыл интересный кусок лунной космической истории — НАСА в какой-то момент попросила Хассельблад адаптировать модель SWC для полетов на Луну. Сейчас мы все знаем что астронавты летали с моделью 500 EL — и к слову говоря, все тушки этих камер все еще находятся на поверхности Луны, так как астронавты с собой забрали только кассеты с пленкой.</p>
-							<p>Хассельблад в итоге адаптировал SWC для космоса, но что-то пошло не так и на ракету они так никогда и не попали. Всего их было произведено 25 штук, одну из них недавно продали на аукционе за 45000 евро.</p>
-						.his-message__obj
-					.his-message__info 
-						.his-message__status
-						.his-message__data 11:56
-				.messages-chat__his-message.his-message 
-					.his-message__container 
-						.his-message__text
-						.his-message__obj
-							<img src="./../../assets/img/chats/chat_01/img_01.jpg" alt="Фотоаппарат">
-					.his-message__info 
-						.his-message__status
-						.his-message__data 11:56
-				.messages-chat__your-message.his-message.his-message_your
-					.his-message__container
-						.his-message__text Круто!
-						.his-message__obj
-					.his-message__info 
-						.his-message__status
-							<img src="./../../assets/img/status_delivered.svg" alt="Статус прочитано">
-						.his-message__data 12:00
-		.right-panel__footer.footer-right-panel
-			.footer-right-panel__clip
-				<img src="./../../assets/img/clip.svg" alt="Прикрепить">
-			.footer-right-panel__message
-				|	!{message}
-			.footer-right-panel__enter
-				img(src="../../assets/img/arrow_forward_enter_.svg", alt="Отправить")
+			|	!{chatBtn}
+			|	!{chatsListBlock}
+	|	!{chatActive}
+	|	!{modal}
+	|	!{modalDel}
