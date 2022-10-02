@@ -48,7 +48,12 @@ class MessageController {
   }
 
   private _handleMassage(evt: MessageEvent) {
-    const data = JSON.parse(evt.data);
+    let data: any = {};
+    try {
+      data = JSON.parse(evt.data);
+    } catch (err) {
+      console.log(err);
+    }
     if (Array.isArray(data)) {
       if (!data.length) {
 

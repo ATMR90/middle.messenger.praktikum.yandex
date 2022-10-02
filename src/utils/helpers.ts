@@ -37,3 +37,23 @@ export function set(object: Indexed | unknown, path: string, value: unknown): In
 
   return merge(object as Indexed, result);
 }
+class ValidationError extends Error {
+  constructor(message: string) {
+    super(message);
+    this.name = 'ValidationError';
+  }
+}
+
+export function stringify(object: any):string {
+  let dataSend: string = '';
+  try {
+    dataSend = JSON.stringify(object);
+  } catch (err) {
+    if (err instanceof SyntaxError) {
+      throw new ValidationError('Переданные данные не являются корректным объектом');
+    } else {
+      throw err;
+    }
+  }
+  return dataSend;
+}

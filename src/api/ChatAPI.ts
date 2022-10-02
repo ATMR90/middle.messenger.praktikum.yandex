@@ -1,3 +1,4 @@
+import { stringify } from '../utils/helpers';
 import { HTTPTransport } from '../utils/HTTPTransport';
 
 export interface ChatAPICreate {
@@ -27,9 +28,8 @@ export class ChatAPI {
       'accept': 'application/json',
       'Content-Type': 'application/json',
       },
-      data: JSON.stringify(data),
+      data: stringify(data),
     });
-
   }
 
   public request():Promise<XMLHttpRequest> {
