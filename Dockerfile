@@ -1,9 +1,11 @@
-FROM ubuntu:21.04
-ARG DEBIAN_FRONTEND=noninteractive
-ENV TZ=Europe/Moscow
-RUN apt update && apt install -y nodejs && apt install -y npm
-COPY dist ./dist/
-COPY server ./
-RUN npm i
-EXPOSE 3000
-CMD node ./server.js
+FROM node:16-alpine
+RUN mkdir -p /home/node/app/node_modules && chown -R node:node /home/node/app
+WORKDIR /home/node/app
+COPY package.json ./
+RUN npm install npm -g
+USER node
+RUN npm install
+RUN node -v
+COPY --chown=node:node . .
+EXPOSE 80
+CMD npm run start
