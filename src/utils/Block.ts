@@ -177,7 +177,7 @@ class Block {
   }
 
   protected render(): DocumentFragment {
-    return new DocumentFragment();
+    return new window.DocumentFragment();
   }
 
   getContent() {

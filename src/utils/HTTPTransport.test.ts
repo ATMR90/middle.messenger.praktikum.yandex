@@ -10,7 +10,8 @@ describe('HTTPTransport', () => {
         { data: { postId: 1 } },
       )
       .then(({ response }) => {
-        const [{ postId }] = JSON.parse(response) || [];
+				// console.log(typeof response)
+        const [{ postId }] = response || [];
         if (postId === 1) {
           done();
         } else {
@@ -33,7 +34,7 @@ describe('HTTPTransport', () => {
         }),
       })
       .then(({ response }) => {
-        const { title } = JSON.parse(response) || {};
+        const { title } = response || {};
         if (title === 'foo') {
           done();
         } else {
