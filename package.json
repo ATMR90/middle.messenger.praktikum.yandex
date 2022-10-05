@@ -22,7 +22,8 @@
     "build": "npm run webpack:build",
     "start": "npm run webpack:serve",
     "netlify": "npm run webpack:build",
-    "test": "mocha -r ts-node/register src/**/*.test.ts"
+    "test": "mocha -r ts-node/register src/**/*.test.ts",
+		"prepare": "husky install"
   },
 	"husky": {
     "hooks": {
