@@ -24,6 +24,11 @@
     "netlify": "npm run webpack:build",
     "test": "mocha -r ts-node/register src/**/*.test.ts"
   },
+	"husky": {
+    "hooks": {
+      "pre-commit": "npm-run-all test lint"
+    }
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/ATMR90/middle.messenger.praktikum.yandex.git"
@@ -64,10 +69,12 @@
     "express-history-api-fallback": "2.2.1",
     "express-rate-limit": "6.6.0",
     "html-webpack-plugin": "5.5.0",
+    "husky": "8.0.1",
     "jsdom": "20.0.1",
     "mini-css-extract-plugin": "2.6.1",
     "mocha": "10.0.0",
     "mocha-jsdom": "1.2.0",
+    "npm-run-all": "4.1.5",
     "parcel": "2.7.0",
     "parcel-transformer-pug-precompile": "1.0.6",
     "pug": "3.0.2",
