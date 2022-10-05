@@ -7,7 +7,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 module.exports = {
-	PORT: Number(process.env.PORT) || 80,
+	PORT: Number(process.env.PORT) || 3000,
   NODE_ENV: process.env.NODE_ENV || 'development',
 	DIST_DIR: process.env.DIST_DIR || 'dist',
 };
