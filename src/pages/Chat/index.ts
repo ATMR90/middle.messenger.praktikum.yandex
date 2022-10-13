@@ -17,6 +17,8 @@ import { Modal } from '../../components/Modal';
 import ChatController from '../../controllers/ChatController';
 import { messageController } from './../../controllers/';
 
+import ArrowForward from './../../assets/img/arrow_forward.svg';
+
 interface ChatProps {
   title: string,
   classes?: string,
@@ -39,7 +41,7 @@ export class ChatBase extends Block {
       classes: 'ya-btn ya-btn_main ya-form__btn',
       events: {
         click: () => {
-          this.children.modal.show();
+          (this.children.modal as Block).show();
         },
       },
     });
@@ -55,8 +57,8 @@ export class ChatBase extends Block {
               const avatarInput = document.querySelector('#avatarInput') as HTMLInputElement;
               if (avatarInput !== null) {
                 const { files }: { files: FileList | null } = (avatarInput as HTMLInputElement);
-                const [file] = files;
-                const chatID = Number(this.props.chatId);
+                const [file] = files as any;
+                const chatID = this.props.chatId;
                 const formData = new FormData();
                 formData.append('chatId', chatID);
                 formData.append('avatar', file);
@@ -75,12 +77,12 @@ export class ChatBase extends Block {
         click: () => {
           let nameActivChat = '';
           if (store.getState().chat) {
-            nameActivChat = store.getState().chat.list.chats.filter((item) => {
+            nameActivChat = store.getState().chat.list.chats.filter((item:any) => {
               return item.id == store.getState().chat.chatId;
             })[0];
-            this.children.modalDel.setProps({ subTitle: `Удалить чат: "${nameActivChat.title}"` });
+            (this.children.modalDel as Block).setProps({ subTitle: `Удалить чат: "${(nameActivChat as any).title}"` });
           }
-          this.children.modalDel.show();
+          (this.children.modalDel as Block).show();
         },
       },
     });
@@ -88,7 +90,7 @@ export class ChatBase extends Block {
     this.children.profLink = new Link({
       label: 'Профиль',
       to: '/settings',
-      src: './../../assets/img/arrow_forward.svg',
+      src: ArrowForward,
       alt: 'Стрелка вперед',
     });
     let chatsListBlocksSkel = [
@@ -132,7 +134,7 @@ export class ChatBase extends Block {
                       token: tokenID,
                     });
                   }, 300);
-                  this.children.chatsListBlock.map((item:any) => {
+                  (this.children.chatsListBlock as Array<any>).map((item:any) => {
                     if (item.props.id == chatID) {
                       item.setProps({ classes: 'left-panel__chat left-panel__chat_active' });
                     }
@@ -177,14 +179,14 @@ export class ChatBase extends Block {
           label: 'Создать чат',
           events: {
             click: () => {
-              const valid = this.children.modal.children.fields.onValidate();
-              const chatName = document.querySelector(`#${this.children.modal.children.fields.props.idInput}`)!.value;
+              const valid = ((this.children.modal  as Block).children.fields as Input).onValidate('', '');
+              const chatName = document.querySelector((`#${((this.children.modal as Block).children.fields as Block).props.idInput}`) as any).value;
               if (valid) {
               const chatNew = {
                 'title': chatName,
               };
               ChatController.create(chatNew);
-              this.children.modal.hide();
+              (this.children.modal as Block).hide();
               }
             },
           },
@@ -194,7 +196,7 @@ export class ChatBase extends Block {
           label: 'Отмена',
           events: {
             click: () => {
-              this.children.modal.hide();
+              (this.children.modal as Block).hide();
             },
           },
           classes: 'ya-btn ya-form__btn',
@@ -203,13 +205,13 @@ export class ChatBase extends Block {
     });
     let nameActivChat = '';
     if (store.getState().chat) {
-      nameActivChat = store.getState().chat.list.chats.filter((item) => {
+      nameActivChat = store.getState().chat.list.chats.filter((item:any) => {
         return item.id == store.getState().chat.chatId;
       })[0];
     }
     this.children.modalDel = new Modal({
       label: '',
-      subTitle: `Удалить чат:${nameActivChat.title}`,
+      subTitle: `Удалить чат:${(nameActivChat as any).title}`,
       classes: '',
       footer:[
         new Button({
@@ -222,7 +224,7 @@ export class ChatBase extends Block {
                   chatId: store.getState().chat.chatId,
                 };
               ChatController.removeChat(data);
-              this.children.modalDel.hide();
+              (this.children.modalDel as Block).hide();
               }
             },
           },
@@ -232,7 +234,7 @@ export class ChatBase extends Block {
           label: 'Отмена',
           events: {
             click: () => {
-              this.children.modalDel.hide();
+              (this.children.modalDel as Block).hide();
             },
           },
           classes: 'ya-btn ya-form__btn',
@@ -269,7 +271,7 @@ export class ChatBase extends Block {
                     token: tokenID,
                   });
                 }, 300);
-                this.children.chatsListBlock.map((item:any) => {
+                (this.children.chatsListBlock as Array<any>).map((item:any) => {
                   if (item.props.id == chatID) {
                     item.setProps({ classes: 'left-panel__chat left-panel__chat_active' });
                   }

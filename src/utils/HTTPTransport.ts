@@ -67,7 +67,7 @@ export class HTTPTransport {
         return;
       }
 
-      const xhr = new XMLHttpRequest();
+      const xhr = new window.XMLHttpRequest();
 
       xhr.open(method, url);
 

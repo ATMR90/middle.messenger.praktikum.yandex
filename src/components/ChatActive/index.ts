@@ -16,6 +16,12 @@ import { messageController } from './../../controllers/';
 import UserController from '../../controllers/UserController';
 import ChatController from '../../controllers/ChatController';
 
+import settingsDots from './../../assets/img/settings_dots.svg';
+import clip from './../../assets/img/clip.svg';
+import arrowForwardEnter from '../../assets/img/arrow_forward_enter_.svg';
+import popUpPlus from './../../assets/img/pop_up_plus_.svg';
+import popUpDelete from './../../assets/img/pop_up_delete_.svg';
+
 interface ChatActiveProps {
   label: string,
   classes?: string
@@ -76,13 +82,13 @@ export class ChatActive extends Block {
     });
     this.children.btn = new ButtonWithImage({
       label:'',
-      src: '../../assets/img/arrow_forward_enter_.svg',
+      src: arrowForwardEnter,
       alt: 'Отправить',
       classes: 'ya-btn-img',
       events: {
         click:() => {
-          let message = this.children.message.getValue();
-          this.children.message.setProps({ valueInput: '' });
+          let message = (this.children.message as Input).getValue();
+          (this.children.message as Block).setProps({ valueInput: '' });
           messageController.sendMessage(message);
         },
       },
@@ -98,11 +104,11 @@ export class ChatActive extends Block {
       btn: [
         new ButtonWithImage({
           label: 'Добавить пользователя',
-          src: './../../assets/img/pop_up_plus_.svg',
+          src: popUpPlus,
           events: {
             click: () => {
-              this.children.popUp.hide();
-              this.children.modalAdd.show();
+              (this.children.popUp as Block).hide();
+              (this.children.modalAdd as Block).show();
             },
           },
           classes: 'pop-up-item__container ya-pop-up__item pop-up-item',
@@ -110,11 +116,11 @@ export class ChatActive extends Block {
         }),
         new ButtonWithImage({
           label: 'Удалить пользователя',
-          src: './../../assets/img/pop_up_delete_.svg',
+          src: popUpDelete,
           events: {
             click: () => {
-              this.children.popUp.hide();
-              this.children.modalDel.show();
+              (this.children.popUp as Block).hide();
+              (this.children.modalDel as Block).show();
             },
           },
           classes: 'pop-up-item__container ya-pop-up__item pop-up-item',
@@ -125,13 +131,23 @@ export class ChatActive extends Block {
 
     this.children.dots = new ButtonWithImage({
       label: '',
-      src:'./../../assets/img/settings_dots.svg',
+      src:settingsDots,
       alt:'Опции',
       classes:'header-right-panel__settings',
       events: {
         click: () => {
-          this.children.popUp.show();
+          (this.children.popUp as Block).show();
         },
+      },
+    });
+
+    this.children.clip = new ButtonWithImage({
+      label: '',
+      src:clip,
+      alt:'Прикрепить',
+      classes:'header-right-panel__settings',
+      events: {
+        click: () => {},
       },
     });
 
@@ -153,11 +169,11 @@ export class ChatActive extends Block {
           label: 'Добавить',
           events: {
             click: () => {
-              const nickName = document.querySelector(`#${this.children.modalAdd.children.fields.props.idInput}`)!.value;
+              const nickName = document.querySelector((`#${((this.children.modalAdd as Block).children.fields as Block).props.idInput}`) as any).value;
               if (nickName) {
                 addUser(nickName);
               }
-              this.children.modalAdd.hide();
+              (this.children.modalAdd as Block).hide();
             },
           },
           classes: 'ya-btn ya-btn_main ya-form__btn',
@@ -166,7 +182,7 @@ export class ChatActive extends Block {
           label: 'Отмена',
           events: {
             click: () => {
-              this.children.modalAdd.hide();
+              (this.children.modalAdd as Block).hide();
             },
           },
           classes: 'ya-btn ya-form__btn',
@@ -191,11 +207,11 @@ export class ChatActive extends Block {
           label: 'Удалить',
           events: {
             click: () => {
-              const nickName = document.querySelector(`#${this.children.modalDel.children.fields.props.idInput}`)!.value;
+              const nickName = document.querySelector((`#${((this.children.modalAdd as Block).children.fields as Block).props.idInput}`) as any).value;
               if (nickName) {
                 delUser(nickName);
               }
-              this.children.modalDel.hide();
+              (this.children.modalDel as Block).hide();
             },
           },
           classes: 'ya-btn ya-btn_red ya-form__btn',
@@ -204,7 +220,7 @@ export class ChatActive extends Block {
           label: 'Отмена',
           events: {
             click: () => {
-              this.children.modalDel.hide();
+              (this.children.modalDel as Block).hide();
             },
           },
           classes: 'ya-btn ya-form__btn',

@@ -1,6 +1,5 @@
 import Router from './utils/Router';
 import store from './utils/Store';
-import 'dotenv/config';
 
 import AuthController from './controllers/AuthController';
 
@@ -20,6 +19,7 @@ enum Routes {
 }
 
 export const router = new Router('#app');
+// @ts-ignore
 window.storeWin = store; 
 window.addEventListener('DOMContentLoaded', async () => {
   router

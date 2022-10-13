@@ -15,6 +15,8 @@ import { ChangeAvatar } from '../../components/ChangeAvatar';
 import AuthController from '../../controllers/AuthController';
 import UserController from '../../controllers/UserController';
 
+import arrowBack from './../../assets/img/arrow_back_.svg';
+
 interface ProfileProps {
   title: string,
   classes?: string,
@@ -45,7 +47,7 @@ export class ProfileBase extends Block {
                 const avatarInput = document.querySelector('#avatarInput') as HTMLInputElement;
                 if (avatarInput !== null) {
                   const { files }: { files: FileList | null } = (avatarInput as HTMLInputElement);
-                  const [file] = files;
+                  const [file] = files as any;
                   const formData = new FormData();
                   formData.append('avatar', file);
                   UserController.updateAvatar(formData);
@@ -62,7 +64,7 @@ export class ProfileBase extends Block {
       label: '',
       classes: 'profile-back__text',
       to: '/messenger',
-      src: './../../assets/img/arrow_back_.svg',
+      src: arrowBack,
       alt: 'Стрелка назад',
     });
     this.children.fields = [

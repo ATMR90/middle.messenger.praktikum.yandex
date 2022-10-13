@@ -10,11 +10,14 @@ import { Button } from '../../components/Button';
 import { ButtonWithImage } from '../../components/ButtonWithImage';
 import { Input } from '../../components/Input';
 import { InfoField } from '../../components/InfoField';
+import { Link } from '../../components/Link';
 
 import { ChangeAvatar } from '../../components/ChangeAvatar';
 
 import { UserAPIUpdatePassword } from '../../api/UserAPI';
 import UserController from '../../controllers/UserController';
+
+import arrowBack from './../../assets/img/arrow_back_.svg';
 
 interface ProfileChangePasswordProps {
   title: string,
@@ -43,7 +46,7 @@ export class ProfileChangePasswordBase extends Block {
               const avatarInput = document.querySelector('#avatarInput') as HTMLInputElement;
               if (avatarInput !== null) {
                 const { files }: { files: FileList | null } = (avatarInput as HTMLInputElement);
-                const [file] = files;
+                const [file] = files as any;
                 const formData = new FormData();
                 formData.append('avatar', file);
                 UserController.updateAvatar(formData);
@@ -55,6 +58,13 @@ export class ProfileChangePasswordBase extends Block {
       },
       classes: 'header-profile__avatar header-profile__avatar_hover',
       src: `https://ya-praktikum.tech/api/v2/resources${this.props.avatar}`,
+    });
+    this.children.profLink = new Link({
+      label: '',
+      classes: 'profile-back__text',
+      to: '/messenger',
+      src: arrowBack,
+      alt: 'Стрелка назад',
     });
     this.children.fields = [
       new InfoField({
@@ -98,12 +108,12 @@ export class ProfileChangePasswordBase extends Block {
       label: 'Сохранить',
       events: {
         click: () => {
-          const valid = this.children.fields.reduce((acc, val) => {
+          const valid = (this.children.fields as Array<any>).reduce((acc, val) => {
             const result = val.children.fieldValue.onValidate();
             return acc && result;
           }, true);
-          const logOldPassword = document.querySelector(`#${this.children.fields[0].children.fieldValue.props.idInput}`)!.value;
-          const logNewPassword = document.querySelector(`#${this.children.fields[1].children.fieldValue.props.idInput}`)!.value;
+          const logOldPassword = document.querySelector((`#${(this.children.fields as Array<any>)[0].children.fieldValue.props.idInput}`) as any).value;
+          const logNewPassword = document.querySelector((`#${(this.children.fields as Array<any>)[1].children.fieldValue.props.idInput}`) as any).value;
           if (valid && logOldPassword && logNewPassword) {
             const data = {
               'oldPassword': logOldPassword,

@@ -36,6 +36,10 @@ class Route {
       return;
     }
   }
+  
+  get pathname() {
+    return this._pathname;
+  }
 }
 
 export default Route;
