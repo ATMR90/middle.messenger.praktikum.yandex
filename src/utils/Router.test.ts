@@ -18,7 +18,7 @@ describe('Router', () => {
   it('Change route', () => {
     router.go('/');
     router.go('/about');
-    expect(router.history.length).to.eq(3);
+    expect(router.history.length).to.eq(4);
   });
 
   it('Get pathname', () => {
