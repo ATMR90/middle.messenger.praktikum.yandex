@@ -14,11 +14,8 @@ require.extensions['.pug'] = function (module, filename) {
   const contents = fs.readFileSync(filename, 'utf-8');
 
   module.exports = Pug.compile(contents);
-	// module.exports = () => '';
 }
 require.extensions['.scss'] = function () {
   module.exports = () => ({});
 }
-require.extensions['.svg'] = function () {
-  // module.exports = () => ({});
-}
+require.extensions['.svg'] = function () { }

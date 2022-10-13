@@ -16,10 +16,6 @@ describe('Link', () => {
   });
 
   it('should go to passed route on click', () => {
-    // const newRouter = new Router('#app');
-    // newRouter.go = sinon.fake();
-    // const oldGo = newRouter.go;
-
     const newRouter = new Router('#app');
 
     const link = new Link({ to: '/' });
@@ -30,6 +26,5 @@ describe('Link', () => {
 
     expect(spy.calledOnce).to.eq(true);
 
-    // newRouter.go = oldGo;
   });
 });
