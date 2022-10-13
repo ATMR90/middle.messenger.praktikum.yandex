@@ -113,5 +113,32 @@ npm run lint
 ## Спринт 4:
 
 ### Добавленные технологии:
-* Тесты
+* Тесты Mocha и Chai
 * Webpack
+* Docker
+* Heroku
+* precommit Husky
+* проведен аудит пакетов npm audit
+
+### Cсылка на Heroky:
+[http://atmr90.herokuapp.com/](http://atmr90.herokuapp.com/)
+
+### Команда запуска проекта в режиме development
+```bash
+npm run webpack
+```
+
+### Команда сборки проекта
+```bash
+npm run webpack:build
+```
+
+### Команда сборки проекта и запуск express-server
+```bash
+npm run start
+```
+
+### Команда запуска тестов:
+```bash
+npm run test
+```

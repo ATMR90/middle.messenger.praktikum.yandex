@@ -1,4 +1,7 @@
 {
+  "ts-node": {
+    "files": true
+  },
   "compilerOptions": {
   "outDir": "dist",
   "target": "es2016",
@@ -9,7 +12,7 @@
   "noImplicitAny": true,
   "noUnusedLocals": true,
   "noUnusedParameters": true,
-	"esModuleInterop":true,
-	"allowSyntheticDefaultImports":true
+  "esModuleInterop":true,
+  "allowSyntheticDefaultImports":true
   }
 }

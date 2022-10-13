@@ -10,7 +10,6 @@ describe('HTTPTransport', () => {
         { data: { postId: 1 } },
       )
       .then(({ response }) => {
-				// console.log(typeof response)
         const [{ postId }] = response || [];
         if (postId === 1) {
           done();
