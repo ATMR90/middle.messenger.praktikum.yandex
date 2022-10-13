@@ -1,7 +1,7 @@
 import { Link } from './index';
 import { expect } from 'chai';
 import Router from '../../utils/Router';
-import sinon from 'sinon';
+import { spy } from 'sinon';
 
 describe('Link', () => {
   it('should render', () => {
@@ -12,19 +12,19 @@ describe('Link', () => {
     const link = new Link({ to: '/' });
     const element = link.element;
 
-    expect(element).to.be.instanceof(window.HTMLDivElement)
+    expect(element).to.be.instanceof(window.HTMLDivElement);
   });
 
   it('should go to passed route on click', () => {
     const newRouter = new Router('#app');
 
     const link = new Link({ to: '/' });
-    const spy = sinon.spy(newRouter, 'go');
+    const newSpy = spy(newRouter, 'go');
     const element = link.element as HTMLDivElement;
 
     element.click();
 
-    expect(spy.calledOnce).to.eq(true);
+    expect(newSpy.calledOnce).to.eq(true);
 
   });
 });
