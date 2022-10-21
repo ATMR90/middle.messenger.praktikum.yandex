@@ -22,10 +22,10 @@ export class ChatController {
   public async request() {
     return this.api.request()
       .then((res: any) => {
-        store.set('chat.list.chats', res.response);
-        if (!store.getState().chat.chatId) {
-          store.set('chat.chatId', res.response[0]?.id || null);
-        }
+        store.set('chats', res.response);
+        // if (!store.getState().chat.chatId) {
+        //   store.set('chat.chatId', res.response[0]?.id || null);
+        // }
         return res.response;
       })
       .catch((e) => {
@@ -75,6 +75,16 @@ export class ChatController {
       .then()
       .catch();
   }
+
+  public selectChat(id: number) {
+    store.set('chatId', id);
+  }
 }
 
-export default new ChatController();
+const controller = new ChatController();
+
+export default controller;
+
+// window
+// @ts-ignore
+window.chatsController = controller;

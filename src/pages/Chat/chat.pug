@@ -6,7 +6,10 @@
 			input.left-panel__input(placeholder="Поиск")
 		ul.left-panel__chat-list
 			|	!{chatBtn}
-			|	!{chatsListBlock}
+			if isLoaded
+				|	!{chatsListBlock}
+			else 
+				|	Loading...
 	|	!{chatActive}
 	|	!{modal}
 	|	!{modalDel}

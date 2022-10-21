@@ -51,7 +51,7 @@ export class Input extends Block {
   }
 
   public onValidate(val: string, valId: string) {
-    if (val === undefined || val == null) {
+    if (val === undefined || val === null || val === '') {
       val = (this.children.inputField as Block).props.valueInput;
       valId = (this.children.inputField as Block).props.idInput;
     }

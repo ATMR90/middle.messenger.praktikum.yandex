@@ -1,4 +1,5 @@
 import Block from '../../utils/Block';
+import { withStore } from '../../utils/Store';
 import template from './chatPanel.pug';
 import * as styles from './chatPanel.scss';
 
@@ -15,21 +16,42 @@ interface ChatPanelProps {
     click: () => void
   };
   id?: number;
+  isSelected: any;
+  selectedChat: any;
 }
 
-export class ChatPanel extends Block {
+class ChatPanelBase extends Block {
   constructor(props: ChatPanelProps) {
     super({ ...props,
-    events: {
-      click: () => {
-        this.props.onClick(this.props.id);
-      },
-    } });
+    // events: {
+      // click: () => {
+        // console.log(this.props.id)
+        // this.props.onClick(this.props.id);
+      // },
+    // } 
+  });
   }
 
   render() {
+    console.log('ren#', this.props.selectedChat);
+    console.log('#', this.props.id);
+    console.log(this.props.id === this.props.selectedChat?.id);
+    debugger;
     return this.compile(template, {
-      ...this.props, styles,
+      ...this.props, 
+      isSelected: this.props.id === this.props.selectedChat?.id,
+      styles,
     });
   }
 }
+
+
+const withSelectedChats = withStore((state) => ({ selectedChat: (state.chats || []).find((item:any) => {
+  const { id } = item;
+  // console.log(item)
+  // console.log(id)
+  // console.log(state.chatId)
+  return id === state.chatId;
+}) }));
+
+export const ChatPanel = withSelectedChats(ChatPanelBase);

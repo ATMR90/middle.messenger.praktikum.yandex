@@ -1,5 +1,6 @@
 import { stringify } from '../utils/helpers';
 import { HTTPTransport } from '../utils/HTTPTransport';
+import { User } from './AuthAPI';
 
 export interface ChatAPICreate {
   title: string;
@@ -12,6 +13,18 @@ export interface ChatAPIDelete {
 export interface ChatAPIAddUser {
   users: number [];
   chatId: number;
+}
+
+export interface ChatInfo {
+  id: number;
+  title: string;
+  avatar: string;
+  unread_count: number;
+  last_message: {
+    user: User,
+    time: string;
+    content: string;
+  }
 }
 
 export class ChatAPI {

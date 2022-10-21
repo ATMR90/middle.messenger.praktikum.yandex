@@ -2,10 +2,21 @@ import Block from './Block';
 import isEqual from './isEqual';
 import { set } from './helpers';
 import { EventBus } from './EventBus';
+// import { User } from '../api/AuthAPI';
+// import { ChatInfo } from '../api/ChatAPI';
+// import { Message } from '../controllers/MessageController';
 
 export enum StoreEvents {
   Updated = 'updated',
 }
+
+// @ts-ignore
+// interface State {
+//   user: User;
+//   chats: ChatInfo[];
+//   messages: Record<number, Message[]>;
+//   selectedChat?: number;
+// }
 
 export class Store extends EventBus {
   private state: any = {};
