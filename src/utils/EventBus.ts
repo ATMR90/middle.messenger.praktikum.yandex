@@ -1,7 +1,7 @@
 export class EventBus {
   private readonly listeners: Record<string, Array<() => void>> = {};
 
-  on(event: string, callback: () => void): void {
+  on(event: string, callback: (val?: any) => void): void {
     if (!this.listeners[event]) {
       this.listeners[event] = [];
     }

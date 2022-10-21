@@ -122,17 +122,17 @@ export class ChatBase extends Block {
                 classes: 'left-panel__chat',
                 onClick: (chatID) => {
                   messageController.leave();
-                  ChatController.requestMessageToken(chatID);
+                  // ChatController.requestMessageToken(chatID);
                   store.set('chat.chatId', chatID || null);
                   setTimeout(() => {
-                    const data = store.getState().chat.chatId;
-                    const tokenID = store.getState().chat.chatToken.token;
-                    const userID = store.getState().user.id;
-                    messageController.connect({
-                      userId: userID,
-                      chatId: data,
-                      token: tokenID,
-                    });
+                    // const data = store.getState().chat.chatId;
+                    // const tokenID = store.getState().chat.chatToken.token;
+                    // const userID = store.getState().user.id;
+                    // messageController.connect({
+                    //   userId: userID,
+                    //   chatId: data,
+                    //   token: tokenID,
+                    // });
                   }, 300);
                   (this.children.chatsListBlock as Array<any>).map((item:any) => {
                     if (item.props.id == chatID) {
@@ -259,17 +259,17 @@ export class ChatBase extends Block {
               newMessage: '',
               classes: 'left-panel__chat',
               onClick: (chatID) => {
-                ChatController.requestMessageToken(chatID);
+                // ChatController.requestMessageToken(chatID);
                 store.set('chat.chatId', chatID || null);
                 setTimeout(() => {
-                  const data = store.getState().chat.chatId;
-                  const tokenID = store.getState().chat.chatToken.token;
-                  const userID = store.getState().user.id;
-                  messageController.connect({
-                    userId: userID,
-                    chatId: data,
-                    token: tokenID,
-                  });
+                  // const data = store.getState().chat.chatId;
+                  // const tokenID = store.getState().chat.chatToken.token;
+                  // const userID = store.getState().user.id;
+                  // messageController.connect({
+                  //   userId: userID,
+                  //   chatId: data,
+                  //   token: tokenID,
+                  // });
                 }, 300);
                 (this.children.chatsListBlock as Array<any>).map((item:any) => {
                   if (item.props.id == chatID) {

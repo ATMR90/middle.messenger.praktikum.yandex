@@ -1,6 +1,7 @@
 import { router } from '..';
 import store from '../utils/Store';
 import API, { ChatAPI, ChatAPIAddUser, ChatAPICreate, ChatAPIDelete } from '../api/ChatAPI';
+import MsgController from './MsgController';
 
 export class ChatController {
   private readonly api: ChatAPI;
@@ -26,6 +27,13 @@ export class ChatController {
         if (!store.getState().chat.chatId) {
           store.set('chat.chatId', res.response[0]?.id || null);
         }
+
+        res.response.map(async (chat: any) => {
+          const token = await this.requestMessageToken(chat.id);
+    
+          await MsgController.connect(chat.id, token);
+        });
+
         return res.response;
       })
       .catch((e) => {
@@ -57,7 +65,7 @@ export class ChatController {
     return this.api.requestMessageToken(chatId)
       .then((auth) => {
         store.set('chat.chatToken', auth.response || null);
-        return auth.response;
+        return auth.response.token;
       })
       .catch();
   }

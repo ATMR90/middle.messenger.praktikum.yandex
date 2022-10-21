@@ -12,7 +12,7 @@ import { ChatMessages } from '../ChatMessages';
 import { Modal } from '../Modal';
 import { PopUp } from '../PopUp';
 
-import { messageController } from './../../controllers/';
+// import { messageController } from './../../controllers/';
 import UserController from '../../controllers/UserController';
 import ChatController from '../../controllers/ChatController';
 
@@ -21,6 +21,7 @@ import clip from './../../assets/img/clip.svg';
 import arrowForwardEnter from '../../assets/img/arrow_forward_enter_.svg';
 import popUpPlus from './../../assets/img/pop_up_plus_.svg';
 import popUpDelete from './../../assets/img/pop_up_delete_.svg';
+import MsgController from '../../controllers/MsgController';
 
 interface ChatActiveProps {
   label: string,
@@ -89,7 +90,8 @@ export class ChatActive extends Block {
         click:() => {
           let message = (this.children.message as Input).getValue();
           (this.children.message as Block).setProps({ valueInput: '' });
-          messageController.sendMessage(message);
+          const id = store.getState().chat.chatId;
+          MsgController.sendMessage(id, message);
         },
       },
     });

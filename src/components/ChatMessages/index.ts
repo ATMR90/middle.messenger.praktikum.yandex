@@ -1,5 +1,5 @@
 import Block from '../../utils/Block';
-import store, { withStore } from '../../utils/Store';
+import { withStore } from '../../utils/Store';
 import formatDate from '../../utils/formatDate';
 
 import template from './chatMessages.pug';
@@ -20,8 +20,12 @@ interface ChatMessagesProps {
 
 function storeMessages(obj: any) {
   let mes: any[] = [];
-  if (obj.messages && Object.keys(obj.messages).length !== 0) {
-    obj.messages.forEach((data: any) => {
+  // console.log('obj',obj)
+  if (obj && Object.keys(obj).length !== 0) {
+    // console.log(obj)
+    // const activId = store.getState().chat.chatId
+    obj.forEach((data: any) => {
+      // console.log(data)
       let mesList = new ChatMessage({
         label: '',
         content: `${data.content}`,
@@ -41,42 +45,70 @@ export class ChatMessagesBase extends Block {
   }
 
   init(): void {
-    let storeData = store.getState();
-    if (storeData.messages) {
-      this.children.mes = storeMessages(storeData.messages);
-    } else {
+    // let storeData = store.getState();
+    // if (storeData.messages) {
+    //   console.log('nen')
+    //   this.children.mes = storeMessages(storeData.messages);
+    // } else {
       if (this.props.messages) {
-        this.children.mes = storeMessages(this.props);
-      }
+        this.children.mes = storeMessages(this.props.messages);
+      // }
     }
   }
 
   componentDidUpdate() {
-    let storeData = store.getState();
+    // let storeData = store.getState();
     if (this.props.messages) {
-      this.children.mes = storeMessages(this.props);
-    } else {
-      if (storeData.messages) {
-        this.children.mes = storeMessages(storeData.messages);
-      }
+    //   console.log('cdu',this.props.messages)
+      this.children.mes = storeMessages(this.props.messages);
+    // } else {
+      // if (storeData.messages) {
+      //   console.log('cduuu')
+      //   this.children.mes = storeMessages(storeData.messages);
+      // }
     }
     return true;
   }
 
   componentDidMount() {
-    let storeData = store.getState();
-    if (storeData.messages) {
-      this.children.mes = storeMessages(storeData.messages);
-    }
+    // if (this.props.messages) {
+    //   this.children.mes = storeMessages(this.props.messages);
+    // }
+    // let storeData = store.getState();
+    // if (storeData.messages) {
+    //   this.children.mes = storeMessages(storeData.messages);
+    // }
   }
 
   render() {
+    // console.log(this.children.mes)
     return this.compile(template, {
       ...this.props, styles,
     });
   }
 }
 
-const withUser = withStore((state) => ({ ...state.messages }));
+const withSelectedChatMessages = withStore(state => {
+  const selectedChatId = state.chat?.chatId;
 
-export const ChatMessages = withUser(ChatMessagesBase);
+  if (!selectedChatId) {
+    return {
+      messages: [],
+      selectedChat: undefined,
+      userId: state.user.id,
+    };
+  }
+
+  return {
+    messages: (state.messages || {})[selectedChatId] || [],
+    selectedChat: state.chat.chatId,
+    userId: state.user.id,
+  };
+});
+
+export const ChatMessages = withSelectedChatMessages(ChatMessagesBase);
+
+
+// const withUser = withStore((state) => ({ ...state.messages }));
+
+// export const ChatMessages = withUser(ChatMessagesBase);
